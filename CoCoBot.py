@@ -2,7 +2,6 @@ import discord
 import asyncio
 import random
 from discord.ext import commands, tasks
-import youtube_dl
 import os
 
 bot = commands.Bot(command_prefix='!!')
