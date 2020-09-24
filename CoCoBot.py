@@ -3,8 +3,8 @@ import asyncio
 import random
 from discord.ext import commands, tasks
 import youtube_dl
+import os
 
-Token = 'NzU4NTA3OTY2OTY1MzUwNDIw.X2v9lw.HWcvFWCaihwkHFQEhbrt0UF0ES4'
 bot = commands.Bot(command_prefix='!!')
 
 @bot.event
@@ -57,4 +57,5 @@ async def RSP(ctx, arg):
         else:
             await ctx.send("저는 보를 냈습니다. 제가 이겼습니다")
 
-bot.run(Token)
+access_token = os.environ["BOT_TOKEN"]
+bot.run(access_token)
