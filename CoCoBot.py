@@ -14,6 +14,16 @@ async def on_ready():
     print('=============')
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("주인놈이랑 코딩"))
 
+@bot.command(name='help')
+async def help(ctx):
+    embed=discord.Embed(title="도움말", description='코코봇의 명령어입니다')
+    embed.add_field(name='!!help', value='명령어들을 보내줍니다', inline=False)
+    embed.add_field(name='!!가위바위보', value='가위, 바위, 보 중 하나를 입력해서 코코와 가위바위보를 합니다', inline=False)
+    embed.add_field(name='!!안녕', value='인사를 받아줍니다', inline=False)
+    embed.add_field(name='!!코코야', value='가끔씩 까칠해져요', inline=False)
+    embed.set_footer(text='추후 새로운 명령어를 추가할 예정입니다')
+    await ctx.send(embed=embed)
+
 @bot.command(name='안녕')
 async def hello(ctx):
     await ctx.send('안녕하세요 %s 님!' %(ctx.author))
