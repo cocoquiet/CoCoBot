@@ -64,7 +64,7 @@ async def lery(ctx):
 async def SelfIntroduction(ctx):
     await ctx.send("러리님 화이팅!!")
     
-@bot.command(name = 'ㅋㅋ')
+@bot.command(name = 'ㅋ케')
 async def lol(ctx):
     await ctx.send("!!")
 
