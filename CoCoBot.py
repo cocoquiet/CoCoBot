@@ -66,7 +66,7 @@ async def SelfIntroduction(ctx):
     
 @bot.command(name = 'ㅋ케')
 async def lol(ctx):
-    await ctx.send("!!")
+    await ctx.send("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
 
 access_token = os.environ["BOT_TOKEN"]
 bot.run(access_token)
