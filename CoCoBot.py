@@ -55,6 +55,14 @@ async def RSP(ctx, arg):
             await ctx.send("저는 보를 냈습니다. 제가 졌습니다")
         else:
             await ctx.send("저는 보를 냈습니다. 제가 이겼습니다")
+            
+@bot.command(name = '러리')
+async def lery(ctx):
+    await ctx.send("러리님 화이팅!!")
+
+@bot.command(name = '자소서')
+async def lery(ctx):
+    await ctx.send("러리님 화이팅!!")
 
 access_token = os.environ["BOT_TOKEN"]
 bot.run(access_token)
