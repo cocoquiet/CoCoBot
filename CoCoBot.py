@@ -61,8 +61,12 @@ async def lery(ctx):
     await ctx.send("러리님 화이팅!!")
 
 @bot.command(name = '자소서')
-async def lery(ctx):
+async def SelfIntroduction(ctx):
     await ctx.send("러리님 화이팅!!")
+    
+@bot.command(name = 'ㅋㅋ')
+async def lol(ctx):
+    await ctx.send("!!")
 
 access_token = os.environ["BOT_TOKEN"]
 bot.run(access_token)
