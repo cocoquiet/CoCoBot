@@ -6,6 +6,8 @@ import os
 
 bot = commands.Bot(command_prefix='!!')
 
+bot.remove_command("help")
+
 @bot.event
 async def on_ready():
     print('코코 대기 중')
