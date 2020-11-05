@@ -45,7 +45,8 @@ class CoCo(commands.Bot):
                 await channel.send("멍멍!")
 
         if (content == "!!가위바위보"):
-            await channel.send("가위바위보 게임을 시작합니다. 가위, 바위, 보 중 하나를 내주세요.")
+            await channel.send("가위바위보 게임을 시작합니다.")
+            await channel.send("가위, 바위, 보 중 하나를 내주세요.")
             is_playing = True
             player = author
 
