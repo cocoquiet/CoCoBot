@@ -4,7 +4,7 @@ import random
 from discord.ext import commands, tasks
 import os
 
-bot = commands.Bot(command_prefix='!!')
+bot = commands.Bot(command_prefix='/')
 
 player = None
 bot_rsp = None
@@ -19,9 +19,14 @@ async def on_ready():
     print('=============')
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("주인놈이랑 코딩"))
     
-@bot.command(name="도움말")
+@bot.event
 async def help(ctx):
-    embed = discord.Embed(title="도움말", discription="기다려봐 지금 테스트 중이야")
+    embed = discord.Embed(title="도움말")
+    embed.add_field(name="/안녕", value="예쁘게 인사해줄게요.", inline=True)
+    embed.add_field(name="/코코야", value="기분이 좋으면 착하게, 기분이 나쁘면 신경질적으로 인사할거에요.", inline=True)
+    embed.add_field(name="/가위바위보", value="가위바위보를 해줄게요.", inline=True)
+    embed.add_field(name="/ㅋ케", value="웃기 힘드실때 대신 웃어드릴게요.", inline=True)
+    embed.set_footer(text="앞으로 여러가지를 추가할거에요!!")
     await ctx.send(embed=embed)
 
 @bot.command(name='안녕')
