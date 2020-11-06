@@ -66,7 +66,7 @@ async def rsp_scissors(ctx):
 async def rsp_rock(ctx):
     global bot_rsp
     global player
-    if player == ctx.message.author.id:
+    if player == ctx.author:
         if bot_rsp == 1:
             await ctx.send("저는 가위를 냈습니다. 제가 졌습니다")
         elif bot_rsp == 2:
