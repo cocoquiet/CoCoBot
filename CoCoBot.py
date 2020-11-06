@@ -18,6 +18,11 @@ async def on_ready():
     print(bot.user.id)
     print('=============')
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("주인놈이랑 코딩"))
+    
+@bot.event
+async def help(ctx):
+    embed = discord.Embed(title="도움말", discription="기다려봐 지금 테스트 중이야")
+    await ctx.send(embed=embed)
 
 @bot.command(name='안녕')
 async def hello(ctx):
@@ -56,8 +61,6 @@ async def rsp_scissors(ctx):
         elif bot_rsp == 3:
             await ctx.send("저는 보를 냈습니다. 제가 졌습니다")
     player = None
-    
-
 
 @bot.command(name='바위')
 async def rsp_rock(ctx):
@@ -71,7 +74,6 @@ async def rsp_rock(ctx):
         elif bot_rsp == 3:
             await ctx.send("저는 보를 냈습니다. 제가 이겼습니다")
     player = None
-
 
 @bot.command(name='보')
 async def rsp_rock(ctx):
