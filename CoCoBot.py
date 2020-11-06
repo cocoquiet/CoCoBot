@@ -21,7 +21,7 @@ async def on_ready():
     
 @bot.event
 async def help(ctx):
-    embed = discord.Embed(title="도움말")
+    embed = discord.Embed(title="도움말", discription="사용법을 알려드릴게요!")
     embed.add_field(name="/안녕", value="예쁘게 인사해줄게요.", inline=True)
     embed.add_field(name="/코코야", value="기분이 좋으면 착하게, 기분이 나쁘면 신경질적으로 인사할거에요.", inline=True)
     embed.add_field(name="/가위바위보", value="가위바위보를 해줄게요.", inline=True)
