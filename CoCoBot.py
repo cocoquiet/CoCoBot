@@ -11,7 +11,7 @@ player = None
 
 class CoCo(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix = '!!')
+        super().__init__()
         self.remove_command("help")
 
     async def on_ready(self):
