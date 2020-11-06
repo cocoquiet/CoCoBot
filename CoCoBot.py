@@ -19,7 +19,7 @@ async def on_ready():
     print('=============')
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("주인놈이랑 코딩"))
     
-@bot.event
+@bot.event(name="도움말")
 async def help(ctx):
     embed = discord.Embed(title="도움말", discription="사용법을 알려드릴게요!")
     embed.add_field(name="/안녕", value="예쁘게 인사해줄게요.", inline=True)
