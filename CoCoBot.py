@@ -21,13 +21,13 @@ async def on_ready():
 
 @bot.command(name="도움말")
 async def help(ctx):
-    embed = discord.Embed(title="도움말", description="사용법을 알려드릴게요!", color = 0x00ff00)
-    embed.add_field(name="/안녕", value="예쁘게 인사해줄게요.", inline=True)
-    embed.add_field(name="/코코야", value="기분이 좋으면 착하게, 기분이 나쁘면 신경질적으로 인사할거에요.", inline=True)
-    embed.add_field(name="/가위바위보", value="가위바위보를 해줄게요.", inline=True)
-    embed.add_field(name="/ㅋ케", value="웃기 힘드실때 대신 웃어드릴게요.", inline=True)
-    embed.add_field(name="/코양이 유튜브", value="음악 재생목록 링크를 모아서 보여줘요.", inline=True)
-    embed.add_field(name="/ping", value="제 연결 상태를 보여드릴게요.", inline=True)
+    embed = discord.Embed(title="도움말", description="안녕하세요! 사용법을 알려드릴게요!", color = 0x00ff00)
+    embed.add_field(name="```/안녕```", value="예쁘게 인사해줄게요.", inline=True)
+    embed.add_field(name="```/코코야```", value="기분이 좋으면 착하게, 기분이 나쁘면 신경질적으로 인사할거에요.", inline=True)
+    embed.add_field(name="```/가위바위보```", value="가위바위보를 해줄게요.", inline=True)
+    embed.add_field(name="```/ㅋ케```", value="웃기 힘드실때 대신 웃어드릴게요.", inline=True)
+    embed.add_field(name="```/코양이 유튜브```", value="음악 재생목록 링크를 모아서 보여줘요.", inline=True)
+    embed.add_field(name="```/ping```", value="제 연결 상태를 보여드릴게요.", inline=True)
     embed.set_footer(text="앞으로 여러가지를 추가할거에요!!")
     await ctx.send(embed=embed)
 
@@ -98,7 +98,7 @@ async def rsp_rock(ctx):
 @bot.command(name="ping")
 async def ping(ctx):
     latency = bot.latency
-    embed = discord.Embed(title="Ping!", description=":ping_pong: Pong! " + str(round(latency * 1000)) + " ms", color=0x00ff00)
+    embed = discord.Embed(title="Ping!", description=":ping_pong: Pong! " + "**" + str(round(latency * 1000)) + " ms" + "**", color=0x00ff00)
     embed.set_footer(text="코코#1174 | V1.0")
     await ctx.send(embed=embed)
             
@@ -110,9 +110,9 @@ async def lol(ctx):
 async def CoYangYoutube(ctx):
     latency = bot.latency
     embed = discord.Embed(title="코양이 유튜브 재생목록", description="유튜브 재생목록 링크 모음입니다", color=0x00ff00)
-    embed.set_field(name="코양이 노동요",value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", inline=False)
-    embed.set_field(name="코양이 재즈 노동요",value="https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", inline=False)
-    embed.set_field(name="코양이 캐롤",value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta", inline=False)
+    embed.set_field(name="```코양이 노동요```",value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", inline=False)
+    embed.set_field(name="```코양이 재즈 노동요```",value="https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", inline=False)
+    embed.set_field(name="```코양이 캐롤```",value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta", inline=False)
     await ctx.send(embed=embed)
 
 access_token = os.environ["BOT_TOKEN"]
