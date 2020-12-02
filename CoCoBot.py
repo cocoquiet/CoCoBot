@@ -36,9 +36,9 @@ async def help(ctx):
     embed = discord.Embed(title="도움말", description="안녕하세요! 사용법을 알려드릴게요!", color = 0x00ff00)
     embed.add_field(name="```/안녕```", value="예쁘게 인사해줄게요.", inline=True)
     embed.add_field(name="```/코코야```", value="기분이 좋으면 착하게, 기분이 나쁘면 신경질적으로 인사할거에요.", inline=True)
+    embed.add_field(name="```/가위바위보```", value="가위바위보를 해줄게요.", inline=True)
     embed.add_field(name="```/날짜```", value="오늘의 날짜를 알려드릴게요.", inline=True)
     embed.add_field(name="```/시간```", value="현재 시간을 알려드릴게요.", inline=True)
-    embed.add_field(name="```/가위바위보```", value="가위바위보를 해줄게요.", inline=True)
     embed.add_field(name="```/ㅋ케```", value="웃기 힘드실때 대신 웃어드릴게요.", inline=True)
     embed.add_field(name="```/재생목록```", value="음악 재생목록 링크를 모아서 보여줘요.", inline=True)
     embed.add_field(name="```/ping```", value="제 연결 상태를 보여드릴게요.", inline=True)
@@ -134,7 +134,7 @@ async def date(ctx):
     now = datetime.datetime.now()
 
     Meridiem = now.strftime("%p")
-    nowHour = now.strftime("%H")
+    nowHour = now.strftime("%h")
     nowMinute = now.strftime("%M")
     nowSecond = now.strftime("%S")
     
@@ -143,7 +143,7 @@ async def date(ctx):
     else:
         nowMeridiem = "오후"
 
-    await ctx.send("지금은 " + nowMeridiem + nowHour + "시 " + nowMinute + "분 " + nowSecond + "초 입니다!")
+    await ctx.send("지금은 " + nowMeridiem + " " + nowHour + "시 " + nowMinute + "분 " + nowSecond + "초 입니다!")
 
 @bot.command(name="날짜")
 async def date(ctx):
