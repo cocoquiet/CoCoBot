@@ -40,7 +40,7 @@ async def help(ctx):
     embed.add_field(name="```/날짜```", value="오늘의 날짜를 알려드릴게요.", inline=True)
     embed.add_field(name="```/시간```", value="현재 시간을 알려드릴게요.", inline=True)
     embed.add_field(name="```/ㅋ케```", value="웃기 힘드실때 대신 웃어드릴게요.", inline=True)
-    embed.add_field(name="```/재생목록```", value="음악 재생목록 링크를 모아서 보여줘요.", inline=True)
+    embed.add_field(name="```/음악목록```", value="음악 재생목록 링크를 모아서 보여줘요.", inline=True)
     embed.add_field(name="```/ping```", value="제 연결 상태를 보여드릴게요.", inline=True)
     embed.set_footer(text="앞으로 여러가지를 추가할거에요!!")
     
@@ -155,12 +155,12 @@ async def date(ctx):
 
     await ctx.send("오늘은 " + nowYear + "년 " + nowMonth + "월 " + nowDay + "일 입니다!")
 
-@bot.command(name="재생목록")
+@bot.command(name="음악목록")
 async def playlist(ctx):
     embed = discord.Embed(title="코양이 유튜브 재생목록", description="유튜브 재생목록 링크 모음입니다", color=0x00ff00)
-    embed.set_field(name="```코양이 노동요```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", inline=False)
-    embed.set_field(name="```코양이 재즈 노동요```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", inline=False)
-    embed.set_field(name="```코양이 캐롤```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta", inline=False)
+    embed.set_field(name="```코양이 노동요```", value="링크 - https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", inline=False)
+    embed.set_field(name="```코양이 재즈 노동요```", value="링크 - https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", inline=False)
+    embed.set_field(name="```코양이 캐롤```", value="링크 - https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta", inline=False)
     
     await ctx.send(embed=embed)
 
