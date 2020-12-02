@@ -134,7 +134,7 @@ async def date(ctx):
     now = datetime.datetime.now()
 
     Meridiem = now.strftime("%p")
-    nowHour = now.strftime("%h")
+    nowHour = now.strftime("%I")
     nowMinute = now.strftime("%M")
     nowSecond = now.strftime("%S")
     
