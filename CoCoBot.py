@@ -86,7 +86,7 @@ async def rsp_rock(ctx):
 @bot.command(name='ping')
 async def ping(ctx):
     latency = bot.latency
-    embed = discord.Embed(title = ':ping_pong: Pong!', description = str(round(latency * 1000)) + 'ms', color = 0x00ff00)
+    embed = discord.Embed(title = 'Ping!', description = ':ping_pong: Pong!' + str(round(latency * 1000)) + 'ms', color = 0x00ff00)
     await ctx.send(embed=embed)
             
 @bot.command(name='ㅋ케')
