@@ -108,7 +108,6 @@ async def lol(ctx):
 
 @bot.command(name="코양이 유튜브")
 async def CoYangYoutube(ctx):
-    latency = bot.latency
     embed = discord.Embed(title="코양이 유튜브 재생목록", description="유튜브 재생목록 링크 모음입니다", color=0x00ff00)
     embed.set_field(name="```코양이 노동요```",value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", inline=False)
     embed.set_field(name="```코양이 재즈 노동요```",value="https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", inline=False)
