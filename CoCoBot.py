@@ -18,17 +18,6 @@ async def on_ready():
     print(bot.user.id)
     print('=============')
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("주인놈이랑 코딩"))
-    
-@bot.event(name="도움말")
-async def help(ctx):
-    embed = discord.Embed(title = "도움말", description = "사용법을 알려드릴게요!", color = 0x00ff00)
-    embed.add_field(name = "/안녕", value = "예쁘게 인사해줄게요.", inline = True)
-    embed.add_field(name = "/코코야", value = "기분이 좋으면 착하게, 기분이 나쁘면 신경질적으로 인사할거에요.", inline = True)
-    embed.add_field(name = "/가위바위보", value = "가위바위보를 해줄게요.", inline = True)
-    embed.add_field(name = "/ㅋ케", value = "웃기 힘드실때 대신 웃어드릴게요.", inline = True)
-    embed.add_field(name = "/ping", value = "제 연결 상태를 보여드릴게요.", inline = True)
-    embed.set_footer(text = "앞으로 여러가지를 추가할거에요!!")
-    await ctx.send(embed=embed)
 
 @bot.command(name='안녕')
 async def hello(ctx):
