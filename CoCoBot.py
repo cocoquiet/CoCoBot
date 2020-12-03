@@ -24,12 +24,7 @@ async def on_ready():
     now = datetime.datetime.now()
     nowTime = now.strftime("%H")
 
-    if((nowTime >= 0) and (nowTime < 6)):
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("일단은 자는"))
-    if((nowTime >= 6) and (nowTime < 18)):
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("코딩하는"))
-    else:
-        await bot.change_presence(status=discord.Status.online, activity=discord.Game("주인놈이랑 코딩"))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game("주인놈이랑 코딩"))
 
 @bot.command(name="도움말")
 async def help(ctx):
