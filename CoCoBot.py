@@ -37,7 +37,6 @@ async def help(ctx):
     embed.add_field(name="```/ㅋ케```", value="웃기 힘드실때 대신 웃어드릴게요.", inline=True)
     embed.add_field(name="```/음악목록```", value="음악 재생목록 링크를 모아서 보여줘요.", inline=True)
     embed.add_field(name="```/ping```", value="제 연결 상태를 보여드릴게요.", inline=True)
-    embed.add_field(name="```/청소```", value="명령어 뒤에 숫자를 적으시면 제가 그만큼 메세지를 지워줘요.", inline=True)
     embed.set_footer(text="앞으로 여러가지를 추가할거에요!!")
     
     await ctx.send(embed=embed)
@@ -159,10 +158,6 @@ async def playlist(ctx):
     embed.add_field(name="```코양이 캐롤```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta", inline=False)
     
     await ctx.send(embed=embed)
-
-@bot.command(name="청소")
-async def clean(ctx, *, lim=100):
-    await ctx.channel.purge(limit=lim)
 
 access_token = os.environ["BOT_TOKEN"]
 bot.run(access_token)
