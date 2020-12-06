@@ -4,6 +4,10 @@ from discord.ext import commands, tasks
 
 import random
 import datetime
+import requests
+from bs4 import BeautifulSoup
+from urllib.request import urlopen
+from pprint import pprint
 
 import os
 
@@ -28,7 +32,7 @@ async def on_ready():
 
 @bot.command(name="도움말")
 async def help(ctx):
-    embed = discord.Embed(title="도움말", description="안녕하세요! 사용법을 알려드릴게요!", color = 0x00ff00)
+    embed = discord.Embed(title="도움말", description="안녕하세요! 사용법을 알려드릴게요!", color=0x00ff00)
     embed.add_field(name="```/안녕```", value="예쁘게 인사해줄게요.", inline=True)
     embed.add_field(name="```/코코야```", value="기분이 좋으면 착하게, 기분이 나쁘면 신경질적으로 인사할거에요.", inline=True)
     embed.add_field(name="```/가위바위보```", value="가위바위보를 해줄게요.", inline=True)
@@ -37,6 +41,8 @@ async def help(ctx):
     embed.add_field(name="```/ㅋ케```", value="웃기 힘드실때 대신 웃어드릴게요.", inline=True)
     embed.add_field(name="```/음악목록```", value="음악 재생목록 링크를 모아서 보여줘요.", inline=True)
     embed.add_field(name="```/ping```", value="제 연결 상태를 보여드릴게요.", inline=True)
+    embed.add_field(name="```/실검```", value="네이버의 실시간 검색어 순위를 보여드릴게요.", inline=True)
+    embed.add_field(name="```/날씨```", value="입력하신 지역의 날씨 상태를 알려드릴게요.", inline=True)
     embed.add_field(name="```/청소```", value="많은 메세지를 한번에 지워드줄게요.", inline=True)
     embed.set_footer(text="앞으로 여러가지를 추가할거에요!!")
     
@@ -153,11 +159,52 @@ async def date(ctx):
 
 @bot.command(name="음악목록")
 async def playlist(ctx):
-    embed = discord.Embed(title="코양이 유튜브 재생목록", description="유튜브 재생목록 모음입니다.", color = 0x00ff00)
+    embed = discord.Embed(title="코양이 유튜브 재생목록", description="유튜브 재생목록 모음입니다.", color=0x00ff00)
     embed.add_field(name="```코양이 노동요```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", inline=False)
     embed.add_field(name="```코양이 재즈 노동요```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", inline=False)
     embed.add_field(name="```코양이 캐롤```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta", inline=False)
     
+    await ctx.send(embed=embed)
+
+@bot.command(name="실검")
+async def searchterm(ctx):
+    headers = {'User-Agent':'Chrome/80.0.3987.122'}
+    url = 'https://datalab.naver.com/keyword/realtimeList.naver?where=main'
+    res = requests.get(url, headers = headers)
+    soup = BeautifulSoup(res.content, 'html.parser')
+    data = soup.select('span.item_title')
+
+    embed = discord.Embed(title="실시간 검색어", description="네이버 실시간 검색어 1~20위입니다.", color=0x00ff00)
+    
+    i = 1
+    for item in data:
+        embed.add_field(name=str(i) + "위", value=item.get_text(), inline=False)
+        i += 1
+
+    await ctx.send(embed=embed)
+
+@bot.command(name="날씨")
+async def weather(ctx, *, locate):
+    location = str(locate).replace(" ", "+")
+
+    html = requests.get("https://search.naver.com/search.naver?query=날씨" + str(location))
+    soup = BeautifulSoup(html.text, 'html.parser')
+    weather_box = soup.find('div', {'class': 'weather_box'})
+
+    find_address = weather_box.find('span', {'class':'btn_select'}).text
+    find_currenttemp = weather_box.find('span',{'class': 'todaytemp'}).text
+    dd = weather_box.findAll('dd')
+    find_dust = dd[0].find('span', {'class':'num'}).text
+    find_ultra_dust = dd[1].find('span', {'class':'num'}).text
+    find_ozone = dd[2].find('span', {'class':'num'}).text
+
+    embed=discord.Embed(title="날씨", description="현재의 날씨 정보를 알려드립니다.", color=0x00ff00)
+    embed.add_field(name="검색 위치", value=find_address, inline=False)
+    embed.add_field(name="현재 온도", value=find_currenttemp + "℃", inline=False)
+    embed.add_field(name="현재 미세먼지", value=find_dust, inline=False)
+    embed.add_field(name="현재 초미세먼지", value=find_ultra_dust, inline=False)
+    embed.add_field(name="현재 오존지수", value=find_ozone, inline=False)
+
     await ctx.send(embed=embed)
     
 @bot.command(name="청소")
