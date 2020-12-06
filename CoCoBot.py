@@ -161,7 +161,7 @@ async def playlist(ctx):
     await ctx.send(embed=embed)
     
 @bot.command(name="청소")
-async def clear(ctx, amount):
+async def clear(ctx, *, amount):
     await ctx.channel.purge(limit=amount)
 
 access_token = os.environ["BOT_TOKEN"]
