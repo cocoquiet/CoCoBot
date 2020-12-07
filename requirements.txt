@@ -2,7 +2,4 @@ discord.py
 asyncio
 beautifulsoup4
 requests
-datetime
-random
 urllib
-pprint
