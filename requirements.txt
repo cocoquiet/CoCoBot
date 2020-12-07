@@ -2,4 +2,4 @@ discord.py
 asyncio
 beautifulsoup4
 requests
-urllib
+datetime
