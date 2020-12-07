@@ -1,2 +1,8 @@
 discord.py
 asyncio
+beautifulsoup4
+request
+datetime
+random
+urllib
+pprint
