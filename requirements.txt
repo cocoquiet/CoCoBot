@@ -1,7 +1,7 @@
 discord.py
 asyncio
 beautifulsoup4
-request
+requests
 datetime
 random
 urllib
