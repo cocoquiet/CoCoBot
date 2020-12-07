@@ -42,8 +42,8 @@ async def help(ctx):
     embed.add_field(name="```/음악목록```", value="음악 재생목록 링크를 모아서 보여줘요.", inline=True)
     embed.add_field(name="```/ping```", value="제 연결 상태를 보여드릴게요.", inline=True)
     embed.add_field(name="```/실검```", value="네이버의 실시간 검색어 순위를 보여드릴게요.", inline=True)
-    embed.add_field(name="```/날씨```", value="입력하신 지역의 날씨 상태를 알려드릴게요.", inline=True)
-    embed.add_field(name="```/청소```", value="많은 메세지를 한번에 지워드줄게요.", inline=True)
+    embed.add_field(name="```/날씨 <지역>```", value="입력하신 지역의 날씨 상태를 알려드릴게요.", inline=True)
+    embed.add_field(name="```/청소 <삭제할 개수>```", value="많은 메세지를 한번에 지워드줄게요.", inline=True)
     embed.set_footer(text="앞으로 여러가지를 추가할거에요!!")
     
     await ctx.send(embed=embed)
@@ -71,7 +71,7 @@ async def RSP(ctx):
    
     global player
     await ctx.send("가위바위보를 시작합니다.")
-    await ctx.send("가위, 바위, 보 중 하나를 내주세요.")
+    await ctx.send("/가위, /바위, /보 중 하나를 내주세요.")
    
     player = ctx.author
     bot_rsp = random.randint(1, 3) # 1:가위  2:바위  3:보
