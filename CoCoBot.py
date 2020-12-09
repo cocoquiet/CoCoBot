@@ -212,6 +212,10 @@ async def weather(ctx, *, locate):
 @commands.has_permissions(administrator=True)
 async def clear(ctx, amount):
     await ctx.channel.purge(limit=int(amount) + 1)
+    
+@bot.command(name="시험")
+async def clear(ctx):
+    await ctx.send(""설빙 시험 화이팅!!!!!!!!)
 
 access_token = os.environ["BOT_TOKEN"]
 bot.run(access_token)
