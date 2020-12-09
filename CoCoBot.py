@@ -215,7 +215,7 @@ async def clear(ctx, amount):
     
 @bot.command(name="시험")
 async def test(ctx):
-    await ctx.send(""설빙 시험 화이팅!!!!!!!!)
+    await ctx.send("설빙 시험 화이팅!!!!!!!!")
 
 access_token = os.environ["BOT_TOKEN"]
 bot.run(access_token)
