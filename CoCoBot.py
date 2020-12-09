@@ -214,7 +214,7 @@ async def clear(ctx, amount):
     await ctx.channel.purge(limit=int(amount) + 1)
     
 @bot.command(name="시험")
-async def (ctx):
+async def test(ctx):
     await ctx.send(""설빙 시험 화이팅!!!!!!!!)
 
 access_token = os.environ["BOT_TOKEN"]
