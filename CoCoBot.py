@@ -44,6 +44,7 @@ async def help(ctx):
     embed.add_field(name="```/실검```", value="네이버의 실시간 검색어 순위를 보여드릴게요.", inline=True)
     embed.add_field(name="```/날씨 <지역>```", value="입력하신 지역의 날씨 상태를 알려드릴게요.", inline=True)
     embed.add_field(name="```/청소 <삭제할 개수>```", value="많은 메세지를 한번에 지워드줄게요.", inline=True)
+    embed.add_field(name="```/초대```", value="절 다른 서버로 초대할 수 있는 링크를 줄게요.", inline=True)
     embed.set_footer(text="앞으로 여러가지를 추가할거에요!!")
     
     await ctx.send(embed=embed)
@@ -54,16 +55,9 @@ async def hello(ctx):
 
 @bot.command(name="코코야")
 async def HeyYou(ctx):
-    CoCoResponse = random.randint(1, 4)
+    CoCoResponse = ["네?", "뭐", "왜", "ㅇㅇ?", "누가 불렀니", "아 왜 불러ㅡㅡ", "멍멍!"]
     
-    if CoCoResponse == 1:
-        await ctx.send("네?")
-    elif CoCoResponse == 2:
-        await ctx.send("뭐")
-    elif CoCoResponse == 3:
-        await ctx.send("아 왜 불러ㅡㅡ")
-    elif CoCoResponse == 4:
-        await ctx.send("멍멍!")
+    await ctx.send(CoCoResponse[random.randint(0, 6)])
 
 @bot.command(name="가위바위보")
 async def RSP(ctx):
@@ -213,6 +207,10 @@ async def weather(ctx, *, locate):
 @commands.has_permissions(administrator=True)
 async def clear(ctx, amount):
     await ctx.channel.purge(limit=int(amount) + 1)
+
+@bot.command(name="초대")
+async def invite(ctx):
+    await ctx.send("[코코봇 초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=8&scope=bot)")
     
 @bot.command(name="시험")
 async def test(ctx):
