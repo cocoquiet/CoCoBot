@@ -210,7 +210,11 @@ async def clear(ctx, amount):
 
 @bot.command(name="초대")
 async def invite(ctx):
-    await ctx.send("[코코봇 초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=8&scope=bot)")
+    embed=discord.Embed(title="디스코드봇 초대 링크", description="디코봇들의 초대 링크입니다.", color=0x00ff00)
+    embed.add_field(name="코코봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=8&scope=bot)", inline=False)
+    embed.add_field(name="어떤 과학의 음악봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=7141404618407281440&permissions=8&scope=bot)", inline=False)
+    
+    await ctx.send(embed=embed)
     
 @bot.command(name="시험")
 async def test(ctx):
