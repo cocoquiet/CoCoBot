@@ -132,7 +132,7 @@ async def ping(ctx):
 @bot.command(name="ㅋ케")
 async def lol(ctx):
     await ctx.channel.purge(limit=1)
-    await ctx.send("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
+    await ctx.send("{} : ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ".format(ctx.message.author.mention()))
 
 @bot.command(name="시간")
 async def date(ctx):
@@ -241,12 +241,6 @@ async def invite(ctx):
 @commands.has_permissions(administrator=True)
 async def clear(ctx, amount):
     await ctx.channel.purge(limit=int(amount) + 1)
-
-@bot.command(name="고코위")
-@commands.has_permissions(administrator=True)
-async def CCC(ctx):
-    admin = discord.utils.get(ctx.message.guild.roles, name="Admin")
-    await ctx.send("{} 모여라!!".format(admin.mention))
 
 @bot.command(name="시험")
 async def test(ctx):
