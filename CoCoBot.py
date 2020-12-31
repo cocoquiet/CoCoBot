@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands, tasks
+from discord.utils import get
 
 import random
 import datetime
@@ -240,6 +241,12 @@ async def invite(ctx):
 @commands.has_permissions(administrator=True)
 async def clear(ctx, amount):
     await ctx.channel.purge(limit=int(amount) + 1)
+
+@bot.command(name="고코위")
+@commands.has_permissions(administrator=True)
+async def CCC(ctx):
+    admin = get(ctx.guild.roles, name="Admin")
+    await ctx.send(ctx.message.author.mention + "님이 불렀습니다 : " + str(admin.mention))
 
 @bot.command(name="시험")
 async def test(ctx):
