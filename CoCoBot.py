@@ -48,6 +48,7 @@ async def help(ctx):
     embed.add_field(name="```/날씨 <지역>```", value="입력하신 지역의 날씨 상태를 알려줄게요.", inline=True)
     embed.add_field(name="```/초대```", value="절 다른 서버로 초대할 수 있는 링크를 줄게요.", inline=True)
     embed.add_field(name="```/청소 <삭제할 개수>```", value="많은 메세지를 한번에 지워줄게요.", inline=True)
+    embed.add_field(name="```/고코위```", value="모든 어드민들을 불러줄게요.", inline=True)
     embed.set_footer(text="앞으로 여러가지를 추가할거에요!!")
     
     await ctx.send(embed=embed)
@@ -251,6 +252,10 @@ async def CCC(ctx):
 @bot.command(name="시험")
 async def test(ctx):
     await ctx.send("설빙 시험 화이팅!!!!!!!!")
+
+@bot.command(name="신년")
+async def test(ctx):
+    await ctx.send("다들 새해 복 많이 받으세요!!!!!")
 
 access_token = os.environ["BOT_TOKEN"]
 bot.run(access_token)
