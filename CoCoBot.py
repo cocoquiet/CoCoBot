@@ -32,18 +32,20 @@ async def on_ready():
 
 @bot.command(name="도움말")
 async def help(ctx):
-    embed = discord.Embed(title="도움말", description="안녕하세요! 사용법을 알려드릴게요!", color=0x00ff00)
+    embed = discord.Embed(title="도움말", description="안녕하세요! 저의 사용법을 알려줄게요!", color=0x00ff00)
     embed.add_field(name="```/안녕```", value="예쁘게 인사해줄게요.", inline=True)
     embed.add_field(name="```/코코야```", value="기분이 좋으면 착하게, 기분이 나쁘면 신경질적으로 인사할거에요.", inline=True)
+    embed.add_field(name="```/짖어```", value="음...짖을게요.", inline=True)
     embed.add_field(name="```/가위바위보```", value="가위바위보를 해줄게요.", inline=True)
-    embed.add_field(name="```/날짜```", value="오늘의 날짜를 알려드릴게요.", inline=True)
-    embed.add_field(name="```/시간```", value="현재 시간을 알려드릴게요.", inline=True)
-    embed.add_field(name="```/ㅋ케```", value="웃기 힘드실때 대신 웃어드릴게요.", inline=True)
-    embed.add_field(name="```/음악목록```", value="음악 재생목록 링크를 모아서 보여줘요.", inline=True)
+    embed.add_field(name="```/날짜```", value="오늘의 날짜를 알려줄게요.", inline=True)
+    embed.add_field(name="```/시간```", value="현재 시간을 알려줄게요.", inline=True)
+    embed.add_field(name="```/ㅋ케```", value="웃기 힘드실때 대신 웃어줄게요.", inline=True)
+    embed.add_field(name="```/음악목록```", value="음악 재생목록 링크를 모아서 보여줄게요.", inline=True)
+    embed.add_field(name="```/깃허브```", value="관리자들의 깃허브 링크를 보여줄게요.", inline=True)
     embed.add_field(name="```/ping```", value="제 연결 상태를 보여드릴게요.", inline=True)
-    embed.add_field(name="```/실검```", value="네이버의 실시간 검색어 순위를 보여드릴게요.", inline=True)
-    embed.add_field(name="```/날씨 <지역>```", value="입력하신 지역의 날씨 상태를 알려드릴게요.", inline=True)
-    embed.add_field(name="```/청소 <삭제할 개수>```", value="많은 메세지를 한번에 지워드줄게요.", inline=True)
+    embed.add_field(name="```/실검```", value="네이버의 실시간 검색어 순위를 보여줄게요.", inline=True)
+    embed.add_field(name="```/날씨 <지역>```", value="입력하신 지역의 날씨 상태를 알려줄게요.", inline=True)
+    embed.add_field(name="```/청소 <삭제할 개수>```", value="많은 메세지를 한번에 지워줄게요.", inline=True)
     embed.add_field(name="```/초대```", value="절 다른 서버로 초대할 수 있는 링크를 줄게요.", inline=True)
     embed.set_footer(text="앞으로 여러가지를 추가할거에요!!")
     
@@ -55,9 +57,15 @@ async def hello(ctx):
 
 @bot.command(name="코코야")
 async def HeyYou(ctx):
-    CoCoResponse = ["네?", "뭐", "왜", "ㅇㅇ?", "누가 불렀니", "아 왜 불러ㅡㅡ", "멍멍!"]
+    CoCoResponse = ["네?", "뭐", "왜", "ㅇㅇ?", "누가 불렀니", "아 왜 불러ㅡㅡ"]
     
     await ctx.send(CoCoResponse[random.randint(0, 6)])
+
+@bot.command(name="짖어")
+async def bark(ctx):
+    CoCoBark = ["크르릉...", "뀨웅?", "왈왈!", "멍멍!"]
+    
+    await ctx.send(CoCoBark[random.randint(0, 3)])
 
 @bot.command(name="가위바위보")
 async def RSP(ctx):
@@ -163,6 +171,7 @@ async def github(ctx):
     embed.add_field(name="```루```", value="https://github.com/Lu175", inline=False)
     embed.add_field(name="```뽀로로```", value="https://github.com/paxbun", inline=False)
     embed.add_field(name="```녹색치킨```", value="https://github.com/IceJack", inline=False)
+    embed.set_footer(text="다들 한 번씩 와서 팔로우좀 눌러주세요ㅠㅠ")
 
     await ctx.send(embed=embed)
 
@@ -173,6 +182,7 @@ async def playlist(ctx):
     embed.add_field(name="```코양이 재즈```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", inline=False)
     embed.add_field(name="```코양이 캐롤```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta", inline=False)
     embed.add_field(name="```코양이 힙합```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAHdLCjFZJJsLAHkjj8yX6J8", inline=False)
+    embed.add_field(name="```코양이 올드팝```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAH2O8mPPgtHTX8Wx_bbkjDf", inline=False)
     
     await ctx.send(embed=embed)
 
