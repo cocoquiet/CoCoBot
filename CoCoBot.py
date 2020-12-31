@@ -45,8 +45,8 @@ async def help(ctx):
     embed.add_field(name="```/ping```", value="제 연결 상태를 보여드릴게요.", inline=True)
     embed.add_field(name="```/실검```", value="네이버의 실시간 검색어 순위를 보여줄게요.", inline=True)
     embed.add_field(name="```/날씨 <지역>```", value="입력하신 지역의 날씨 상태를 알려줄게요.", inline=True)
-    embed.add_field(name="```/청소 <삭제할 개수>```", value="많은 메세지를 한번에 지워줄게요.", inline=True)
     embed.add_field(name="```/초대```", value="절 다른 서버로 초대할 수 있는 링크를 줄게요.", inline=True)
+    embed.add_field(name="```/청소 <삭제할 개수>```", value="많은 메세지를 한번에 지워줄게요.", inline=True)
     embed.set_footer(text="앞으로 여러가지를 추가할거에요!!")
     
     await ctx.send(embed=embed)
@@ -131,6 +131,7 @@ async def ping(ctx):
 
 @bot.command(name="ㅋ케")
 async def lol(ctx):
+    await ctx.channel.purge(limit=1)
     await ctx.send("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
 
 @bot.command(name="시간")
@@ -228,11 +229,6 @@ async def weather(ctx, *, locate):
 
     await ctx.send(embed=embed)
     
-@bot.command(name="청소")
-@commands.has_permissions(administrator=True)
-async def clear(ctx, amount):
-    await ctx.channel.purge(limit=int(amount) + 1)
-
 @bot.command(name="초대")
 async def invite(ctx):
     embed=discord.Embed(title="디스코드봇 초대 링크", description="디코봇들의 초대 링크입니다.", color=0x00ff00)
@@ -241,6 +237,17 @@ async def invite(ctx):
     
     await ctx.send(embed=embed)
     
+@bot.command(name="청소")
+@commands.has_permissions(administrator=True)
+async def clear(ctx, amount):
+    await ctx.channel.purge(limit=int(amount) + 1)
+
+@bot.command(name="고코위")
+@commands.has_permissions(administrator=True)
+async def CCC(ctx):
+    admin = discord.utils.get(ctx.message.guild.roles, name="Admin")
+    await ctx.send("{} 모여라!!".format(admin.mention))
+
 @bot.command(name="시험")
 async def test(ctx):
     await ctx.send("설빙 시험 화이팅!!!!!!!!")
