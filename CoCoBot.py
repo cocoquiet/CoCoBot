@@ -190,18 +190,16 @@ async def playlist(ctx):
 
 @bot.command(name="실검")
 async def searchterm(ctx):
-    headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.362'}
-    url = 'https://datalab.naver.com/keyword/realtimeList.naver?where=main'
-    res = requests.get(url, headers = headers)
-    soup = BeautifulSoup(res.content, 'html.parser')
-    data = soup.select('span.item_title')
-
+    json = requests.get("https://www.naver.com/srchrank?frm=main").json()
+    ranks = json.get("data")
+    
     embed = discord.Embed(title="실시간 검색어", description="네이버 실시간 검색어 1~20위입니다.", color=0x00ff00)
     
     i = 1
-    for item in data:
-        link = item.get_text().replace(" ", "+")
-        embed.add_field(name=str(i) + "위", value="[" + item.get_text() + "](https://search.naver.com/search.naver?query=" + link + ")", inline=False)
+    for item in ranks:
+        keyword = item.get("keyword")
+        link = keyword.replace(" ", "+")
+        embed.add_field(name=str(i) + "위", value="[" + keyword + "](https://search.naver.com/search.naver?query=" + link + ")", inline=False)
         i += 1
 
     await ctx.send(embed=embed)
