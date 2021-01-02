@@ -233,6 +233,7 @@ async def invite(ctx):
     embed=discord.Embed(title="디스코드봇 초대 링크", description="디코봇들의 초대 링크입니다.", color=0x00ff00)
     embed.add_field(name="코코봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=8&scope=bot)", inline=False)
     embed.add_field(name="어떤 과학의 음악봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=714140461840728144&permissions=8&scope=bot)", inline=False)
+    embed.add_field(name="NAVI", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=742281764411670579&permissions=8&scope=bot)", inline=False)
     
     await ctx.send(embed=embed)
     
