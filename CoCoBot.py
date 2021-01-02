@@ -72,8 +72,8 @@ async def bark(ctx):
 @bot.command(name="가위바위보")
 async def RSP(ctx):
     global bot_rsp
-   
     global player
+    
     await ctx.send("가위바위보를 시작합니다.")
     await ctx.send("/가위, /바위, /보 중 하나를 내주세요.")
    
