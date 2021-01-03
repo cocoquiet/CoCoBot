@@ -256,5 +256,9 @@ async def test(ctx):
 async def test(ctx):
     await ctx.send("다들 새해 복 많이 받으세요!!!!!")
 
+@bot.command(name="러리")
+async def coalery(ctx):
+    await ctx.send("러리님 대학 합격 축하드려요!!!!!!!!!!!!!!!!!!!!!")
+
 access_token = os.environ["BOT_TOKEN"]
 bot.run(access_token)
