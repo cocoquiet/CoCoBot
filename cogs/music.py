@@ -6,7 +6,7 @@ class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="음악목록")
+    @commands.command(name="음악목록", aliases=["playlist"])
     async def playlist(self, ctx):
         embed = discord.Embed(title="코양이 유튜브 재생목록", description="유튜브 재생목록 모음입니다.", color=0xffffff)
         embed.add_field(name="```코양이 노동요```", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", inline=False)

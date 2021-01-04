@@ -9,11 +9,11 @@ class Ping(commands.Cog):
         self.bot = bot
 
     
-    @commands.command(name="ㅋ케")
+    @commands.command(name="ㅋ케", aliases=["lol", "앜ㅋ"])
     async def lol(self, ctx):
         await ctx.send(ctx.message.author.mention + " : ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
 
-    @commands.command(name="시간")
+    @commands.command(name="시간", aliases=["time"])
     async def time(self, ctx):
         now = datetime.datetime.now()
 
@@ -29,7 +29,7 @@ class Ping(commands.Cog):
 
         await ctx.send("지금은 " + nowMeridiem + " " + nowHour + "시 " + nowMinute + "분 " + nowSecond + "초 입니다!")
 
-    @commands.command(name="날짜")
+    @commands.command(name="날짜", aliases=["date"])
     async def date(self, ctx):
         now = datetime.datetime.now()
 
@@ -39,7 +39,7 @@ class Ping(commands.Cog):
 
         await ctx.send("오늘은 " + nowYear + "년 " + nowMonth + "월 " + nowDay + "일 입니다!")
 
-    @commands.command(name="초대")
+    @commands.command(name="초대", aliases=["invite"])
     async def invite(self, ctx):
         embed=discord.Embed(title="디스코드봇 초대 링크", description="디코봇들의 초대 링크입니다.", color=0xffffff)
         embed.add_field(name="코코봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=8&scope=bot)", inline=False)

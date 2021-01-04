@@ -6,7 +6,7 @@ class Ping(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="ping")
+    @commands.command(name="ping", aliases=["핑"])
     async def ping(self, ctx):
         latency = self.bot.latency
         

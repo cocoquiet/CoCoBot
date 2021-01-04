@@ -6,7 +6,7 @@ class Github(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="깃허브")
+    @commands.command(name="깃허브", aliases=["깃헙", "github"])
     async def github(self, ctx):
         embed = discord.Embed(title="관리자 깃허브 링크 목록", description="깃허브 링크 모음입니다.", color=0xffffff)
         embed.add_field(name="```코양이 위원장```", value="https://github.com/easycastle", inline=False)

@@ -27,7 +27,7 @@ class Crawling(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @commands.command(name="날씨")
+    @commands.command(name="날씨", aliases=["weather"])
     async def weather(self, ctx, *, locate):
         location = str(locate).replace(" ", "+")
 
