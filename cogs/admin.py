@@ -22,7 +22,7 @@ class Admin(commands.Cog):
     async def clear(self, ctx, amount):
         await ctx.channel.purge(limit=int(amount) + 1)
 
-    @commands.command(name="고코위", aliases="관리자")
+    @commands.command(name="고코위", aliases=["관리자"])
     @commands.has_permissions(administrator=True)
     async def CCC(self, ctx):
         admin = get(ctx.guild.roles, name="Admin")
