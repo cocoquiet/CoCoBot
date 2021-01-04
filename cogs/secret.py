@@ -13,8 +13,9 @@ class Secret(commands.Cog):
     @commands.command(name="자스고")
     @commands.has_permissions(administrator=True)
     async def jasgo(self, ctx):
-        member = "@CoCoTestBot#7796"
+        member = "@CoCoTestBot"
         await member.kick()
+        await ctx.send("킥 성공")
 
 def setup(bot):
     bot.add_cog(Secret(bot))
