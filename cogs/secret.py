@@ -10,12 +10,5 @@ class Secret(commands.Cog):
     async def test(self, ctx):
         await ctx.send("설빙님 시험 화이팅!!!!!!!!")
 
-    @commands.command(name="자스고")
-    @commands.has_permissions(administrator=True)
-    async def jasgo(self, ctx):
-        member = "@CoCoTestBot"
-        await member.kick()
-        await ctx.send("킥 성공")
-
 def setup(bot):
     bot.add_cog(Secret(bot))

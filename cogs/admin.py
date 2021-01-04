@@ -7,6 +7,16 @@ class Admin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.command(name="kick")
+    @commands.has_permissions(administrator=True)
+    async def kick(self, ctx, user : discord.Member, *, reason=None):
+        await user.kick(reason=reason)
+
+    @commands.command(name="ban")
+    @commands.has_permissions(administrator=True)
+    async def ban(self, ctx, user : discord.Member, *, reason=None):
+        await user.ban(reason=reason)
+
     @commands.command(name="청소")
     @commands.has_permissions(administrator=True)
     async def clear(self, ctx, amount):
