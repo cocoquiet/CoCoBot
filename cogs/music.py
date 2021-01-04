@@ -15,6 +15,7 @@ class Music(commands.Cog):
         embed.add_field(name="`코양이 힙합`", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAHdLCjFZJJsLAHkjj8yX6J8", inline=False)
         embed.add_field(name="`코양이 팝`", value="https://youtube.com/playlist?list=PLylf8Ved3tAF6Xhb_63e9tv3TBfmKB0wE", inline=False)
         embed.add_field(name="`코양이 올드팝`", value="https://www.youtube.com/playlist?list=PLylf8Ved3tAH2O8mPPgtHTX8Wx_bbkjDf", inline=False)
+        embed.add_field(name="`루 뮤직 리스트`", value="https://youtube.com/playlist?list=PLVW_htI5V49iz9Z38iaKOoS8JByghA0cb", inline=False)
         
         await ctx.send(embed=embed)
 
