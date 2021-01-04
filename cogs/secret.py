@@ -14,5 +14,9 @@ class Secret(commands.Cog):
     async def test(self, ctx):
         await ctx.send("다들 새해 복 많이 받으세요!!!!!")
 
+    @commands.command(name="자스고")
+    async def test(self, ctx):
+        await ctx.send(":AMGO_sad: :AMGO_peaceful: :AMGO_dispire: :AMGO_angry:")
+
 def setup(bot):
     bot.add_cog(Secret(bot))
