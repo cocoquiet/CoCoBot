@@ -1,24 +1,10 @@
 import discord
 import asyncio
 from discord.ext import commands
-from discord.utils import get
 
 class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-
-    @commands.command(name="connect", aliases=["c", "ㅊ"])
-    async def connect(self, ctx):
-        user = ctx.message.author
-        channel = ctx.author.voice.channel
-        if channel != None:
-            await channel.connect()
-        else:
-            await ctx.send('User is not in a channel.')
-
-    @commands.command(name="disconnect", aliases=["dc", "ㅇㅊ"])
-    async def disconnect(self, ctx):
-        await ctx.voice_client.disconnect()
 
     @commands.command(name="음악목록", aliases=["playlist"])
     async def playlist(self, ctx):
