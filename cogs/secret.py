@@ -14,10 +14,5 @@ class Secret(commands.Cog):
     async def lery(self, ctx):
         await ctx.send("러리님 대학 합격 축하드려요!!!!!!!!!!!!!!!!!!!!!")
 
-    @commands.command(name="자스고")
-    async def jasgo(self, ctx):
-
-        await ctx.send(":AMGO_angry:")
-
 def setup(bot):
     bot.add_cog(Secret(bot))

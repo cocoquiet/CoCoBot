@@ -9,13 +9,12 @@ class Music(commands.Cog):
 
     @commands.command(name="connect", aliases=["c", "ㅊ"])
     async def connect(self, ctx):
+        user = ctx.message.author
         channel = ctx.author.voice.channel
-        voice = get(self.bot.voice_clients, guild=ctx.guild)
-
-        if voice and voice.is_connected():
-            await voice.move_to(channel)
+        if channel != None:
+            await channel.connect()
         else:
-            voice = await channel.connect()
+            await ctx.send('User is not in a channel.')
 
     @commands.command(name="disconnect", aliases=["dc", "ㅇㅊ"])
     async def disconnect(self, ctx):
