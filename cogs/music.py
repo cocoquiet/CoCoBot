@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+from discord.utils import get
 
 class Music(commands.Cog):
     def __init__(self, bot):
@@ -9,7 +10,12 @@ class Music(commands.Cog):
     @commands.command(name="connect", aliases=["c", "ㅊ"])
     async def connect(self, ctx):
         channel = ctx.author.voice.channel
-        await channel.connect()
+        voice = get(self.bot.voice_clients, guild=ctx.guild)
+
+        if voice and voice.is_connected():
+            await voice.move_to(channel)
+        else:
+            voice = await channel.connect()
 
     @commands.command(name="disconnect", aliases=["dc", "ㅇㅊ"])
     async def disconnect(self, ctx):
