@@ -16,7 +16,10 @@ class Secret(commands.Cog):
 
     @commands.command(name="자스고")
     async def jasgo(self, ctx):
-        await ctx.send(":AMGO_angry:  :AMGO_despair:  :AMGO_peaceful:  :AMGO_sad: ")
+        embed = discord.Embed(title="자스고", description=":AMGO_angry:  :AMGO_despair:  :AMGO_peaceful:  :AMGO_sad: ", color=0xffffff)
+        embed.set_footer(text="코코#1174 | V1.5")
+
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Secret(bot))
