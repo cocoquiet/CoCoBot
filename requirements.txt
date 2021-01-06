@@ -4,3 +4,4 @@ beautifulsoup4
 requests
 datetime
 youtube_dl
+PyNaCl
