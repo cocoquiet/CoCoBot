@@ -38,6 +38,9 @@ class Help(commands.Cog):
 
         elif args == "music":
             embed = discord.Embed(title="음악 명령어", description="음악과 관련된 명령어를 알려줄게요!", color=0xffffff)
+            embed.add_field(name="`/play`", value="원하는 노래를 들려줄게요.", inline=True)
+            embed.add_field(name="`/stop`", value="듣고 있는 음악을 멈춰줄게요.", inline=True)
+            embed.add_field(name="`/volume`", value="음악의 볼륨을 조절해줄게요.", inline=True)
             embed.add_field(name="`/음악목록`", value="음악 재생목록 링크를 모아서 보여줄게요.", inline=True)
             embed.set_footer(text="코코#1174 | V1.5")
 

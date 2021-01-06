@@ -10,13 +10,15 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from pprint import pprint
 
+import youtube_dl
+
 import os
 
 bot = commands.Bot(command_prefix="/")
 
 bot.remove_command("help")
 
-startup_extensions = ['cogs.help', 'cogs.CoCo', 'cogs.admin', 'cogs.music', 'cogs.musicbot', 'cogs.game', 'cogs.util', 'cogs.crawling', 'cogs.github', 'cogs.ping', 'cogs.secret']
+startup_extensions = ['cogs.help', 'cogs.CoCo', 'cogs.admin', 'cogs.music', 'cogs.game', 'cogs.util', 'cogs.crawling', 'cogs.github', 'cogs.ping', 'cogs.secret']
 
 if __name__ == "__main__":
     for extension in startup_extensions:
