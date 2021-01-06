@@ -77,7 +77,7 @@ class Music(commands.Cog):
         await ctx.send("볼륨이 {}%로 설정되었습니다!".format(volume))
 
     @commands.command(name="음악목록", aliases=["음목", "playlist", "pl", "ㅔㅣ"])
-    async def playlist(self, ctx, seq : int):
+    async def playlist(self, ctx, seq : int = None):
         link = ["", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", 
@@ -106,6 +106,7 @@ class Music(commands.Cog):
             await ctx.send('다음 곡 : {}'.format(player.title))
 
     @play.before_invoke
+    @playlist.before_invoke
     async def ensure_voice(self, ctx):
         if ctx.voice_client is None:
             if ctx.author.voice:
