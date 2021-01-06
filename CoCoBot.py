@@ -3,14 +3,14 @@ import asyncio
 from discord.ext import commands, tasks
 from discord.utils import get
 
+import youtube_dl
+
 import random
 import datetime
 import requests
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from pprint import pprint
-
-import youtube_dl
 
 import os
 
