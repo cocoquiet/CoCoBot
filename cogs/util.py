@@ -45,6 +45,7 @@ class Ping(commands.Cog):
         embed.add_field(name="코코봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=8&scope=bot)", inline=False)
         embed.add_field(name="어떤 과학의 음악봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=714140461840728144&permissions=8&scope=bot)", inline=False)
         embed.add_field(name="NAVI", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=742281764411670579&permissions=8&scope=bot)", inline=False)
+        embed.add_field(name="인절미 빙수", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=796053822371397642&permissions=8&scope=bot)", inline=False)
         
         await ctx.send(embed=embed)
 
