@@ -55,6 +55,7 @@ class Music(commands.Cog):
 
     @commands.command(name="play", aliases=["p", "ㅔ"])
     async def play(self, ctx, *, url):
+        discord.opus.load_opus()
         async with ctx.typing():
             player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
             ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
@@ -75,6 +76,7 @@ class Music(commands.Cog):
 
     @commands.command(name="음악목록", aliases=["음목", "playlist", "pl", "ㅔㅣ"])
     async def playlist(self, ctx, seq : int = None):
+        discord.opus.load_opus()
         link = ["", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", 
