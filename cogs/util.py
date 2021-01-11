@@ -42,10 +42,12 @@ class Ping(commands.Cog):
     @commands.command(name="초대", aliases=["invite"])
     async def invite(self, ctx):
         embed=discord.Embed(title="디스코드봇 초대 링크", description="디코봇들의 초대 링크입니다.", color=0xffffff)
-        embed.add_field(name="코코봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=8&scope=bot)", inline=False)
-        embed.add_field(name="어떤 과학의 음악봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=714140461840728144&permissions=8&scope=bot)", inline=False)
-        embed.add_field(name="NAVI", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=742281764411670579&permissions=8&scope=bot)", inline=False)
-        embed.add_field(name="인절미 빙수", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=796053822371397642&permissions=8&scope=bot)", inline=False)
+        embed.add_field(name="코코봇 / 재롱부리는 강아지", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=0&scope=bot)", inline=False)
+        embed.add_field(name="어떤 과학의 음악봇 / 음악봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=714140461840728144&permissions=0&scope=bot)", inline=False)
+        embed.add_field(name="NAVI / 파싱하는 고양이", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=742281764411670579&permissions=0&scope=bot)", inline=False)
+        embed.add_field(name="인절미 빙수 / 설빙", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=796053822371397642&permissions=0&scope=bot)", inline=False)
+        embed.add_field(name="루비 / 이모티콘봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=796342455762419712&permissions=0&scope=bot)", inline=False)
+        embed.add_field(name="노트패드 / 메모장", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=797014035559088159&permissions=0&scope=bot)", inline=False)
         
         await ctx.send(embed=embed)
 

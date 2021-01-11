@@ -27,7 +27,19 @@ ffmpeg_options = {
 
 ytdl = youtube_dl.YoutubeDL(ytdl_format_options)
 
+OPUS_LIBS = ['libopus-0.x86.dll', 'libopus-0.x64.dll', 'libopus-0.dll', 'libopus.so.0', 'libopus.0.dylib']
 
+def load_opus_lib():
+    if discord.opus.is_loaded():
+        return True
+
+    for opus_lib in OPUS_LIBS:
+        try:
+            discord.opus.load_opus(opus_lib)
+            return
+        except OSError:
+            pass
+        
 class YTDLSource(discord.PCMVolumeTransformer):
     def __init__(self, source, *, data, volume=0.5):
         super().__init__(source, volume)
@@ -55,7 +67,7 @@ class Music(commands.Cog):
 
     @commands.command(name="play", aliases=["p", "ㅔ"])
     async def play(self, ctx, *, url):
-        discord.opus.load_opus()
+        load_opus_lib()
         async with ctx.typing():
             player = await YTDLSource.from_url(url, loop=self.bot.loop, stream=True)
             ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
@@ -76,7 +88,7 @@ class Music(commands.Cog):
 
     @commands.command(name="음악목록", aliases=["음목", "playlist", "pl", "ㅔㅣ"])
     async def playlist(self, ctx, seq : int = None):
-        discord.opus.load_opus()
+        load_opus_lib()
         link = ["", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", 
