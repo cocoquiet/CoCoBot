@@ -7,12 +7,12 @@ import random
 player = None
 bot_rsp = None
 
-class Game(commands.Cog):
+class RSP(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.command(name="가위바위보")
-    async def RSP(self, ctx):
+    async def rsp(self, ctx):
         global bot_rsp
         global player
 
@@ -65,4 +65,4 @@ class Game(commands.Cog):
         player = None
 
 def setup(bot):
-    bot.add_cog(Game(bot))
+    bot.add_cog(RSP(bot))

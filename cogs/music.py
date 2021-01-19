@@ -96,7 +96,8 @@ class Music(commands.Cog):
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAHdLCjFZJJsLAHkjj8yX6J8", 
                 "https://youtube.com/playlist?list=PLylf8Ved3tAF6Xhb_63e9tv3TBfmKB0wE", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAH2O8mPPgtHTX8Wx_bbkjDf", 
-                "https://youtube.com/playlist?list=PLVW_htI5V49iz9Z38iaKOoS8JByghA0cb"]
+                "https://youtube.com/playlist?list=PLVW_htI5V49iz9Z38iaKOoS8JByghA0cb",
+                "https://www.youtube.com/playlist?list=PLFxP7Xv4aTr09edNKmWntSsvbtgooHDsj"]
 
         if seq == None:
             embed = discord.Embed(title="코양이 유튜브 재생목록", description="유튜브 재생목록 모음입니다.", color=0xffffff)
@@ -107,8 +108,9 @@ class Music(commands.Cog):
             embed.add_field(name=":five: `코양이 팝`", value=link[5], inline=False)
             embed.add_field(name=":six: `코양이 올드팝`", value=link[6], inline=False)
             embed.add_field(name=":seven: `루 뮤직 리스트`", value=link[7], inline=False)
+            embed.add_field(name=":eight: `오늘의 노래`", value=link[8], inline=False)
             
-            await ctx.send(embed=embed)
+            return await ctx.send(embed=embed)
         else:
             async with ctx.typing():
                 player = await YTDLSource.from_url(link[seq], loop=self.bot.loop, stream=True)
