@@ -5,3 +5,4 @@ requests
 datetime
 youtube_dl
 PyNaCl
+numpy
