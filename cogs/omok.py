@@ -204,7 +204,7 @@ class Omok(commands.Cog):
 
                 reset()
 
-    @commands.command(name="돌", aliases=["stone", "ㄷ", "e"])
+    @commands.command(name="돌", aliases=["stone", "ㄷ", "e", "착수", "ㅊㅅ"])
     async def stone(self, ctx, row : int, col : int):
         global OmokPlayer1
         global OmokPlayer2
@@ -229,6 +229,8 @@ class Omok(commands.Cog):
                         elif OmokTurn == OmokPlayer2:
                             newBoard[row, col] = 98
                             OmokTurn = OmokPlayer1
+                        await ctx.channel.purge(after=replied_msg) # 이전 보드 삭제
+                        await replied_msg.delete()
                         is_RightPlayer = True
                 elif (ctx.author == OmokPlayer1) or (ctx.author == OmokPlayer2): # 자기 차례 아닌 경우
                     await ctx.send("아직 차례 안 됐다ㅡㅡ")
@@ -269,15 +271,11 @@ class Omok(commands.Cog):
                     WINNER = OmokPlayer1
                 elif newBoard[row+4, col+0] + newBoard[row+3, col+1] + newBoard[row+2, col+2] + newBoard[row+1, col+3] + newBoard[row+0, col+4] == 490:
                     WINNER = OmokPlayer2
-
-        # 이전 보드 지우기
-        await ctx.channel.purge(after=replied_msg)
-        await replied_msg.delete()
                 
         # 승리 여부 확인 & 보드 업데이트
         if WINNER == None:
             drawBoard()
-            embed = discord.Embed(color=0x000000)
+            embed = discord.Embed(title="착수", description=OmokTurn.mention + "님의 차례입니다", color=0x000000)
             embed.add_field(name="현재 오목판", value=Board, inline=False)
 
         elif WINNER == OmokPlayer1:
