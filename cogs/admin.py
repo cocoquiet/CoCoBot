@@ -19,8 +19,11 @@ class Admin(commands.Cog):
 
     @commands.command(name="청소", aliases=["clean", "clear", "purge"])
     @commands.has_permissions(administrator=True)
-    async def clear(self, ctx, amount):
-        await ctx.channel.purge(limit=int(amount) + 1)
+    async def clear(self, ctx, amount : int = None):
+        if amount == None:
+            await ctx.channel.purge(limit=11)
+        else:
+            await ctx.channel.purge(limit=amount + 1)
 
     @commands.command(name="고코위", aliases=["관리자"])
     @commands.has_permissions(administrator=True)

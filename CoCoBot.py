@@ -1,6 +1,6 @@
 import discord
 import asyncio
-from discord.ext import commands, tasks
+from discord.ext import commands
 from discord.utils import get
 
 import youtube_dl
@@ -29,13 +29,10 @@ if __name__ == "__main__":
 
 @bot.event
 async def on_ready():
-    print("코코 대기 중")
+    print("빌드 성공")
     print(bot.user.name)
     print(bot.user.id)
     print("=============")
-
-    now = datetime.datetime.now()
-    nowTime = now.strftime("%H")
 
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("주인놈이랑 코딩"))
 

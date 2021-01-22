@@ -1,6 +1,6 @@
 import discord
 import asyncio
-from discord.ext import commands, tasks
+from discord.ext import commands
 
 import requests
 from bs4 import BeautifulSoup

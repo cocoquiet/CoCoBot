@@ -58,7 +58,7 @@ class Help(commands.Cog):
             embed = discord.Embed(title="관리자 명령어", description="관리자만 사용 가능한 명령어를 알려줄게요!", color=0xffffff)
             embed.add_field(name="`/kick <추방할 유저>`", value="문제가 있는 사람들을 추방시켜줄게요.", inline=True)
             embed.add_field(name="`/ban <차단할 유저>`", value="마음에 들지 않은 사람들을 차단시켜 줄게요.", inline=True)
-            embed.add_field(name="`/청소 <삭제할 개수>`", value="많은 메세지를 한번에 지워줄게요.", inline=True)
+            embed.add_field(name="`/청소 <삭제할 개수>`", value="많은 메세지를 한번에 지워줄게요.\n개수를 입력하지 않으면 자동으로 10개만 지워줄게요.", inline=True)
             embed.add_field(name="`/고코위`", value="모든 어드민들을 불러줄게요.", inline=True)
             embed.set_footer(text="코코#1174 | V1.5")
 
