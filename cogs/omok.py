@@ -202,14 +202,14 @@ class Omok(commands.Cog):
 
             helpCommand = discord.Embed(title="명령어", description="모든 오목 명령어는 답장을 기본으로 합니다.", color=0x000000)
             helpCommand.add_field(name="`/오목 <다른 플레이어> <모드 번호>`", value="> 다른 사람과 오목을 하게 해줄게요.\n모드 번호는 `/오목 모드`로 알려줄게요.", inline=False)
-            helpCommand.add_field(name="`/오목 모드`", value="> 오목의 여러 모드들을 알려줄게요.", inline=False)
+            helpCommand.add_field(name="`/모드`", value="> 오목의 여러 모드들을 알려줄게요.", inline=False)
             helpCommand.add_field(name="`/참가`", value="> 오목 대결 신청을 한 사람과 오목을 하게 해줄게요.", inline=False)
             helpCommand.add_field(name="`/거절`", value="> 오목 대결 신청을 한 사람과 오목을 하기 싫을 때 대신 거절해줄게요.", inline=False)
             helpCommand.add_field(name="`/돌`", value="> 오목판에 돌을 두게 해줄게요.", inline=False)
             helpCommand.add_field(name="`/기권`", value="> 오목을 할 때 수가 생각나지 않는다면 기권해줄게요.", inline=False)
             await ctx.send(embed=helpCommand)
 
-    @commands.command(name="오목 모드", aliases=[])
+    @commands.command(name="모드", aliases=[])
     async def ExplainMode(self, ctx):
         embed = discord.Embed(title="모드 설명", color=0x000000)
         embed.add_field(name="0. `기본 모드`", value="> 기본적인 오목입니다.\n`/오목` 뒤에 모드 번호를 치지 않으면 자동으로 기본모드가 됩니다.", inline=False)
