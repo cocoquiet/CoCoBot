@@ -212,9 +212,9 @@ class Omok(commands.Cog):
     @commands.command(name="모드", aliases=[])
     async def ExplainMode(self, ctx):
         embed = discord.Embed(title="모드 설명", color=0x000000)
-        embed.add_field(name="0. `기본 모드`", value="> 기본적인 오목입니다.\n`/오목` 뒤에 모드 번호를 치지 않으면 자동으로 기본모드가 됩니다.", inline=False)
-        embed.add_field(name="1. `단색 모드`", value="> 자신과 상대의 돌의 색이 같아집니다.\n돌의 색을 구분하지 못하는 게 이 모드의 묘미입니다.", inline=False)
-        embed.add_field(name="2. `맹기 모드`", value="> 오목판에 돌이 가려집니다.\n단색 모드보다 더 까다로운 모드입니다.", inline=False)
+        embed.add_field(name="0. `기본 모드`", value="> 기본적인 오목입니다.\n> `/오목` 뒤에 모드 번호를 치지 않으면 자동으로 기본모드가 됩니다.", inline=False)
+        embed.add_field(name="1. `단색 모드`", value="> 자신과 상대의 돌의 색이 같아집니다.\n> 돌의 색을 구분하지 못하는 게 이 모드의 묘미입니다.", inline=False)
+        embed.add_field(name="2. `맹기 모드`", value="> 오목판에 돌이 가려집니다.\n> 단색 모드보다 더 까다로운 모드입니다.", inline=False)
         # embed.add_field(name="3. `속기 모드`", value="> 제한시간이 단축된 오목입니다.\n주어진 10초 안에 착수를 해야 합니다.", inline=False)
 
         await ctx.send(embed=embed)
