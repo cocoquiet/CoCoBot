@@ -18,7 +18,7 @@ class Github(commands.Cog):
         embed.add_field(name="`루`", value="https://github.com/Lu175", inline=False)
         embed.add_field(name="`뽀로로`", value="https://github.com/paxbun", inline=False)
         embed.add_field(name="`녹색치킨`", value="https://github.com/IceJack", inline=False)
-        embed.set_footer(text="다들 한 번씩 와서 팔로우좀 눌러주세요ㅠㅠ")
+        embed.set_footer(text="다들 한번씩 놀러오세요~")
 
         await ctx.send(embed=embed)
 
