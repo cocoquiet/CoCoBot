@@ -3,6 +3,10 @@ import asyncio
 from discord.ext import commands
 from discord.utils import get
 
+from config import EXTENSIONS
+from config import botName
+from config import botID
+
 import youtube_dl
 
 import random
@@ -14,14 +18,12 @@ from pprint import pprint
 
 import os
 
-bot = commands.Bot(command_prefix="/")
+bot = commands.Bot(command_prefix=",")
 
 bot.remove_command("help")
 
-startup_extensions = ['cogs.help', 'cogs.CoCo', 'cogs.admin', 'cogs.music', 'cogs.RSP', 'cogs.omok', 'cogs.util', 'cogs.crawling', 'cogs.github', 'cogs.ping', 'cogs.secret']
-
 if __name__ == "__main__":
-    for extension in startup_extensions:
+    for extension in EXTENSIONS:
         try:
             bot.load_extension(extension)
         except Exception as e:
@@ -29,9 +31,9 @@ if __name__ == "__main__":
 
 @bot.event
 async def on_ready():
-    print("빌드 성공")
-    print(bot.user.name)
-    print(bot.user.id)
+    print("코코 대기 중")
+    print(botName)
+    print(botID)
     print("=============")
 
     await bot.change_presence(status=discord.Status.online, activity=discord.Game("주인놈이랑 코딩"))

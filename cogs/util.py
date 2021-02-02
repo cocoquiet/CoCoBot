@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+from config import CoCo_VER
 
 import datetime
 
@@ -48,6 +49,7 @@ class Ping(commands.Cog):
         embed.add_field(name="인절미 빙수 / 설빙", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=796053822371397642&permissions=0&scope=bot)", inline=False)
         embed.add_field(name="루비 / 이모티콘봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=796342455762419712&permissions=0&scope=bot)", inline=False)
         embed.add_field(name="노트패드 / 메모장", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=797014035559088159&permissions=0&scope=bot)", inline=False)
+        embed.set_footer(text=CoCo_VER)
         
         await ctx.send(embed=embed)
 

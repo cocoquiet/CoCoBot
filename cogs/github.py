@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+from config import CoCo_VER
 
 class Github(commands.Cog):
     def __init__(self, bot):
@@ -18,7 +19,7 @@ class Github(commands.Cog):
         embed.add_field(name="`루`", value="https://github.com/Lu175", inline=False)
         embed.add_field(name="`뽀로로`", value="https://github.com/paxbun", inline=False)
         embed.add_field(name="`녹색치킨`", value="https://github.com/IceJack", inline=False)
-        embed.set_footer(text="다들 한번씩 놀러오세요~")
+        embed.set_footer(text=CoCo_VER)
 
         await ctx.send(embed=embed)
 

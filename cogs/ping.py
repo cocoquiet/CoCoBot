@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+from config import CoCo_VER
 
 class Ping(commands.Cog):
     def __init__(self, bot):
@@ -11,7 +12,7 @@ class Ping(commands.Cog):
         latency = self.bot.latency
         
         embed = discord.Embed(title="Ping!", description=":ping_pong: Pong! " + "**" + str(round(latency * 1000)) + " ms" + "**", color=0xffffff)
-        embed.set_footer(text="코코#1174 | V1.5")
+        embed.set_footer(text=CoCo_VER)
         
         await ctx.send(embed=embed)
 

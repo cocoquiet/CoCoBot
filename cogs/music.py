@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+from config import CoCo_VER
 
 import youtube_dl
 
@@ -109,6 +110,7 @@ class Music(commands.Cog):
             embed.add_field(name=":six: `코양이 올드팝`", value=link[6], inline=False)
             embed.add_field(name=":seven: `루 뮤직 리스트`", value=link[7], inline=False)
             embed.add_field(name=":eight: `오늘의 노래`", value=link[8], inline=False)
+            embed.set_footer(text=CoCo_VER)
             
             return await ctx.send(embed=embed)
         else:

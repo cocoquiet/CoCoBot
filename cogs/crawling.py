@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+from config import CoCo_VER
 
 import requests
 from bs4 import BeautifulSoup
@@ -24,6 +25,7 @@ class Crawling(commands.Cog):
             link = keyword.replace(" ", "+")
             embed.add_field(name=str(i) + "위", value="[" + keyword + "](https://search.naver.com/search.naver?query=" + link + ")", inline=False)
             i += 1
+        embed.set_footer(text=CoCo_VER)
 
         await ctx.send(embed=embed)
 
@@ -48,6 +50,7 @@ class Crawling(commands.Cog):
         embed.add_field(name="현재 미세먼지", value=find_dust, inline=False)
         embed.add_field(name="현재 초미세먼지", value=find_ultra_dust, inline=False)
         embed.add_field(name="현재 오존지수", value=find_ozone, inline=False)
+        embed.set_footer(text=CoCo_VER)
 
         await ctx.send(embed=embed)
 
