@@ -209,7 +209,7 @@ class Omok(commands.Cog):
             helpCommand.add_field(name="`/거절`", value="> 오목 대결 신청을 한 사람과 오목을 하기 싫을 때 대신 거절해줄게요.", inline=False)
             helpCommand.add_field(name="`/돌`", value="> 오목판에 돌을 두게 해줄게요.", inline=False)
             helpCommand.add_field(name="`/기권`", value="> 오목을 할 때 수가 생각나지 않는다면 기권해줄게요.", inline=False)
-            embed.set_footer(text=CoCo_VER)
+            helpCommand.set_footer(text=CoCo_VER)
             await ctx.send(embed=helpCommand)
 
     @commands.command(name="모드", aliases=[])

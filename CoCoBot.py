@@ -18,7 +18,7 @@ from pprint import pprint
 
 import os
 
-bot = commands.Bot(command_prefix=",")
+bot = commands.Bot(command_prefix="/")
 
 bot.remove_command("help")
 
@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
 @bot.event
 async def on_ready():
-    print("코코 대기 중")
+    print("Build succeeded")
     print(botName)
     print(botID)
     print("=============")
