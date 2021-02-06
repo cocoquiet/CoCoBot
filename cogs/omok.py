@@ -264,7 +264,7 @@ class Omok(commands.Cog):
             else: # 오목 시작O 경우
                 await ctx.send("뭐래 이미 게임 시작했는데ㅡㅡ")
     
-    @commands.command(name="돌", aliases=["stone", "ㄷ", "e", "착수", "ㅊㅅ"])
+    @commands.command(name="돌", aliases=["stone", "ㄷ", "e", "착수", "ㅊㅅ", "."])
     async def stone(self, ctx, row : int, col : int):
         global omokPlayer1
         global omokPlayer2
@@ -376,17 +376,17 @@ class Omok(commands.Cog):
                     embed = discord.Embed(color=0x000000)
                     embed.add_field(name="기권", value=omokPlayer1.mention + " 기권\n" + omokPlayer2.mention + " 승리!!!")
                     embed.set_footer(text=CoCo_VER)
+                    reset()
                 elif ctx.author == omokPlayer2: # Player2 기권
                     embed = discord.Embed(color=0x000000)
                     embed.add_field(name="기권", value=omokPlayer2.mention + " 기권\n" + omokPlayer1.mention + " 승리!!!")
                     embed.set_footer(text=CoCo_VER)
+                    reset()
                 else:
                     embed = discord.Embed(color=0x000000) # Player가 아닌 경우
                     embed.add_field(name="넌 누구냐", value="오목 하지도 않으면서 뭔 기권이야ㅡㅡ")
 
                 await ctx.send(embed=embed)
-
-                reset()
 
 def setup(bot):
     bot.add_cog(Omok(bot))

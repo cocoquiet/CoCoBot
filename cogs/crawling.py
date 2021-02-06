@@ -42,14 +42,12 @@ class Crawling(commands.Cog):
         dd = weather_box.findAll('dd')
         find_dust = dd[0].find('span', {'class':'num'}).text
         find_ultra_dust = dd[1].find('span', {'class':'num'}).text
-        find_ozone = dd[2].find('span', {'class':'num'}).text
 
         embed=discord.Embed(title="날씨", description="현재의 날씨 정보를 알려드립니다.", color=0xffffff)
         embed.add_field(name="검색 위치", value=find_address, inline=False)
         embed.add_field(name="현재 온도", value=find_currenttemp + "℃", inline=False)
         embed.add_field(name="현재 미세먼지", value=find_dust, inline=False)
         embed.add_field(name="현재 초미세먼지", value=find_ultra_dust, inline=False)
-        embed.add_field(name="현재 오존지수", value=find_ozone, inline=False)
         embed.set_footer(text=CoCo_VER)
 
         await ctx.send(embed=embed)
