@@ -92,20 +92,20 @@ EmojiDict = {
                     'm': '속기'} 
                 }
 
-newBoard = np.array([[45, 49, 50, 51, 52, 53, 54, 55, 56, 57, 113, 119, 101, 114], 
-                    [49, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                    [50, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                    [51, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                    [52, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                    [53, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                    [54, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                    [55, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                    [56, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                    [57, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                    [113, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                    [119, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+newBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
                     [101, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                    [114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61]])
+                    [119, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [113, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [57, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [56, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [55, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [54, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [53, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [52, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [51, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [50, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [49, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [45, 49, 50, 51, 52, 53, 54, 55, 56, 57, 113, 119, 101, 114]])
 
 Board = ""
 
@@ -152,20 +152,20 @@ def reset(): # 게임 리셋 함수
 
     is_playing = False
 
-    newBoard = np.array([[45, 49, 50, 51, 52, 53, 54, 55, 56, 57, 113, 119, 101, 114], 
-                        [49, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [50, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [51, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [52, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [53, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [54, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [55, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [56, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [57, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [113, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [119, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+    newBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
                         [101, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61]])
+                        [119, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                        [113, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                        [57, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                        [56, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                        [55, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                        [54, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                        [53, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                        [52, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                        [51, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                        [50, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                        [49, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                        [45, 49, 50, 51, 52, 53, 54, 55, 56, 57, 113, 119, 101, 114]])
 
 class Omok(commands.Cog):
     def __init__(self, bot):
@@ -195,13 +195,6 @@ class Omok(commands.Cog):
 
             DrawBoard()
 
-            embed = discord.Embed(title="오목", color=0x000000)
-            embed.add_field(name="플레이어", value="Player 1: " + omokPlayer1.mention + "\nPlayer 2: " + omokPlayer2.mention, inline=False)
-            embed.add_field(name="모드", value=EmojiDict[mode]['m'], inline=False)
-            embed.add_field(name="현재 오목판", value=Board, inline=False)
-            embed.set_footer(text=CoCo_VER)
-            await ctx.send(embed=embed)
-
             helpCommand = discord.Embed(title="명령어", description="모든 오목 명령어는 답장을 기본으로 합니다.", color=0x000000)
             helpCommand.add_field(name="`/오목 <다른 플레이어> <모드 번호>`", value="> 다른 사람과 오목을 하게 해줄게요.\n모드 번호는 `/오목 모드`로 알려줄게요.", inline=False)
             helpCommand.add_field(name="`/모드`", value="> 오목의 여러 모드들을 알려줄게요.", inline=False)
@@ -211,6 +204,13 @@ class Omok(commands.Cog):
             helpCommand.add_field(name="`/기권`", value="> 오목을 할 때 수가 생각나지 않는다면 기권해줄게요.", inline=False)
             helpCommand.set_footer(text=CoCo_VER)
             await ctx.send(embed=helpCommand)
+
+            embed = discord.Embed(title="오목", color=0x000000)
+            embed.add_field(name="플레이어", value="Player 1: " + omokPlayer1.mention + "\nPlayer 2: " + omokPlayer2.mention, inline=False)
+            embed.add_field(name="모드", value=EmojiDict[mode]['m'], inline=False)
+            embed.add_field(name="현재 오목판", value=Board, inline=False)
+            embed.set_footer(text=CoCo_VER)
+            await ctx.send(embed=embed)
 
     @commands.command(name="모드", aliases=[])
     async def ExplainMode(self, ctx):
@@ -265,7 +265,7 @@ class Omok(commands.Cog):
                 await ctx.send("뭐래 이미 게임 시작했는데ㅡㅡ")
     
     @commands.command(name="돌", aliases=["stone", "ㄷ", "e", "착수", "ㅊㅅ", "."])
-    async def stone(self, ctx, row : int, col : int):
+    async def stone(self, ctx, col : int, row : int):
         global omokPlayer1
         global omokPlayer2
         global omokTurn
@@ -280,14 +280,14 @@ class Omok(commands.Cog):
             replied_msg = await self.bot.get_channel(ctx.message.reference.channel_id).fetch_message(ctx.message.reference.message_id)
             if replied_msg.author == self.bot.user:
                 if ctx.author == omokTurn: # 다음 차례인 경우
-                    if newBoard[row, col] != 61:
+                    if newBoard[13 - row, col] != 61:
                         await ctx.send("제대로 둬라ㅡㅡ")
                     else:
                         if omokTurn == omokPlayer1:
-                            newBoard[row, col] = 97
+                            newBoard[13 - row, col] = 97
                             omokTurn = omokPlayer2
                         elif omokTurn == omokPlayer2:
-                            newBoard[row, col] = 98
+                            newBoard[13 - row, col] = 98
                             omokTurn = omokPlayer1
                         await ctx.channel.purge(after=replied_msg) # 이전 보드 삭제
                         await replied_msg.delete()
@@ -301,7 +301,7 @@ class Omok(commands.Cog):
 
 
         # 오목 줄 확인(ㅡ)
-        for row in range(1, 14):
+        for row in range(0, 13):
             for col in range(1, 10):
                 if np.sum(newBoard[row, col:col+5]) == 485:
                     WINNER = omokPlayer1
@@ -310,14 +310,14 @@ class Omok(commands.Cog):
 
         # 오목 줄 확인(|)
         for col in range(1, 14):
-            for row in range(1, 10):
+            for row in range(0, 9):
                 if np.sum(newBoard[row:row+5, col]) == 485:
                     WINNER = omokPlayer1
                 elif np.sum(newBoard[row:row+5, col]) == 490:
                     WINNER = omokPlayer2
 
         # 오목 줄 확인(\)
-        for row in range(1, 10):
+        for row in range(0, 9):
             for col in range(1, 10):
                 if newBoard[row+0, col+0] + newBoard[row+1, col+1] + newBoard[row+2, col+2] + newBoard[row+3, col+3] + newBoard[row+4, col+4] == 485:
                     WINNER = omokPlayer1
@@ -325,7 +325,7 @@ class Omok(commands.Cog):
                     WINNER = omokPlayer2
 
         # 오목 줄 확인(/)
-        for row in range(1, 10):
+        for row in range(0, 9):
             for col in range(1, 10):
                 if newBoard[row+4, col+0] + newBoard[row+3, col+1] + newBoard[row+2, col+2] + newBoard[row+1, col+3] + newBoard[row+0, col+4] == 485:
                     WINNER = omokPlayer1
