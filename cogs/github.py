@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+
 from config import CoCo_VER
 
 class Github(commands.Cog):

@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+
 from config import CoCo_VER
 
 import numpy as np
@@ -109,6 +110,11 @@ newBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61],
 
 Board = ""
 
+
+lastBoard = np.zeros(13, 13)
+turnCount = 1
+
+
 omokPlayer1 = None
 omokPlayer2 = None
 omokTurn = None
@@ -116,6 +122,7 @@ omokTurn = None
 is_playing = False
 
 modeNum = None
+
 
 def DrawBoard(): # 보드 갱신 함수
     global EmojiDict
@@ -171,7 +178,7 @@ class Omok(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="오목", aliases=["omok"])
+    @commands.command(name="오목", aliases=["omok", "ㅇㅁ"])
     async def omok(self, ctx, opponent : discord.Member, mode : int = None):
         global EmojiDict
 
@@ -212,8 +219,8 @@ class Omok(commands.Cog):
             embed.set_footer(text=CoCo_VER)
             await ctx.send(embed=embed)
 
-    @commands.command(name="모드", aliases=[])
-    async def ExplainMode(self, ctx):
+    @commands.command(name="모드", aliases=["mode", "ㅁㄷ", "ad"])
+    async def explainMode(self, ctx):
         embed = discord.Embed(title="모드 설명", color=0x000000)
         embed.add_field(name="0. `기본 모드`", value="> 기본적인 오목입니다.\n> `/오목` 뒤에 모드 번호를 치지 않으면 자동으로 기본모드가 됩니다.", inline=False)
         embed.add_field(name="1. `단색 모드`", value="> 자신과 상대의 돌의 색이 같아집니다.\n> 돌의 색을 구분하지 못하는 게 이 모드의 묘미입니다.", inline=False)
@@ -265,13 +272,16 @@ class Omok(commands.Cog):
                 await ctx.send("뭐래 이미 게임 시작했는데ㅡㅡ")
     
     @commands.command(name="돌", aliases=["stone", "ㄷ", "e", "착수", "ㅊㅅ", "."])
-    async def stone(self, ctx, col : int, row : int):
+    async def setStone(self, ctx, col : int, row : int):
         global omokPlayer1
         global omokPlayer2
         global omokTurn
 
         global newBoard
         global Board
+
+        global lastBoard
+        global turnCount
 
         WINNER = None
         is_RightPlayer = None
@@ -286,9 +296,13 @@ class Omok(commands.Cog):
                         if omokTurn == omokPlayer1:
                             newBoard[13 - row, col] = 97
                             omokTurn = omokPlayer2
+                            lastBoard[13 - row, col - 1] = turnCount
+                            turnCount += 1
                         elif omokTurn == omokPlayer2:
                             newBoard[13 - row, col] = 98
                             omokTurn = omokPlayer1
+                            lastBoard[13 - row, col - 1] = turnCount
+                            turnCount += 1
                         await ctx.channel.purge(after=replied_msg) # 이전 보드 삭제
                         await replied_msg.delete()
                         is_RightPlayer = True
