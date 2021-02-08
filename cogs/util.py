@@ -67,10 +67,12 @@ class Ping(commands.Cog):
         elif role == "친목":
             intimate = get(ctx.guild.roles, name="Private")
             await ctx.author.add_roles(intimate)
+            await ctx.message.add_reaction("✅")
 
         elif role == "십덕":
             weeb = get(ctx.guild.roles, name="공인 10덕")
             await ctx.author.add_roles(weeb)
+            await ctx.message.add_reaction("✅")
 
 def setup(bot):
     bot.add_cog(Ping(bot))
