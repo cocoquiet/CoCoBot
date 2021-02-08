@@ -65,7 +65,7 @@ class Ping(commands.Cog):
             await ctx.send(embed=embed)
 
         elif role == "친목":
-            intimate = get(ctx.guild.roles, name="Private")
+            intimate = get(ctx.guild.roles, name="친목")
             await ctx.author.add_roles(intimate)
             await ctx.message.add_reaction("✅")
 
