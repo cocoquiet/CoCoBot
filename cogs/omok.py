@@ -111,7 +111,7 @@ newBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61],
 Board = ""
 
 
-lastBoard = np.zeros(13, 13)
+lastBoard = np.zeros((13, 13))
 turnCount = 1
 
 

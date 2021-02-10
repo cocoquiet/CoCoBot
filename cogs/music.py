@@ -90,7 +90,6 @@ class Music(commands.Cog):
 
     @commands.command(name="음악목록", aliases=["음목", "playlist", "pl", "ㅔㅣ"])
     async def playlist(self, ctx, seq : int = None):
-        load_opus_lib()
         link = ["", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", 
