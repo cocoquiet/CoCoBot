@@ -57,22 +57,25 @@ class Ping(commands.Cog):
 
     @commands.command(name="신청", aliases=["request", "re", "ㅅㅊ", "tc"])
     async def request(self, ctx, role : str = None):
-        if role == None:
-            embed = discord.Embed(title="신청 방법", color=0x000000)
-            embed.add_field(name="`/신청 친목`", value="친목방에서 활동할 수 있습니다.", inline=False)
-            embed.add_field(name="`/신청 십덕`", value="10_duck방에서 활동할 수 있습니다.", inline=False)
+        if(ctx.channel.id != 737283234156511242):
+            await ctx.send("번지수 잘못 찾았다ㅡㅡ")
+        else:
+            if role == None:
+                embed = discord.Embed(title="신청 방법", color=0x000000)
+                embed.add_field(name="`/신청 친목`", value="친목방에서 활동할 수 있습니다.", inline=False)
+                embed.add_field(name="`/신청 십덕`", value="10_duck방에서 활동할 수 있습니다.", inline=False)
 
-            await ctx.send(embed=embed)
+                await ctx.send(embed=embed)
 
-        elif role == "친목":
-            intimate = get(ctx.guild.roles, name="친목")
-            await ctx.author.add_roles(intimate)
-            await ctx.message.add_reaction("✅")
+            elif role == "친목":
+                intimate = get(ctx.guild.roles, name="친목")
+                await ctx.author.add_roles(intimate)
+                await ctx.message.add_reaction("✅")
 
-        elif role == "십덕":
-            weeb = get(ctx.guild.roles, name="공인 10덕")
-            await ctx.author.add_roles(weeb)
-            await ctx.message.add_reaction("✅")
+            elif role == "십덕":
+                weeb = get(ctx.guild.roles, name="공인 10덕")
+                await ctx.author.add_roles(weeb)
+                await ctx.message.add_reaction("✅")
 
 def setup(bot):
     bot.add_cog(Ping(bot))
