@@ -174,6 +174,17 @@ def reset(): # 게임 리셋 함수
                         [49, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
                         [45, 49, 50, 51, 52, 53, 54, 55, 56, 57, 113, 119, 101, 114]])
 
+def changeCoordinateValue(value):
+    decimal = ord(value)
+    if decimal >= 65 and decimal <= 68:
+        decimal -= 55
+        return decimal
+    elif decimal >= 97 and decimal <= 100:
+        decimal -= 87
+        return decimal
+    else:
+        return int(value)
+
 class Omok(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -272,7 +283,7 @@ class Omok(commands.Cog):
                 await ctx.send("뭐래 이미 게임 시작했는데ㅡㅡ")
     
     @commands.command(name="돌", aliases=["stone", "ㄷ", "e", "착수", "ㅊㅅ", "."])
-    async def setStone(self, ctx, col : int, row : int):
+    async def setStone(self, ctx, col : str, row : str):
         global omokPlayer1
         global omokPlayer2
         global omokTurn
@@ -289,6 +300,8 @@ class Omok(commands.Cog):
         if ctx.message.reference != None:
             replied_msg = await self.bot.get_channel(ctx.message.reference.channel_id).fetch_message(ctx.message.reference.message_id)
             if replied_msg.author == self.bot.user:
+                row = changeCoordinateValue(row)
+                col = changeCoordinateValue(col)
                 if ctx.author == omokTurn: # 다음 차례인 경우
                     if newBoard[13 - row, col] != 61:
                         await ctx.send("제대로 둬라ㅡㅡ")
