@@ -88,7 +88,8 @@ class Ping(commands.Cog):
         else:
             await ctx.send("번지수 잘못 찾아왔다ㅡㅡ")
 
-    async def dissmiss(self, ctx, role : str = None):
+    @commands.command(name="해제", aliases=["dismiss", "ㅎㅈ", "gw"])
+    async def dismiss(self, ctx, role : str = None):
         if role == None:
             if ctx.channel.id == 737283234156511242:
                 embed = discord.Embed(color=0x000000)
