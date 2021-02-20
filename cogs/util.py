@@ -81,9 +81,41 @@ class Ping(commands.Cog):
             await ctx.message.add_reaction("✅")
             
         elif (ctx.channel.id == 811584272825712692) and (role == "견적"):
-            weeb = get(ctx.guild.roles, name="견적")
-            await ctx.author.add_roles(weeb)
+            PC = get(ctx.guild.roles, name="견적")
+            await ctx.author.add_roles(PC)
             await ctx.message.add_reaction("✅")
+
+        else:
+            await ctx.send("번지수 잘못 찾아왔다ㅡㅡ")
+
+    async def dissmiss(self, ctx, role : str = None):
+        if role == None:
+            if ctx.channel.id == 737283234156511242:
+                embed = discord.Embed(color=0x000000)
+                embed.add_field(name="`/해제 친목`", value="친목방에서 퇴장할 수 있습니다.", inline=False)
+                embed.add_field(name="`/해제 십덕`", value="10_duck방에서 퇴장할 수 있습니다.", inline=False)
+
+                await ctx.send(embed=embed)
+            elif ctx.channel.id == 811584272825712692:
+                embed = discord.Embed(color=0x000000)
+                embed.add_field(name="`/해제 견적`", value="견적방에서 퇴장할 수 있습니다.", inline=False)
+
+                await ctx.send(embed=embed)
+
+        elif (ctx.channel.id == 737283234156511242) and (role == "친목"):
+            intimate = get(ctx.guild.roles, name="친목")
+            await ctx.author.remove_roles(intimate)
+            await ctx.message.add_reaction("👍")
+
+        elif (ctx.channel.id == 737283234156511242) and (role == "십덕"):
+            weeb = get(ctx.guild.roles, name="공인 10덕")
+            await ctx.author.remove_roles(weeb)
+            await ctx.message.add_reaction("👍")
+            
+        elif (ctx.channel.id == 811584272825712692) and (role == "견적"):
+            PC = get(ctx.guild.roles, name="견적")
+            await ctx.author.remove_roles(PC)
+            await ctx.message.add_reaction("👍")
 
         else:
             await ctx.send("번지수 잘못 찾아왔다ㅡㅡ")
