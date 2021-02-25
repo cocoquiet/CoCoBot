@@ -31,13 +31,7 @@ class Admin(commands.Cog):
         else:
             await ctx.channel.purge(limit=amount + 1)
 
-    @commands.command(name="고코위", aliases=["관리자"])
-    @commands.has_permissions(administrator=True)
-    async def CCC(self, ctx):
-        admin = get(ctx.guild.roles, name="Admin")
-        await ctx.send(ctx.message.author.mention + "님이 불렀습니다 : " + str(admin.mention))
-
-    @commands.command(name="초기화", aliases=["reset", "리셋"])
+    @commands.command(name="초기화", aliases=["reset", "리셋", "delall"])
     @commands.has_permissions(administrator=True)
     async def reset(self, ctx):
         position = ctx.channel.position
@@ -45,5 +39,11 @@ class Admin(commands.Cog):
         await ctx.channel.delete()
         await newChannel.edit(position=position)
 
+    @commands.command(name="고코위", aliases=["관리자"])
+    @commands.has_permissions(administrator=True)
+    async def CCC(self, ctx):
+        admin = get(ctx.guild.roles, name="Admin")
+        await ctx.send(ctx.message.author.mention + "님이 불렀습니다 : " + str(admin.mention))
+        
 def setup(bot):
     bot.add_cog(Admin(bot))

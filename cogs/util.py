@@ -7,11 +7,10 @@ from config import CoCo_VER
 
 import datetime
 
-class Ping(commands.Cog):
+class Util(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    
     @commands.command(name="ㅋ케", aliases=["lol", "앜ㅋ"])
     async def lol(self, ctx):
         await ctx.send(ctx.message.author.mention + " : ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
@@ -122,4 +121,4 @@ class Ping(commands.Cog):
             await ctx.send("번지수 잘못 찾아왔다ㅡㅡ")
 
 def setup(bot):
-    bot.add_cog(Ping(bot))
+    bot.add_cog(Util(bot))
