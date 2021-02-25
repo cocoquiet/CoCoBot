@@ -23,6 +23,11 @@ class Admin(commands.Cog):
     async def clear(self, ctx, amount : int = None):
         if amount == None:
             await ctx.channel.purge(limit=11)
+        elif amount == -1:
+            position = ctx.channel.position
+            newChannel = await ctx.channel.clone()
+            await ctx.channel.delete()
+            await newChannel.edit(position=position)
         else:
             await ctx.channel.purge(limit=amount + 1)
 
@@ -31,6 +36,14 @@ class Admin(commands.Cog):
     async def CCC(self, ctx):
         admin = get(ctx.guild.roles, name="Admin")
         await ctx.send(ctx.message.author.mention + "님이 불렀습니다 : " + str(admin.mention))
+
+    @commands.command(name="초기화", aliases=["reset", "리셋"])
+    @commands.has_permissions(administrator=True)
+    async def reset(self, ctx):
+        position = ctx.channel.position
+        newChannel = await ctx.channel.clone()
+        await ctx.channel.delete()
+        await newChannel.edit(position=position)
 
 def setup(bot):
     bot.add_cog(Admin(bot))
