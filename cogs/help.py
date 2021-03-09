@@ -22,9 +22,9 @@ class Help(commands.Cog):
             await ctx.send(embed=embed)
 
         elif (args == "general") or (args == "일반"):
-            embed = discord.Embed(title="기본 명령어", description="기본적인 명령어를 알려줄게요!", color=0xffffff)
-            embed.add_field(name="`/안녕`", value="예쁘게 인사해줄게요.", inline=True)
+            embed = discord.Embed(title="기본 명령어", description="안녕하세요? 기본적인 명령어를 알려줄게요!", color=0xffffff)
             embed.add_field(name="`/코코야`", value="기분이 좋으면 착하게, 기분이 나쁘면 신경질적으로 인사할게요.", inline=True)
+            embed.add_field(name="`/안녕`", value="예쁘게 인사해줄게요.", inline=True)
             embed.add_field(name="`/짖어`", value="음...짖을게요.", inline=True)
             embed.add_field(name="`/날짜`", value="오늘의 날짜를 알려줄게요.", inline=True)
             embed.add_field(name="`/시간`", value="현재 시간을 알려줄게요.", inline=True)
@@ -64,6 +64,7 @@ class Help(commands.Cog):
             embed.add_field(name="`/ban <차단할 유저>`", value="마음에 들지 않은 사람들을 차단시켜 줄게요.", inline=True)
             embed.add_field(name="`/청소 <삭제할 개수>`", value="많은 메세지를 한번에 지워줄게요.\n개수를 입력하지 않으면 10개를, -1을 입력하면 다 지워줄게요.", inline=True)
             embed.add_field(name="`/초기화`", value="채팅방을 맨 처음의 모습으로 돌려줄게요.", inline=True)
+            embed.add_field(name="`/로그`", value="이 서버의 감사 로그를 보여줄게요.", inline=True)
             embed.add_field(name="`/고코위`", value="모든 어드민들을 불러줄게요.", inline=True)
             embed.set_footer(text=CoCo_VER)
 
