@@ -213,7 +213,7 @@ class Omok(commands.Cog):
 
             DrawBoard()
 
-            helpCommand = discord.Embed(title="명령어", description="모든 오목 명령어는 답장을 기본으로 합니다.", color=0x000000)
+            helpCommand = discord.Embed(title="명령어", description="모든 오목 명령어는 답장을 기본으로 합니다.", color=0xFFFFFE)
             helpCommand.add_field(name="`/오목 <다른 플레이어> <모드 번호>`", value="> 다른 사람과 오목을 하게 해줄게요.\n모드 번호는 `/오목 모드`로 알려줄게요.", inline=False)
             helpCommand.add_field(name="`/모드`", value="> 오목의 여러 모드들을 알려줄게요.", inline=False)
             helpCommand.add_field(name="`/참가`", value="> 오목 대결 신청을 한 사람과 오목을 하게 해줄게요.", inline=False)
@@ -223,7 +223,7 @@ class Omok(commands.Cog):
             helpCommand.set_footer(text=CoCo_VER)
             await ctx.send(embed=helpCommand)
 
-            embed = discord.Embed(title="오목", color=0x000000)
+            embed = discord.Embed(title="오목", color=0xFFFFFE)
             embed.add_field(name="플레이어", value="Player 1: " + omokPlayer1.mention + "\nPlayer 2: " + omokPlayer2.mention, inline=False)
             embed.add_field(name="모드", value=EmojiDict[mode]['m'], inline=False)
             embed.add_field(name="현재 오목판", value=Board, inline=False)
@@ -232,7 +232,7 @@ class Omok(commands.Cog):
 
     @commands.command(name="모드", aliases=["mode", "ㅁㄷ", "ad"])
     async def explainMode(self, ctx):
-        embed = discord.Embed(title="모드 설명", color=0x000000)
+        embed = discord.Embed(title="모드 설명", color=0xFFFFFE)
         embed.add_field(name="0. `기본 모드`", value="> 기본적인 오목입니다.\n> `/오목` 뒤에 모드 번호를 치지 않으면 자동으로 기본모드가 됩니다.", inline=False)
         embed.add_field(name="1. `단색 모드`", value="> 자신과 상대의 돌의 색이 같아집니다.\n> 돌의 색을 구분하지 못하는 게 이 모드의 묘미입니다.", inline=False)
         embed.add_field(name="2. `맹기 모드`", value="> 오목판에 돌이 가려집니다.\n> 단색 모드보다 더 까다로운 모드입니다.", inline=False)
@@ -362,21 +362,21 @@ class Omok(commands.Cog):
         # 승리 여부 확인 & 보드 업데이트
         if WINNER == None:
             DrawBoard()
-            embed = discord.Embed(title="착수", description=omokTurn.mention + "님의 차례입니다", color=0x000000)
+            embed = discord.Embed(title="착수", description=omokTurn.mention + "님의 차례입니다", color=0xFFFFFE)
             embed.add_field(name="현재 오목판", value=Board, inline=False)
             embed.set_footer(text=CoCo_VER)
 
         elif WINNER == omokPlayer1:
             DrawBoard()
             await ctx.send(omokPlayer1.mention + "승리!!!")
-            embed = discord.Embed(color=0x000000)
+            embed = discord.Embed(color=0xFFFFFE)
             embed.add_field(name="최종 오목판", value=Board, inline=False)
             embed.set_footer(text=CoCo_VER)
 
         elif WINNER == omokPlayer2:
             DrawBoard()
             await ctx.send(omokPlayer2.mention + "승리!!!")
-            embed = discord.Embed(color=0x000000)
+            embed = discord.Embed(color=0xFFFFFE)
             embed.add_field(name="최종 오목판", value=Board, inline=False)
             embed.set_footer(text=CoCo_VER)
 
@@ -400,17 +400,17 @@ class Omok(commands.Cog):
             replied_msg = await self.bot.get_channel(ctx.message.reference.channel_id).fetch_message(ctx.message.reference.message_id)
             if replied_msg.author == self.bot.user:
                 if ctx.author == omokPlayer1: # Player1 기권
-                    embed = discord.Embed(color=0x000000)
+                    embed = discord.Embed(color=0xFFFFFE)
                     embed.add_field(name="기권", value=omokPlayer1.mention + " 기권\n" + omokPlayer2.mention + " 승리!!!")
                     embed.set_footer(text=CoCo_VER)
                     reset()
                 elif ctx.author == omokPlayer2: # Player2 기권
-                    embed = discord.Embed(color=0x000000)
+                    embed = discord.Embed(color=0xFFFFFE)
                     embed.add_field(name="기권", value=omokPlayer2.mention + " 기권\n" + omokPlayer1.mention + " 승리!!!")
                     embed.set_footer(text=CoCo_VER)
                     reset()
                 else:
-                    embed = discord.Embed(color=0x000000) # Player가 아닌 경우
+                    embed = discord.Embed(color=0xFFFFFE) # Player가 아닌 경우
                     embed.add_field(name="넌 누구냐", value="오목 하지도 않으면서 뭔 기권이야ㅡㅡ")
 
                 await ctx.send(embed=embed)

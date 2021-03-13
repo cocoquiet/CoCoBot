@@ -12,7 +12,7 @@ class Ping(commands.Cog):
     async def ping(self, ctx):
         latency = self.bot.latency
         
-        embed = discord.Embed(title="Ping!", description=":ping_pong: Pong! " + "**" + str(round(latency * 1000)) + " ms" + "**", color=0xffffff)
+        embed = discord.Embed(title="Ping!", description=":ping_pong: Pong! " + "**" + str(round(latency * 1000)) + " ms" + "**", color=0xFFFFFE)
         embed.set_footer(text=CoCo_VER)
         
         await ctx.send(embed=embed)

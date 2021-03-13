@@ -43,7 +43,7 @@ class Util(commands.Cog):
 
     @commands.command(name="초대", aliases=["invite"])
     async def invite(self, ctx):
-        embed = discord.Embed(title="디스코드봇 초대 링크", description="디코봇들의 초대 링크입니다.", color=0xffffff)
+        embed = discord.Embed(title="디스코드봇 초대 링크", description="디코봇들의 초대 링크입니다.", color=0xFFFFFE)
         embed.add_field(name="코코봇 / 재롱부리는 강아지", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=0&scope=bot)", inline=False)
         embed.add_field(name="어떤 과학의 음악봇 / 음악봇", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=714140461840728144&permissions=0&scope=bot)", inline=False)
         embed.add_field(name="NAVI / 파싱하는 고양이", value="[초대 링크](https://discord.com/oauth2/authorize?client_id=742281764411670579&permissions=0&scope=bot)", inline=False)
@@ -58,13 +58,13 @@ class Util(commands.Cog):
     async def request(self, ctx, role : str = None):
         if role == None:
             if ctx.channel.id == 737283234156511242:
-                embed = discord.Embed(color=0x000000)
+                embed = discord.Embed(color=0xFFFFFE)
                 embed.add_field(name="`/신청 친목`", value="친목방에서 활동할 수 있습니다.", inline=False)
                 embed.add_field(name="`/신청 십덕`", value="10_duck방에서 활동할 수 있습니다.", inline=False)
 
                 await ctx.send(embed=embed)
             elif ctx.channel.id == 811584272825712692:
-                embed = discord.Embed(color=0x000000)
+                embed = discord.Embed(color=0xFFFFFE)
                 embed.add_field(name="`/신청 견적`", value="견적방에서 활동할 수 있습니다.", inline=False)
 
                 await ctx.send(embed=embed)
@@ -91,13 +91,13 @@ class Util(commands.Cog):
     async def dismiss(self, ctx, role : str = None):
         if role == None:
             if ctx.channel.id == 737283234156511242:
-                embed = discord.Embed(color=0x000000)
+                embed = discord.Embed(color=0xFFFFFE)
                 embed.add_field(name="`/해제 친목`", value="친목방에서 퇴장할 수 있습니다.", inline=False)
                 embed.add_field(name="`/해제 십덕`", value="10_duck방에서 퇴장할 수 있습니다.", inline=False)
 
                 await ctx.send(embed=embed)
             elif ctx.channel.id == 811584272825712692:
-                embed = discord.Embed(color=0x000000)
+                embed = discord.Embed(color=0xFFFFFE)
                 embed.add_field(name="`/해제 견적`", value="견적방에서 퇴장할 수 있습니다.", inline=False)
 
                 await ctx.send(embed=embed)

@@ -101,7 +101,7 @@ class Music(commands.Cog):
                 "https://www.youtube.com/playlist?list=PLFxP7Xv4aTr09edNKmWntSsvbtgooHDsj"]
 
         if seq == None:
-            embed = discord.Embed(title="코양이 유튜브 재생목록", description="유튜브 재생목록 모음입니다.", color=0xffffff)
+            embed = discord.Embed(title="코양이 유튜브 재생목록", description="유튜브 재생목록 모음입니다.", color=0xFFFFFE)
             embed.add_field(name=":one: `코양이 노동요`", value=link[1], inline=False)
             embed.add_field(name=":two: `코양이 재즈`", value=link[2], inline=False)
             embed.add_field(name=":three: `코양이 캐롤`", value=link[3], inline=False)
