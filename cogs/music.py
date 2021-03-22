@@ -93,6 +93,7 @@ class Music(commands.Cog):
         link = ["", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", 
+                "https://youtube.com/playlist?list=PLylf8Ved3tAE4jbtyi8dg5MDF_zv_leLM", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta", 
                 "https://www.youtube.com/playlist?list=PLylf8Ved3tAHdLCjFZJJsLAHkjj8yX6J8", 
                 "https://youtube.com/playlist?list=PLylf8Ved3tAF6Xhb_63e9tv3TBfmKB0wE", 
@@ -104,12 +105,13 @@ class Music(commands.Cog):
             embed = discord.Embed(title="코양이 유튜브 재생목록", description="유튜브 재생목록 모음입니다.", color=0xFFFFFE)
             embed.add_field(name=":one: `코양이 노동요`", value=link[1], inline=False)
             embed.add_field(name=":two: `코양이 재즈`", value=link[2], inline=False)
-            embed.add_field(name=":three: `코양이 캐롤`", value=link[3], inline=False)
-            embed.add_field(name=":four: `코양이 힙합`", value=link[4], inline=False)
-            embed.add_field(name=":five: `코양이 팝`", value=link[5], inline=False)
-            embed.add_field(name=":six: `코양이 올드팝`", value=link[6], inline=False)
-            embed.add_field(name=":seven: `루 뮤직 리스트`", value=link[7], inline=False)
-            embed.add_field(name=":eight: `오늘의 노래`", value=link[8], inline=False)
+            embed.add_field(name=":two: `코양이 피아노`", value=link[3], inline=False)
+            embed.add_field(name=":three: `코양이 캐롤`", value=link[4], inline=False)
+            embed.add_field(name=":four: `코양이 힙합`", value=link[5], inline=False)
+            embed.add_field(name=":five: `코양이 팝`", value=link[6], inline=False)
+            embed.add_field(name=":six: `코양이 올드팝`", value=link[7], inline=False)
+            embed.add_field(name=":seven: `루 뮤직 리스트`", value=link[8], inline=False)
+            embed.add_field(name=":eight: `오늘의 노래`", value=link[9], inline=False)
             embed.set_footer(text=CoCo_VER)
             
             return await ctx.send(embed=embed)
