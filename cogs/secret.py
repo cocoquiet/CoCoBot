@@ -2,6 +2,8 @@ import discord
 import asyncio
 from discord.ext import commands
 
+noneRomance = False
+
 class Secret(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -24,10 +26,18 @@ class Secret(commands.Cog):
         await ctx.send("남중 다니고 주변에 여사친 없는 모솔이래요")
         await ctx.send("엌ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
 
+    @commands.command(name="모솔")
+    @commands.has_permissions(administrator=True)
+    async def noneRomance(self, ctx):
+        global noneRomance
+
+        noneRomance = True
+
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.content.startswith("ㅗ"):
-            await message.channel.send("모솔이라서 부들부들하죠?ㅋㅋㅋㅋㅋㅋㅋ")
+        global noneRomance
+        if (message.author.id == 702396818167824435) and (noneRomance == True):
+            await message.channel.send("으응 모솔ㅋㅋㅋㅋㅋㅋㅋ")
 
 
 def setup(bot):
