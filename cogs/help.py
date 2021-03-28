@@ -16,7 +16,7 @@ class Help(commands.Cog):
             embed.add_field(name="`/help general`", value="기본적인 명령어들을 보여줄게요.", inline=True)
             embed.add_field(name="`/help game`", value="저를 통해 할 수 있는 게임의 명령어들을 보여줄게요.", inline=True)
             embed.add_field(name="`/help music`", value="음악과 관련된 명령어들을 보여줄게요.", inline=True)
-            embed.add_field(name="`/help admin`", value="관리자만 상용 가능한 명령어들을 보여줄게요.", inline=True)
+            embed.add_field(name="`/help admin`", value="관리자만 사용 가능한 명령어들을 보여줄게요.", inline=True)
             embed.set_footer(text=CoCo_VER)
 
             await ctx.send(embed=embed)
