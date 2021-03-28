@@ -30,8 +30,12 @@ class Secret(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def noneRomance(self, ctx):
         global noneRomance
-
-        noneRomance = True
+        if noneRomance == True:
+            noneRomance = False
+            await ctx.send("저격 해제")
+        if noneRomance == False:
+            noneRomance = True
+            await ctx.send("저격 시작")
 
     @commands.Cog.listener()
     async def on_message(self, message):
