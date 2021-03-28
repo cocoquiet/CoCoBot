@@ -24,5 +24,11 @@ class Secret(commands.Cog):
         await ctx.send("남중 다니고 주변에 여사친 없는 모솔이래요")
         await ctx.send("엌ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
 
+    @commands.Cog.listener()
+    async def on_message(self, message):
+        if message.content.startswith("ㅗ"):
+            await message.channel.send("모솔이라서 부들부들하죠?ㅋㅋㅋㅋㅋㅋㅋ")
+
+
 def setup(bot):
     bot.add_cog(Secret(bot))
