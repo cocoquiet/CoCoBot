@@ -26,23 +26,5 @@ class Secret(commands.Cog):
         await ctx.send("남중 다니고 주변에 여사친 없는 모솔이래요")
         await ctx.send("엌ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ")
 
-    @commands.command(name="모솔")
-    @commands.has_permissions(administrator=True)
-    async def noneRomance(self, ctx):
-        global noneRomance
-        if noneRomance == True:
-            noneRomance = False
-            await ctx.send("저격 해제")
-        if noneRomance == False:
-            noneRomance = True
-            await ctx.send("저격 시작")
-
-    @commands.Cog.listener()
-    async def on_message(self, message):
-        global noneRomance
-        if (message.author.id == 702396818167824435) and (noneRomance == True):
-            await message.channel.send("으응 모솔ㅋㅋㅋㅋㅋㅋㅋ")
-
-
 def setup(bot):
     bot.add_cog(Secret(bot))
