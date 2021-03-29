@@ -6,8 +6,10 @@ from config import CoCo_VER
 
 import youtube_dl
 
-youtube_dl.utils.bug_reports_message = lambda: ''
 
+musicList = None
+
+youtube_dl.utils.bug_reports_message = lambda: ''
 
 ytdl_format_options = {
     'format': 'bestaudio/best',
@@ -42,6 +44,7 @@ def load_opus_lib():
         except OSError:
             pass
         
+
 class YTDLSource(discord.PCMVolumeTransformer):
     def __init__(self, source, *, data, volume=0.5):
         super().__init__(source, volume)
@@ -90,37 +93,110 @@ class Music(commands.Cog):
 
     @commands.command(name="음악목록", aliases=["음목", "playlist", "pl", "ㅔㅣ"])
     async def playlist(self, ctx, seq : int = None):
-        link = ["", 
-                "https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP", 
-                "https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T", 
-                "https://youtube.com/playlist?list=PLylf8Ved3tAE4jbtyi8dg5MDF_zv_leLM", 
-                "https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta", 
-                "https://www.youtube.com/playlist?list=PLylf8Ved3tAHdLCjFZJJsLAHkjj8yX6J8", 
-                "https://youtube.com/playlist?list=PLylf8Ved3tAF6Xhb_63e9tv3TBfmKB0wE", 
-                "https://www.youtube.com/playlist?list=PLylf8Ved3tAH2O8mPPgtHTX8Wx_bbkjDf", 
-                "https://youtube.com/playlist?list=PLVW_htI5V49iz9Z38iaKOoS8JByghA0cb",
-                "https://www.youtube.com/playlist?list=PLFxP7Xv4aTr09edNKmWntSsvbtgooHDsj"]
+        global musicList
+
+        musicListTitle =    {
+                                1: {
+                                    0: "코양이 재생목록입니다.", 
+                                    1: "`코양이 노동요`", 
+                                    2: "`코양이 재즈`", 
+                                    3: "`코양이 피아노`", 
+                                    4: "`코양이 캐롤`", 
+                                    5: "`코양이 힙합`", 
+                                    6: "`코양이 팝`", 
+                                    7: "`코양이 올드팝`"
+                                    }, 
+
+                                2: {
+                                    0: "관리자들의 재생목록입니다.", 
+                                    1: "루 뮤직 리스트", 
+                                    2: "고수 개인 소장", 
+                                    3: "양사 오늘의 노래"
+                                    }
+                            }
+
+        musicListLink =     {
+                                1: {
+                                    1: "https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP",  # 코양이 노동요
+                                    2: "https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T",  # 코양이 재즈
+                                    3: "https://youtube.com/playlist?list=PLylf8Ved3tAE4jbtyi8dg5MDF_zv_leLM",      # 코양이 피아노
+                                    4: "https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta",  # 코양이 캐롤
+                                    5: "https://www.youtube.com/playlist?list=PLylf8Ved3tAHdLCjFZJJsLAHkjj8yX6J8",  # 코양이 힙합
+                                    6: "https://youtube.com/playlist?list=PLylf8Ved3tAF6Xhb_63e9tv3TBfmKB0wE",      # 코양이 팝
+                                    7: "https://www.youtube.com/playlist?list=PLylf8Ved3tAH2O8mPPgtHTX8Wx_bbkjDf"   # 코양이 올드팝
+                                    }, 
+
+                                2: {
+                                    1: "https://youtube.com/playlist?list=PLVW_htI5V49iz9Z38iaKOoS8JByghA0cb",      # 루 뮤직 리스트
+                                    2: "https://youtube.com/playlist?list=PL_Z2oxKB4fpa4zLdjaFX6ln2jX0t6ssmm",      # 고수 개인 소장
+                                    3: "https://www.youtube.com/playlist?list=PLFxP7Xv4aTr09edNKmWntSsvbtgooHDsj"   # 양사 오늘의 노래
+                                    }
+                            }
+
+        musicListIndex = None
+
+        def setMusicList(index):
+            global musicList
+
+            musicList = discord.Embed(title="음악 재생목록", description=musicListTitle[index][0], color=0xFFFFFE)
+
+            for link in range(1, len(musicListTitle[musicListIndex])):
+                musicList.add_field(name=musicListTitle[musicListIndex][link], 
+                                value=musicListLink[musicListIndex][link], 
+                                inline=False)
+
+            musicList.set_footer(text=f"페이지 {musicListIndex}/{len(musicListTitle)}\n" + CoCo_VER)
+
 
         if seq == None:
-            embed = discord.Embed(title="코양이 유튜브 재생목록", description="유튜브 재생목록 모음입니다.", color=0xFFFFFE)
-            embed.add_field(name=":one: `코양이 노동요`", value=link[1], inline=False)
-            embed.add_field(name=":two: `코양이 재즈`", value=link[2], inline=False)
-            embed.add_field(name=":three: `코양이 피아노`", value=link[3], inline=False)
-            embed.add_field(name=":four: `코양이 캐롤`", value=link[4], inline=False)
-            embed.add_field(name=":five: `코양이 힙합`", value=link[5], inline=False)
-            embed.add_field(name=":six: `코양이 팝`", value=link[6], inline=False)
-            embed.add_field(name=":seven: `코양이 올드팝`", value=link[7], inline=False)
-            embed.add_field(name=":eight: `루 뮤직 리스트`", value=link[8], inline=False)
-            embed.add_field(name=":nine: `오늘의 노래`", value=link[9], inline=False)
-            embed.set_footer(text=CoCo_VER)
-            
-            return await ctx.send(embed=embed)
-        else:
-            async with ctx.typing():
-                player = await YTDLSource.from_url(link[seq], loop=self.bot.loop, stream=True)
-                ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+            musicListIndex = 1
 
-            await ctx.send('다음 곡 : {}'.format(player.title))
+            setMusicList(musicListIndex)
+            page = await ctx.send(embed=musicList)
+
+            reaction = None                              # 이모지 반응
+
+            await page.add_reaction("⏮")
+            await page.add_reaction("◀")
+            await page.add_reaction("▶")
+            await page.add_reaction("⏭")
+
+            def check(reaction, user):
+                return user == ctx.author
+
+            while True:
+                try:
+                    reaction, user = await self.bot.wait_for('reaction_add', timeout = 300.0, check = check)
+                except asyncio.TimeoutError:
+                    break
+                    page.clear_reactions()
+                    musicListIndex = None
+                else:
+                    if reaction.emoji == '⏮':
+                        musicListIndex = 1
+                    elif reaction.emoji == '◀':
+                        if musicListIndex > 1:
+                            musicListIndex -= 1
+                    elif reaction.emoji == '▶':
+                        if musicListIndex < len(musicListTitle):
+                            musicListIndex += 1
+                    elif reaction.emoji == '⏭':
+                        musicListIndex = len(musicListTitle)
+
+                    await page.remove_reaction(reaction, user)
+
+                    setMusicList(musicListIndex)
+                    await page.edit(embed = musicList)
+
+        else:
+            if musicListIndex != None:
+                async with ctx.typing():
+                    player = await YTDLSource.from_url(musicListLink[musicListIndex][seq], loop=self.bot.loop, stream=True)
+                    ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+
+                await ctx.send('다음 곡 : {}'.format(player.title))
+            else:
+                await ctx.send("`/playlist` 명령어로 먼저 음악 리스트를 열어주세요.")
 
     @play.before_invoke
     @playlist.before_invoke
