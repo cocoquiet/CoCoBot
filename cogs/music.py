@@ -112,7 +112,12 @@ class Music(commands.Cog):
                                     1: ":one: `루 뮤직 리스트`", 
                                     2: ":two: `고수 개인 소장`", 
                                     3: ":three: `양사 오늘의 노래`"
-                                    }
+                                    }, 
+
+                                3: {
+                                    0: "인기 가수들의 재생목록입니다.", 
+                                    1: ":one: `아이유 리스트`"
+                                    }, 
                             }
 
         musicListLink =     {
@@ -130,7 +135,11 @@ class Music(commands.Cog):
                                     1: "https://youtube.com/playlist?list=PLVW_htI5V49iz9Z38iaKOoS8JByghA0cb",      # 루 뮤직 리스트
                                     2: "https://youtube.com/playlist?list=PL_Z2oxKB4fpa4zLdjaFX6ln2jX0t6ssmm",      # 고수 개인 소장
                                     3: "https://www.youtube.com/playlist?list=PLFxP7Xv4aTr09edNKmWntSsvbtgooHDsj"   # 양사 오늘의 노래
-                                    }
+                                    }, 
+
+                                3: {
+                                    1: "https://youtube.com/playlist?list=PLylf8Ved3tAExS3iiNrr4FxCqCCpOASyw"       # 아이유 리스트
+                                    }, 
                             }
 
         musicListIndex = None
@@ -190,9 +199,8 @@ class Music(commands.Cog):
 
         else:
             if musicListIndex != None:
-                async with ctx.typing():
-                    player = await YTDLSource.from_url(musicListLink[musicListIndex][seq], loop=self.bot.loop, stream=True)
-                    ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
+                player = await YTDLSource.from_url(musicListLink[musicListIndex][seq], loop=self.bot.loop, stream=True)
+                ctx.voice_client.play(player, after=lambda e: print('Player error: %s' % e) if e else None)
 
                 await ctx.send('다음 곡 : {}'.format(player.title))
             else:

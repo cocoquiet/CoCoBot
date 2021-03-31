@@ -66,6 +66,7 @@ class Util(commands.Cog):
             elif ctx.channel.id == 811584272825712692:
                 embed = discord.Embed(color=0xFFFFFE)
                 embed.add_field(name="`/신청 견적`", value="견적방에서 활동할 수 있습니다.", inline=False)
+                embed.add_field(name="`/신청 전쟁`", value="견적-전쟁터 방에서 활동할 수 있습니다.", inline=False)
 
                 await ctx.send(embed=embed)
 
@@ -83,6 +84,18 @@ class Util(commands.Cog):
             PC = get(ctx.guild.roles, name="견적")
             await ctx.author.add_roles(PC)
             await ctx.message.add_reaction("✅")
+
+        elif (ctx.channel.id == 811584272825712692) and ((role == "전쟁") or (role == "전쟁터")):
+            battleField = ctx.guild.get_channel(826116146054168656)
+
+            fighter = discord.PermissionOverwrite()
+            fighter.read_messages = True
+            fighter.send_messages = False
+            
+            await battleField.set_permissions(ctx.author, overwrite=fighter)
+            await ctx.message.add_reaction("✅")
+            
+            await battleField.send("전쟁터에 오신 것을 환영합니다.")
 
         else:
             await ctx.send("번지수 잘못 찾아왔다ㅡㅡ")
