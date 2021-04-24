@@ -141,8 +141,8 @@ class Music(commands.Cog):
 
                                 3: {
                                     1: "https://youtube.com/playlist?list=PLylf8Ved3tAExS3iiNrr4FxCqCCpOASyw",      # 아이유 리스트
-                                    2: "https://youtube.com/playlist?list=PLylf8Ved3tAEFnjSzMGokFJlD0d25ZSua", # 브루노 마스 리스트
-                                    3: "https://youtube.com/playlist?list=PLvsnxgPdFDmSZZZHYtW898HRdxzZvHWXS" # 방탄소년단 리스트
+                                    2: "https://youtube.com/playlist?list=PLylf8Ved3tAEFnjSzMGokFJlD0d25ZSua",      # 브루노 마스 리스트
+                                    3: "https://youtube.com/playlist?list=PLylf8Ved3tAEb9LVlk5wXlzzIo9orTGYb"       # 방탄소년단 리스트
                                     }
                             }
 

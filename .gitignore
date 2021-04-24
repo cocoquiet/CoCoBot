@@ -1,2 +1,5 @@
 
 .ipynb_checkpoints/CoCo_AI-checkpoint.ipynb
+
+.vscode/*
+!.vscode/launch.json

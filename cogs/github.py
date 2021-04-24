@@ -15,7 +15,7 @@ class Github(commands.Cog):
         embed.add_field(name="`양사`", value="https://github.com/sat0317", inline=False)
         embed.add_field(name="`러리`", value="https://github.com/Coalery", inline=False)
         embed.add_field(name="`Cpp고수`", value="https://github.com/cpprhtn", inline=False)
-        embed.add_field(name="`깃고`", value="https://github.com/NewPremium", inline=False)
+        embed.add_field(name="`깃고`", value="https://github.com/ajb3296", inline=False)
         embed.add_field(name="`암고`", value="https://github.com/azure-06", inline=False)
         embed.add_field(name="`루`", value="https://github.com/Lu175", inline=False)
         embed.add_field(name="`뽀로로`", value="https://github.com/paxbun", inline=False)
