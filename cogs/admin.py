@@ -109,7 +109,7 @@ class Admin(commands.Cog):
                 try:
                     reaction, user = await self.bot.wait_for('reaction_add', timeout = 300.0, check = check)
                 except asyncio.TimeoutError:
-                    page.clear_reactions()
+                    await page.clear_reactions()
                     break
                 else:
                     if reaction.emoji == '⏮':
