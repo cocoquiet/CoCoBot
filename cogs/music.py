@@ -110,8 +110,9 @@ class Music(commands.Cog):
                                 2: {
                                     0: "관리자들의 재생목록입니다.", 
                                     1: ":one: `루 뮤직 리스트`", 
-                                    2: ":two: `고수 개인 소장`", 
-                                    3: ":three: `양사 오늘의 노래`"
+                                    2: ":two: `루 뮤직 리스트2`", 
+                                    3: ":three: `고수 개인 소장`", 
+                                    4: ":four: `양사 오늘의 노래`"
                                     }, 
 
                                 3: {
@@ -135,8 +136,9 @@ class Music(commands.Cog):
 
                                 2: {
                                     1: "https://youtube.com/playlist?list=PLVW_htI5V49iz9Z38iaKOoS8JByghA0cb",      # 루 뮤직 리스트
-                                    2: "https://youtube.com/playlist?list=PL_Z2oxKB4fpa4zLdjaFX6ln2jX0t6ssmm",      # 고수 개인 소장
-                                    3: "https://www.youtube.com/playlist?list=PLFxP7Xv4aTr09edNKmWntSsvbtgooHDsj"   # 양사 오늘의 노래
+                                    2: "https://www.youtube.com/playlist?list=PLVW_htI5V49i9h4rCNvMl4fQh66HN2dyP",  # 루 뮤직 리스트2
+                                    3: "https://youtube.com/playlist?list=PL_Z2oxKB4fpa4zLdjaFX6ln2jX0t6ssmm",      # 고수 개인 소장
+                                    4: "https://www.youtube.com/playlist?list=PLFxP7Xv4aTr09edNKmWntSsvbtgooHDsj"   # 양사 오늘의 노래
                                     }, 
 
                                 3: {
@@ -181,9 +183,9 @@ class Music(commands.Cog):
                 try:
                     reaction, user = await self.bot.wait_for('reaction_add', timeout = 300.0, check = check)
                 except asyncio.TimeoutError:
-                    break
                     page.clear_reactions()
                     musicListIndex = None
+                    break
                 else:
                     if reaction.emoji == '⏮':
                         musicListIndex = 1
