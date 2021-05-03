@@ -5,7 +5,7 @@ from discord.ext import commands
 from config import CoCo_VER
 
 
-musicList = None
+musicList = None                    # 플레이 리스트 임베드
 
 class Music(commands.Cog):
     def __init__(self, bot):
@@ -15,7 +15,7 @@ class Music(commands.Cog):
     async def playlist(self, ctx, seq : int = None):
         global musicList
 
-        musicListTitle =    {
+        musicListTitle =    {       # 플레이 리스트 제목
                                 1: {
                                     0: "코양이 재생목록입니다.", 
                                     1: ":one: `코양이 노동요`", 
@@ -43,7 +43,7 @@ class Music(commands.Cog):
                                     }
                             }
 
-        musicListLink =     {
+        musicListLink =     {                                                                   # 리스트별 링크
                                 1: {
                                     1: "https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP",  # 코양이 노동요
                                     2: "https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T",  # 코양이 재즈
@@ -68,17 +68,17 @@ class Music(commands.Cog):
                                     }
                             }
 
-        musicListIndex = None
+        musicListIndex = None       # 플레이 리스트 임베드 페이지값
 
-        def setMusicList(index):
+        def setMusicList(index):    # 플레이 리스트 임베드 정의 함수
             global musicList
 
             musicList = discord.Embed(title="음악 재생목록", description=musicListTitle[index][0], color=0xFFFFFE)
 
             for link in range(1, len(musicListTitle[musicListIndex])):
                 musicList.add_field(name=musicListTitle[musicListIndex][link], 
-                                value=musicListLink[musicListIndex][link], 
-                                inline=False)
+                                    value=musicListLink[musicListIndex][link], 
+                                    inline=False)
 
             musicList.set_footer(text=f"페이지 {musicListIndex}/{len(musicListTitle)}\n" + CoCo_VER)
 
@@ -88,14 +88,14 @@ class Music(commands.Cog):
         setMusicList(musicListIndex)
         page = await ctx.send(embed=musicList)
 
-        reaction = None                              # 이모지 반응
+        reaction = None             # 이모지 반응
 
         await page.add_reaction("⏮")
         await page.add_reaction("◀")
         await page.add_reaction("▶")
         await page.add_reaction("⏭")
 
-        def check(reaction, user):
+        def check(reaction, user):  # wait_for() 체크 함수
             return user == ctx.author
 
         while True:

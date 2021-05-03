@@ -13,23 +13,6 @@ class Crawling(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="실검")
-    async def searchterm(self, ctx):
-        json = requests.get("https://www.naver.com/srchrank?frm=main").json()
-        ranks = json.get("data")
-        
-        embed = discord.Embed(title="실시간 검색어", description="네이버 실시간 검색어 1~20위입니다.", color=0xFFFFFE)
-        
-        i = 1
-        for item in ranks:
-            keyword = item.get("keyword")
-            link = keyword.replace(" ", "+")
-            embed.add_field(name=str(i) + "위", value="[" + keyword + "](https://search.naver.com/search.naver?query=" + link + ")", inline=False)
-            i += 1
-        embed.set_footer(text=CoCo_VER)
-
-        await ctx.send(embed=embed)
-
     @commands.command(name="날씨", aliases=["weather"])
     async def weather(self, ctx, *, locate):
         location = str(locate).replace(" ", "+")

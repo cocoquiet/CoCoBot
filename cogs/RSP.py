@@ -4,8 +4,8 @@ from discord.ext import commands
 
 import random
 
-player = None
-bot_rsp = None
+player = None       # 가위바위보 플레이어
+bot_rsp = None      # 봇의 선택(랜덤, 1:가위  2:바위  3:보)
 
 class RSP(commands.Cog):
     def __init__(self, bot):
@@ -20,7 +20,7 @@ class RSP(commands.Cog):
         await ctx.send("/가위, /바위, /보 중 하나를 내주세요.")
     
         player = ctx.author
-        bot_rsp = random.randint(1, 3) # 1:가위  2:바위  3:보
+        bot_rsp = random.randint(1, 3)
 
     @commands.command(name="가위")
     async def rsp_scissors(self, ctx):

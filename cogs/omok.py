@@ -7,7 +7,7 @@ from config import CoCo_VER
 
 import numpy as np
 
-EmojiDict = {
+EmojiDict = {                   # 모드별 이모지 딕셔너리
                 0: { # 기본
                     '1': ':one:',
                     '2': ':two:',
@@ -94,7 +94,8 @@ EmojiDict = {
                     'm': '속기'} 
             }
 
-newBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+# 최초 오목판
+resetBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
                     [101, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
                     [119, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
                     [113, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
@@ -109,10 +110,11 @@ newBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61],
                     [49, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
                     [45, 49, 50, 51, 52, 53, 54, 55, 56, 57, 113, 119, 101, 114]])
 
-Board = ""
+newBoard = resetBoard                       # 갱신할 오목판(키값)
+Board = ""                                  # 갱신할 오목판(이모지)
 
-lastBoard = np.zeros((13, 13))
-turnCount = 1
+lastBoard = np.zeros((13, 13))              # 경기 기록용 오목판
+turnCount = 1                               # 착수 순서값
 
 startChannel = None                         # 오목 신청 채널
 omokChannel = None                          # 오목 플레이 채널
@@ -125,9 +127,9 @@ is_playing = False                          # 오목 시작 여부
 
 modeNum = None                              # 오목 모드 번호
 
-boardMessage = None                         # 오목판 메세지
+boardMessage = None                         # 오목판 임베드 메세지
 
-def DrawBoard(): # 보드 갱신 함수
+def DrawBoard():                            # 보드 갱신 함수
     global EmojiDict
 
     global newBoard
@@ -143,7 +145,7 @@ def DrawBoard(): # 보드 갱신 함수
                 Board += EmojiDict[modeNum][char]
         Board += "\n"
     
-def reset(): # 게임 리셋 함수
+def reset():                                # 게임 리셋 함수
     global modeNum
 
     global omokPlayer1
@@ -152,6 +154,7 @@ def reset(): # 게임 리셋 함수
 
     global is_playing
 
+    global resetBoard
     global newBoard
 
     modeNum = None
@@ -162,20 +165,7 @@ def reset(): # 게임 리셋 함수
 
     is_playing = False
 
-    newBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [101, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [119, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [113, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [57, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [56, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [55, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [54, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [53, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [52, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [51, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [50, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [49, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
-                        [45, 49, 50, 51, 52, 53, 54, 55, 56, 57, 113, 119, 101, 114]])
+    newBoard = resetBoard
 
 def changeCoordinateValue(value):
     decimal = ord(value)
@@ -358,13 +348,13 @@ class Omok(commands.Cog):
 
         global boardMessage
 
-        WINNER = None
+        WINNER = None                       # 오목 승자
 
         if ctx.channel == omokChannel:
             row = changeCoordinateValue(row)
             col = changeCoordinateValue(col)
 
-            if ctx.author == omokTurn: # 다음 차례인 경우
+            if ctx.author == omokTurn:                                          # 다음 차례인 경우
                 if newBoard[13 - row, col] != 61:
                     await ctx.send("제대로 둬라ㅡㅡ")
                 else:
@@ -378,7 +368,7 @@ class Omok(commands.Cog):
                         omokTurn = omokPlayer1
                         lastBoard[13 - row, col - 1] = turnCount
                         turnCount += 1
-            elif (ctx.author == omokPlayer1) or (ctx.author == omokPlayer2): # 자기 차례 아닌 경우
+            elif (ctx.author == omokPlayer1) or (ctx.author == omokPlayer2):    # 자기 차례 아닌 경우
                 await ctx.send("아직 차례 안 됐다ㅡㅡ")
                 
             await boardMessage.delete()
@@ -465,7 +455,7 @@ class Omok(commands.Cog):
         if ctx.message.reference != None:
             replied_msg = await self.bot.get_channel(ctx.message.reference.channel_id).fetch_message(ctx.message.reference.message_id)
             if (replied_msg.author == self.bot.user) and (ctx.channel == omokChannel):
-                if ctx.author == omokPlayer1: # Player1 기권
+                if ctx.author == omokPlayer1:   # Player1 기권
                     await omokChannel.delete()
 
                     withdraw = discord.Embed(color=0xFFFFFE)
