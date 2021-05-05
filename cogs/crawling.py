@@ -2,6 +2,7 @@ import discord
 import asyncio
 from discord.ext import commands
 
+from config import CoCo_Color
 from config import CoCo_VER
 
 import requests
@@ -13,11 +14,11 @@ class Crawling(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="날씨", aliases=["weather"])
+    @commands.command(name='날씨', aliases=['weather'])
     async def weather(self, ctx, *, locate):
-        location = str(locate).replace(" ", "+")
+        location = str(locate).replace(' ', '+')
 
-        html = requests.get("https://search.naver.com/search.naver?query=날씨" + str(location))
+        html = requests.get('https://search.naver.com/search.naver?query=날씨' + str(location))
         soup = BeautifulSoup(html.text, 'html.parser')
         weather_box = soup.find('div', {'class': 'weather_box'})
 
@@ -27,11 +28,11 @@ class Crawling(commands.Cog):
         find_dust = dd[0].find('span', {'class':'num'}).text
         find_ultra_dust = dd[1].find('span', {'class':'num'}).text
 
-        embed=discord.Embed(title="날씨", description="현재의 날씨 정보를 알려드립니다.", color=0xFFFFFE)
-        embed.add_field(name="검색 위치", value=find_address, inline=False)
-        embed.add_field(name="현재 온도", value=find_currenttemp + "℃", inline=False)
-        embed.add_field(name="현재 미세먼지", value=find_dust, inline=False)
-        embed.add_field(name="현재 초미세먼지", value=find_ultra_dust, inline=False)
+        embed=discord.Embed(title='날씨', description='현재의 날씨 정보를 알려드립니다.', color=CoCo_Color)
+        embed.add_field(name='검색 위치', value=find_address, inline=False)
+        embed.add_field(name='현재 온도', value=find_currenttemp + '℃', inline=False)
+        embed.add_field(name='현재 미세먼지', value=find_dust, inline=False)
+        embed.add_field(name='현재 초미세먼지', value=find_ultra_dust, inline=False)
         embed.set_footer(text=CoCo_VER)
 
         await ctx.send(embed=embed)
