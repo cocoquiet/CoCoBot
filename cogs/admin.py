@@ -26,7 +26,7 @@ class Admin(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def mute(self, ctx, mutedUser : discord.Member, muteMode : int = None):
         if muteMode == None:
-            muteEmbed = discord.Embed(title='뮤트', description= '명령어 뒤에 모드 번호를 적어주세요', color=0xFFFFFE)
+            muteEmbed = discord.Embed(title='뮤트', description= '명령어 뒤에 모드 번호를 적어주세요', color=CoCo_Color)
             muteEmbed.add_field(name='`1.` 현재 채널 뮤트', value='이 채널에서만 뮤트시킵니다', inline=False)
             muteEmbed.add_field(name='`2.` 서버 전체 뮤트', value='서버 전체에서 뮤트시킵니다', inline=False)
 
@@ -51,10 +51,10 @@ class Admin(commands.Cog):
                 await ctx.channel.set_permissions(mutedUser, overwrite=sinner)
                 await ctx.send(embed=discord.Embed(title='현재 채널 뮤트', 
                                                     description='뮤트 대상 : ' + mutedUser.mention + '\n뮤트 채널 : ' + ctx.channel.mention + '\n`뮤트했습니다`', 
-                                                    color=0xFFFFFE))
+                                                    color=CoCo_Color))
 
             elif muteMode == 2:
-                page = await ctx.send(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n뮤트하시겠습니까?', color=0xFFFFFE))
+                page = await ctx.send(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n뮤트하시겠습니까?', color=CoCo_Color))
 
                 await page.add_reaction('✔️')
                 await page.add_reaction('❌')
@@ -73,16 +73,16 @@ class Admin(commands.Cog):
                                 await sinnerChannel.set_permissions(mutedUser, overwrite=sinner)
 
                         await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n`뮤트했습니다`', color=0xFFFFFE))
+                        await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n`뮤트했습니다`', color=CoCo_Color))
                     elif reaction.emoji == '❌':
                         await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n`취소되었습니다`', color=0xFFFFFE))
+                        await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n`취소되었습니다`', color=CoCo_Color))
 
     @commands.command(name='unmute', aliases=['언뮤트', 'ㅇㅁㅌ', 'umt'])
     @commands.has_permissions(administrator=True)
     async def unmute(self, ctx, unmutedUser : discord.Member, muteMode : int = None):
         if muteMode == None:
-            muteEmbed = discord.Embed(title='뮤트', description= '명령어 뒤에 모드 번호를 적어주세요', color=0xFFFFFE)
+            muteEmbed = discord.Embed(title='뮤트', description= '명령어 뒤에 모드 번호를 적어주세요', color=CoCo_Color)
             muteEmbed.add_field(name='`1.` 현재 채널 언뮤트', value='이 채널에서만 언뮤트시킵니다', inline=False)
             muteEmbed.add_field(name='`2.` 서버 전체 언뮤트', value='서버 전체에서 언뮤트시킵니다', inline=False)
 
@@ -93,10 +93,10 @@ class Admin(commands.Cog):
                 await ctx.channel.set_permissions(unmutedUser, overwrite=None)
                 await ctx.send(embed=discord.Embed(title='현재 채널 언뮤트', 
                                                     description='언뮤트 대상 : ' + unmutedUser.mention + '\n언뮤트 채널 : ' + ctx.channel.mention + '\n`언뮤트했습니다`', 
-                                                    color=0xFFFFFE))
+                                                    color=CoCo_Color))
 
             elif muteMode == 2:
-                page = await ctx.send(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n언뮤트하시겠습니까?', color=0xFFFFFE))
+                page = await ctx.send(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n언뮤트하시겠습니까?', color=CoCo_Color))
 
                 await page.add_reaction('✔️')
                 await page.add_reaction('❌')
@@ -115,10 +115,10 @@ class Admin(commands.Cog):
                                 await sinnerChannel.set_permissions(unmutedUser, overwrite=None)
 
                         await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n`언뮤트했습니다`', color=0xFFFFFE))
+                        await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n`언뮤트했습니다`', color=CoCo_Color))
                     elif reaction.emoji == '❌':
                         await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n`취소되었습니다`', color=0xFFFFFE))
+                        await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n`취소되었습니다`', color=CoCo_Color))
 
     @commands.command(name='청소', aliases=['clean', 'clear', 'purge'])
     @commands.has_permissions(administrator=True)

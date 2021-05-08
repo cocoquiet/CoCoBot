@@ -18,7 +18,7 @@ from pprint import pprint
 
 import os
 
-bot = commands.Bot(command_prefix='/')
+bot = commands.Bot(command_prefix='/', intents=discord.Intents.all())
 
 bot.remove_command('help')
 
