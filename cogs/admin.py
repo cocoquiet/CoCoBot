@@ -14,19 +14,21 @@ class Admin(commands.Cog):
 
     @commands.command(name='kick', aliases=['강퇴', '추방'])
     @commands.has_permissions(administrator=True)
-    async def kick(self, ctx, user : discord.Member, *, reason=None):
-        await user.kick(reason=reason)
+    async def kick(self, ctx, kickedUser : discord.Member, *, reason=None):
+        await ctx.send(embed=discord.Embed(title='강퇴', description=kickedUser.mention + '님을 추방합니다', color=CoCo_Color))
+        await kickedUser.kick(reason=reason)
 
     @commands.command(name='ban', aliases=['차단'])
     @commands.has_permissions(administrator=True)
-    async def ban(self, ctx, user : discord.Member, *, reason=None):
-        await user.ban(reason=reason)
+    async def ban(self, ctx, bannedUser : discord.Member, *, reason=None):
+        await ctx.send(embed=discord.Embed(title='강퇴', description=bannedUser.mention + '님을 추방합니다', color=CoCo_Color))
+        await bannedUser.ban(reason=reason)
         
     @commands.command(name='mute', aliases=['뮤트', 'ㅁㅌ', 'mt'])
     @commands.has_permissions(administrator=True)
     async def mute(self, ctx, mutedUser : discord.Member, muteMode : int = None):
         if muteMode == None:
-            muteEmbed = discord.Embed(title='뮤트', description= '명령어 뒤에 모드 번호를 적어주세요', color=CoCo_Color)
+            muteEmbed = discord.Embed(title='뮤트', description='명령어 뒤에 모드 번호를 적어주세요', color=CoCo_Color)
             muteEmbed.add_field(name='`1.` 현재 채널 뮤트', value='이 채널에서만 뮤트시킵니다', inline=False)
             muteEmbed.add_field(name='`2.` 서버 전체 뮤트', value='서버 전체에서 뮤트시킵니다', inline=False)
 
@@ -65,7 +67,8 @@ class Admin(commands.Cog):
                 try:
                     reaction, user = await self.bot.wait_for('reaction_add', timeout = 30.0, check = muteCheck)
                 except asyncio.TimeoutError:
-                    page.clear_reactions()
+                    await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n`취소되었습니다`', color=CoCo_Color))
+                    await page.clear_reactions()
                 else:
                     if reaction.emoji == '✔️':
                         for sinnerChannel in ctx.guild.text_channels:

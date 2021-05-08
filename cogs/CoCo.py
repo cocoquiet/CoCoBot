@@ -15,13 +15,13 @@ class CoCo(commands.Cog):
         global CoCoResponse
         
         if (message.content == '코코야'):
-            await message.channel.send(CoCoResponse[random.randint(0, 6)])
+            await message.channel.send(random.choice(CoCoResponse))
 
     @commands.command(name='코코야', aliases=['hey', '야'])
     async def HeyYou(self, ctx):
         global CoCoResponse
 
-        await ctx.send(CoCoResponse[random.randint(0, 6)])
+        await ctx.send(random.choice(CoCoResponse))
 
     @commands.command(name='안녕', aliases=['hi', 'hello', 'h'])
     async def hello(self, ctx):

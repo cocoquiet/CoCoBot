@@ -94,9 +94,8 @@ EmojiDict = {                   # 모드별 이모지 딕셔너리
                     'B': ':dvd:', 
                     'm': '속기'} 
             }
-
-# 최초 오목판
-resetBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+# 갱신할 오목판(키값)
+newBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
                     [101, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
                     [119, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
                     [113, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
@@ -111,11 +110,7 @@ resetBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61]
                     [49, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
                     [45, 49, 50, 51, 52, 53, 54, 55, 56, 57, 113, 119, 101, 114]])
 
-newBoard = resetBoard                       # 갱신할 오목판(키값)
 Board = ''                                  # 갱신할 오목판(이모지)
-
-lastBoard = np.zeros((13, 13))              # 경기 기록용 오목판
-turnCount = 1                               # 착수 순서값
 
 startChannel = None                         # 오목 신청 채널
 omokChannel = None                          # 오목 플레이 채널
@@ -129,6 +124,10 @@ is_playing = False                          # 오목 시작 여부
 modeNum = None                              # 오목 모드 번호
 
 boardMessage = None                         # 오목판 임베드 메세지
+
+# 코코오목봇 AI
+lastBoard = np.zeros((13, 13))              # 경기 기록용 오목판
+turnCount = 1                               # 착수 순서값
 
 def DrawBoard():                            # 보드 갱신 함수
     global EmojiDict
@@ -147,7 +146,11 @@ def DrawBoard():                            # 보드 갱신 함수
         Board += '\n'
     
 def reset():                                # 게임 리셋 함수
-    global modeNum
+    global newBoard
+    global Board
+
+    global startChannel
+    global omokChannel
 
     global omokPlayer1
     global omokPlayer2
@@ -155,10 +158,26 @@ def reset():                                # 게임 리셋 함수
 
     global is_playing
 
-    global resetBoard
-    global newBoard
+    global modeNum
 
-    modeNum = None
+    newBoard = np.array([[114, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [101, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [119, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [113, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [57, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [56, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [55, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [54, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [53, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [52, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [51, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [50, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [49, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61, 61], 
+                    [45, 49, 50, 51, 52, 53, 54, 55, 56, 57, 113, 119, 101, 114]])
+    Board = ''
+
+    startChannel = None
+    omokChannel = None
 
     omokPlayer1 = None
     omokPlayer2 = None
@@ -166,7 +185,7 @@ def reset():                                # 게임 리셋 함수
 
     is_playing = False
 
-    newBoard = resetBoard
+    modeNum = None
 
 def changeCoordinateValue(value):
     decimal = ord(value)
@@ -201,19 +220,12 @@ class Omok(commands.Cog):
 
                 boardMessage = await omokChannel.send(embed=currentBoard)
 
-
-
     @commands.command(name='오목', aliases=['omok', 'ㅇㅁ'])
     async def omok(self, ctx, opponent : discord.Member, mode : int = None):
-        global EmojiDict
-
         global startChannel
 
         global omokPlayer1
         global omokPlayer2
-        
-        global newBoard
-        global Board
 
         global modeNum
 
@@ -252,6 +264,8 @@ class Omok(commands.Cog):
 
     @commands.command(name='참가', aliases=['콜', '플레이', '덤벼', 'ㄱㄱ'])
     async def admit(self, ctx):
+        global Board
+
         global omokChannel
 
         global omokPlayer1
@@ -444,6 +458,8 @@ class Omok(commands.Cog):
 
     @commands.command(name='기권', aliases=['gg', '항복'])
     async def GG(self, ctx):
+        global Board
+
         global startChannel
         global omokChannel
 
@@ -461,31 +477,22 @@ class Omok(commands.Cog):
 
                     withdraw = discord.Embed(color=CoCo_Color)
                     withdraw.add_field(name='기권', value=omokPlayer1.mention + ' 기권\n' + omokPlayer2.mention + ' 승리!!!')
-                    withdraw.set_footer(text=CoCo_VER)
-                    await startChannel.send(embed=withdraw)
-
-                    DrawBoard()
-                    finalBoard = discord.Embed(color=CoCo_Color)
-                    finalBoard.add_field(name='최종 오목판', value=Board, inline=False)
-                    finalBoard.set_footer(text=CoCo_VER)
-                    await startChannel.send(embed=finalBoard)
-
-                    reset()
                 elif ctx.author == omokPlayer2: # Player2 기권
                     await omokChannel.delete()
                     
                     withdraw = discord.Embed(color=CoCo_Color)
                     withdraw.add_field(name='기권', value=omokPlayer2.mention + ' 기권\n' + omokPlayer1.mention + ' 승리!!!')
-                    withdraw.set_footer(text=CoCo_VER)
-                    await startChannel.send(embed=withdraw)
+                
+                withdraw.set_footer(text=CoCo_VER)
+                await startChannel.send(embed=withdraw)
 
-                    DrawBoard()
-                    finalBoard = discord.Embed(color=CoCo_Color)
-                    finalBoard.add_field(name='최종 오목판', value=Board, inline=False)
-                    finalBoard.set_footer(text=CoCo_VER)
-                    await startChannel.send(embed=finalBoard)
+                DrawBoard()
+                finalBoard = discord.Embed(color=CoCo_Color)
+                finalBoard.add_field(name='최종 오목판', value=Board, inline=False)
+                finalBoard.set_footer(text=CoCo_VER)
+                await startChannel.send(embed=finalBoard)
 
-                    reset()
+                reset()
 
 def setup(bot):
     bot.add_cog(Omok(bot))
