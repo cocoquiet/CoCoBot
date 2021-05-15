@@ -172,7 +172,7 @@ class Admin(commands.Cog):
                 return discord.Embed(title=moderator.name + '님의 감사로그', description='\n\n' + logList[embedPage], color=CoCo_Color)
         
         if amount == None:
-            amount = 100
+            amount = 10
 
         async for entry in ctx.guild.audit_logs(user=moderator, limit=amount):
             translatedAction = translateLog(entry, entry.action)
@@ -191,12 +191,14 @@ class Admin(commands.Cog):
                 logList.append(log)
 
         embed = editPage(moderator, embedPage)
-        embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCo_VER)
-        page = await ctx.send(embed=embed)
         
         if len(logList) == 1:
-            return
+            embed.set_footer(text=CoCo_VER)
+            await ctx.send(embed=embed)
         else:
+            embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCo_VER)
+            page = await ctx.send(embed=embed)
+            
             reaction = None                              # 이모지 반응
 
             await page.add_reaction('⏮')
