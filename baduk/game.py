@@ -12,3 +12,7 @@ except Exception:
 
 class Baduk(Board):
     pass
+
+
+if __name__ == '__main__':
+    pass
