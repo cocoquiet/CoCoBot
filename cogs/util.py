@@ -76,7 +76,7 @@ class Util(commands.Cog):
             await ctx.message.add_reaction('✅')
 
         elif (ctx.channel.id == 737283234156511242) and (role == '십덕'):
-            weeb = get(ctx.guild.roles, name='공인 10덕')
+            weeb = get(ctx.guild.roles, name='10덕')
             await ctx.author.add_roles(weeb)
             await ctx.message.add_reaction('✅')
 
@@ -128,7 +128,7 @@ class Util(commands.Cog):
             await ctx.message.add_reaction('👍')
 
         elif (ctx.channel.id == 737283234156511242) and (role == '십덕'):
-            weeb = get(ctx.guild.roles, name='공인 10덕')
+            weeb = get(ctx.guild.roles, name='10덕')
             await ctx.author.remove_roles(weeb)
             await ctx.message.add_reaction('👍')
             
