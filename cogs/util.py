@@ -47,10 +47,8 @@ class Util(commands.Cog):
         embed = discord.Embed(title='디스코드봇 초대 링크', description='디코봇들의 초대 링크입니다.', color=CoCo_Color)
         embed.add_field(name='코코봇 / 재롱부리는 강아지', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=0&scope=bot)', inline=False)
         embed.add_field(name='어떤 과학의 음악봇 / 음악봇', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=714140461840728144&permissions=0&scope=bot)', inline=False)
-        embed.add_field(name='NAVI / 파싱하는 고양이', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=742281764411670579&permissions=0&scope=bot)', inline=False)
         embed.add_field(name='인절미 빙수 / 설빙', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=796053822371397642&permissions=0&scope=bot)', inline=False)
         embed.add_field(name='루비 / 이모티콘봇', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=796342455762419712&permissions=0&scope=bot)', inline=False)
-        embed.add_field(name='노트패드 / 메모장', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=797014035559088159&permissions=0&scope=bot)', inline=False)
         embed.set_footer(text=CoCo_VER)
         
         await ctx.send(embed=embed)
@@ -60,14 +58,15 @@ class Util(commands.Cog):
         if role == None:
             if ctx.channel.id == 737283234156511242:
                 embed = discord.Embed(color=CoCo_Color)
-                embed.add_field(name='`/신청 친목`', value='친목방에서 활동할 수 있습니다.', inline=False)
-                embed.add_field(name='`/신청 십덕`', value='10_duck방에서 활동할 수 있습니다.', inline=False)
+                embed.add_field(name='`?>신청 친목`', value='친목방에서 활동할 수 있습니다.', inline=False)
+                embed.add_field(name='`?>신청 십덕`', value='10_duck방에서 활동할 수 있습니다.', inline=False)
+                embed.add_field(name='`?>신청 게임`', value='게임방에서 활동할 수 있습니다.', inline=False)
 
                 await ctx.send(embed=embed)
             elif ctx.channel.id == 811584272825712692:
                 embed = discord.Embed(color=CoCo_Color)
-                embed.add_field(name='`/신청 견적`', value='견적방에서 활동할 수 있습니다.', inline=False)
-                embed.add_field(name='`/신청 전쟁`', value='견적-전쟁터 방에서 활동할 수 있습니다.', inline=False)
+                embed.add_field(name='`?>신청 견적`', value='견적방에서 활동할 수 있습니다.', inline=False)
+                # embed.add_field(name='`?>신청 전쟁`', value='견적-전쟁터 방에서 활동할 수 있습니다.', inline=False)
 
                 await ctx.send(embed=embed)
 
@@ -79,6 +78,11 @@ class Util(commands.Cog):
         elif (ctx.channel.id == 737283234156511242) and (role == '십덕'):
             weeb = get(ctx.guild.roles, name='공인 10덕')
             await ctx.author.add_roles(weeb)
+            await ctx.message.add_reaction('✅')
+
+        elif (ctx.channel.id == 737283234156511242) and (role == '게임'):
+            nerd = get(ctx.guild.roles, name='게임')
+            await ctx.author.add_roles(nerd)
             await ctx.message.add_reaction('✅')
             
         elif (ctx.channel.id == 811584272825712692) and (role == '견적'):
@@ -106,13 +110,15 @@ class Util(commands.Cog):
         if role == None:
             if ctx.channel.id == 737283234156511242:
                 embed = discord.Embed(color=CoCo_Color)
-                embed.add_field(name='`/해제 친목`', value='친목방에서 퇴장할 수 있습니다.', inline=False)
-                embed.add_field(name='`/해제 십덕`', value='10_duck방에서 퇴장할 수 있습니다.', inline=False)
+                embed.add_field(name='`?>해제 친목`', value='친목방에서 퇴장할 수 있습니다.', inline=False)
+                embed.add_field(name='`?>해제 십덕`', value='10_duck방에서 퇴장할 수 있습니다.', inline=False)
+                embed.add_field(name='`?>해제 게임`', value='게임방에서 퇴장할 수 있습니다.', inline=False)
 
                 await ctx.send(embed=embed)
             elif ctx.channel.id == 811584272825712692:
                 embed = discord.Embed(color=CoCo_Color)
-                embed.add_field(name='`/해제 견적`', value='견적방에서 퇴장할 수 있습니다.', inline=False)
+                embed.add_field(name='`?>해제 견적`', value='견적방에서 퇴장할 수 있습니다.', inline=False)
+                # embed.add_field(name='`?>해제 전쟁`', value='견적-전쟁터 방에서 퇴장할 수 있습니다.', inline=False)
 
                 await ctx.send(embed=embed)
 
@@ -124,6 +130,11 @@ class Util(commands.Cog):
         elif (ctx.channel.id == 737283234156511242) and (role == '십덕'):
             weeb = get(ctx.guild.roles, name='공인 10덕')
             await ctx.author.remove_roles(weeb)
+            await ctx.message.add_reaction('👍')
+            
+        elif (ctx.channel.id == 737283234156511242) and (role == '게임'):
+            nerd = get(ctx.guild.roles, name='게임')
+            await ctx.author.remove_roles(nerd)
             await ctx.message.add_reaction('👍')
             
         elif (ctx.channel.id == 811584272825712692) and (role == '견적'):

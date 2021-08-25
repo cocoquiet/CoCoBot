@@ -18,7 +18,7 @@ from pprint import pprint
 
 import os
 
-bot = commands.Bot(command_prefix='/', intents=discord.Intents.all())
+bot = commands.Bot(command_prefix='?>', intents=discord.Intents.all())
 
 bot.remove_command('help')
 
@@ -36,7 +36,7 @@ async def on_ready():
     print(botID)
     print('=============')
 
-    await bot.change_presence(status=discord.Status.online, activity=discord.Game('주인놈이랑 코딩'))
+    await bot.change_presence(status=discord.Status.online, activity=discord.Game('?>help 치면 사용법 설명'))
 
 access_token = os.environ['BOT_TOKEN']
 bot.run(access_token)
