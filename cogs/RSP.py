@@ -2,6 +2,8 @@ import discord
 import asyncio
 from discord.ext import commands
 
+from config import CoCoPrefix
+
 import random
 
 player = None       # 가위바위보 플레이어
@@ -17,7 +19,7 @@ class RSP(commands.Cog):
         global player
 
         await ctx.send('가위바위보를 시작합니다.')
-        await ctx.send('?>가위, ?>바위, ?>보 중 하나를 내주세요.')
+        await ctx.send(f'{CoCoPrefix}가위, {CoCoPrefix}바위, {CoCoPrefix}보 중 하나를 내주세요.')
     
         player = ctx.author
         bot_rsp = random.randint(1, 3)

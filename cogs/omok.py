@@ -3,8 +3,7 @@ import asyncio
 from discord.ext import commands
 from discord.utils import get
 
-from config import CoCo_Color
-from config import CoCo_VER
+from config import CoCoPrefix, CoCoColor, CoCoVER
 
 import numpy as np
 
@@ -214,9 +213,9 @@ class Omok(commands.Cog):
             if message != boardMessage:
                 await boardMessage.delete()
 
-                currentBoard = discord.Embed(title='착수', description=omokTurn.mention + '님의 차례입니다', color=CoCo_Color)
+                currentBoard = discord.Embed(title='착수', description=omokTurn.mention + '님의 차례입니다', color=CoCoColor)
                 currentBoard.add_field(name='현재 오목판', value=Board, inline=False)
-                currentBoard.set_footer(text=CoCo_VER)
+                currentBoard.set_footer(text=CoCoVER)
 
                 boardMessage = await omokChannel.send(embed=currentBoard)
 
@@ -241,24 +240,24 @@ class Omok(commands.Cog):
                 mode = 0
             modeNum = mode
 
-            helpCommand = discord.Embed(title='명령어', description='모든 오목 명령어는 답장을 기본으로 합니다.', color=CoCo_Color)
-            helpCommand.add_field(name='`?>오목 <다른 플레이어> <모드 번호>`', value='> 다른 사람과 오목을 하게 해줄게요.\n모드 번호는 `?>오목 모드`로 알려줄게요.', inline=False)
-            helpCommand.add_field(name='`?>모드`', value='> 오목의 여러 모드들을 알려줄게요.', inline=False)
-            helpCommand.add_field(name='`?>참가`', value='> 오목 대결 신청을 한 사람과 오목을 하게 해줄게요.', inline=False)
-            helpCommand.add_field(name='`?>거절`', value='> 오목 대결 신청을 한 사람과 오목을 하기 싫을 때 대신 거절해줄게요.', inline=False)
-            helpCommand.add_field(name='`?>돌`', value='> 오목판에 돌을 두게 해줄게요.', inline=False)
-            helpCommand.add_field(name='`?>기권`', value='> 오목을 할 때 수가 생각나지 않는다면 기권해줄게요.', inline=False)
-            helpCommand.set_footer(text=CoCo_VER)
+            helpCommand = discord.Embed(title='명령어', description='모든 오목 명령어는 답장을 기본으로 합니다.', color=CoCoColor)
+            helpCommand.add_field(name=f'`{CoCoPrefix}오목 <다른 플레이어> <모드 번호>`', value=f'> 다른 사람과 오목을 하게 해줄게요.\n모드 번호는 `{CoCoPrefix}오목 모드`로 알려줄게요.', inline=False)
+            helpCommand.add_field(name=f'`{CoCoPrefix}모드`', value='> 오목의 여러 모드들을 알려줄게요.', inline=False)
+            helpCommand.add_field(name=f'`{CoCoPrefix}참가`', value='> 오목 대결 신청을 한 사람과 오목을 하게 해줄게요.', inline=False)
+            helpCommand.add_field(name=f'`{CoCoPrefix}거절`', value='> 오목 대결 신청을 한 사람과 오목을 하기 싫을 때 대신 거절해줄게요.', inline=False)
+            helpCommand.add_field(name=f'`{CoCoPrefix}돌`', value='> 오목판에 돌을 두게 해줄게요.', inline=False)
+            helpCommand.add_field(name=f'`{CoCoPrefix}기권`', value='> 오목을 할 때 수가 생각나지 않는다면 기권해줄게요.', inline=False)
+            helpCommand.set_footer(text=CoCoVER)
             await ctx.send(embed=helpCommand)
 
     @commands.command(name='모드', aliases=['mode', 'ㅁㄷ', 'ad'])
     async def explainMode(self, ctx):
-        modeExplain = discord.Embed(title='모드 설명', color=CoCo_Color)
-        modeExplain.add_field(name='0. `기본 모드`', value='> 기본적인 오목입니다.\n> `?>오목` 뒤에 모드 번호를 치지 않으면 자동으로 기본모드가 됩니다.', inline=False)
+        modeExplain = discord.Embed(title='모드 설명', color=CoCoColor)
+        modeExplain.add_field(name='0. `기본 모드`', value=f'> 기본적인 오목입니다.\n> `{CoCoPrefix}오목` 뒤에 모드 번호를 치지 않으면 자동으로 기본모드가 됩니다.', inline=False)
         modeExplain.add_field(name='1. `단색 모드`', value='> 자신과 상대의 돌의 색이 같아집니다.\n> 돌의 색을 구분하지 못하는 게 이 모드의 묘미입니다.', inline=False)
         modeExplain.add_field(name='2. `맹기 모드`', value='> 오목판에 돌이 가려집니다.\n> 단색 모드보다 더 까다로운 모드입니다.', inline=False)
         # modeExplain.add_field(name='3. `속기 모드`', value='> 제한시간이 단축된 오목입니다.\n주어진 10초 안에 착수를 해야 합니다.', inline=False)
-        modeExplain.set_footer(text=CoCo_VER)
+        modeExplain.set_footer(text=CoCoVER)
 
         await ctx.send(embed=modeExplain)
 
@@ -316,11 +315,11 @@ class Omok(commands.Cog):
 
                     DrawBoard()
 
-                    embed = discord.Embed(title='오목', color=CoCo_Color)
+                    embed = discord.Embed(title='오목', color=CoCoColor)
                     embed.add_field(name='플레이어', value='Player 1: ' + omokPlayer1.mention + '\nPlayer 2: ' + omokPlayer2.mention, inline=False)
                     embed.add_field(name='모드', value=EmojiDict[modeNum]['m'], inline=False)
                     embed.add_field(name='현재 오목판', value=Board, inline=False)
-                    embed.set_footer(text=CoCo_VER)
+                    embed.set_footer(text=CoCoVER)
                     boardMessage = await omokChannel.send(embed=embed)
 
                 elif ctx.author == omokPlayer1:
@@ -424,9 +423,9 @@ class Omok(commands.Cog):
         # 승리 여부 확인 & 보드 업데이트
         if WINNER == None:
             DrawBoard()
-            currentBoard = discord.Embed(title='착수', description=omokTurn.mention + '님의 차례입니다', color=CoCo_Color)
+            currentBoard = discord.Embed(title='착수', description=omokTurn.mention + '님의 차례입니다', color=CoCoColor)
             currentBoard.add_field(name='현재 오목판', value=Board, inline=False)
-            currentBoard.set_footer(text=CoCo_VER)
+            currentBoard.set_footer(text=CoCoVER)
 
             boardMessage = await ctx.send(embed=currentBoard)
 
@@ -436,9 +435,9 @@ class Omok(commands.Cog):
             await startChannel.send(omokPlayer1.mention + '승리!!!')
             
             DrawBoard()
-            finalBoard = discord.Embed(color=CoCo_Color)
+            finalBoard = discord.Embed(color=CoCoColor)
             finalBoard.add_field(name='최종 오목판', value=Board, inline=False)
-            finalBoard.set_footer(text=CoCo_VER)
+            finalBoard.set_footer(text=CoCoVER)
             await startChannel.send(embed=finalBoard)
 
             reset()
@@ -449,9 +448,9 @@ class Omok(commands.Cog):
             await startChannel.send(omokPlayer2.mention + '승리!!!')
             
             DrawBoard()
-            finalBoard = discord.Embed(color=CoCo_Color)
+            finalBoard = discord.Embed(color=CoCoColor)
             finalBoard.add_field(name='최종 오목판', value=Board, inline=False)
-            finalBoard.set_footer(text=CoCo_VER)
+            finalBoard.set_footer(text=CoCoVER)
             await startChannel.send(embed=finalBoard)
 
             reset()
@@ -475,21 +474,21 @@ class Omok(commands.Cog):
                 if ctx.author == omokPlayer1:   # Player1 기권
                     await omokChannel.delete()
 
-                    withdraw = discord.Embed(color=CoCo_Color)
+                    withdraw = discord.Embed(color=CoCoColor)
                     withdraw.add_field(name='기권', value=omokPlayer1.mention + ' 기권\n' + omokPlayer2.mention + ' 승리!!!')
                 elif ctx.author == omokPlayer2: # Player2 기권
                     await omokChannel.delete()
                     
-                    withdraw = discord.Embed(color=CoCo_Color)
+                    withdraw = discord.Embed(color=CoCoColor)
                     withdraw.add_field(name='기권', value=omokPlayer2.mention + ' 기권\n' + omokPlayer1.mention + ' 승리!!!')
                 
-                withdraw.set_footer(text=CoCo_VER)
+                withdraw.set_footer(text=CoCoVER)
                 await startChannel.send(embed=withdraw)
 
                 DrawBoard()
-                finalBoard = discord.Embed(color=CoCo_Color)
+                finalBoard = discord.Embed(color=CoCoColor)
                 finalBoard.add_field(name='최종 오목판', value=Board, inline=False)
-                finalBoard.set_footer(text=CoCo_VER)
+                finalBoard.set_footer(text=CoCoVER)
                 await startChannel.send(embed=finalBoard)
 
                 reset()

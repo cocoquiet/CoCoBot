@@ -2,8 +2,8 @@ import discord
 import asyncio
 from discord.ext import commands
 
-from config import CoCo_Color
-from config import CoCo_VER
+from config import CoCoColor
+from config import CoCoVER
 
 
 musicList = None                    # 플레이 리스트 임베드
@@ -74,14 +74,14 @@ class Music(commands.Cog):
         def setMusicList(index):    # 플레이 리스트 임베드 정의 함수
             global musicList
 
-            musicList = discord.Embed(title='음악 재생목록', description=musicListTitle[index][0], color=CoCo_Color)
+            musicList = discord.Embed(title='음악 재생목록', description=musicListTitle[index][0], color=CoCoColor)
 
             for link in range(1, len(musicListTitle[musicListIndex])):
                 musicList.add_field(name=musicListTitle[musicListIndex][link], 
                                     value=musicListLink[musicListIndex][link], 
                                     inline=False)
 
-            musicList.set_footer(text=f'페이지 {musicListIndex}/{len(musicListTitle)}\n' + CoCo_VER)
+            musicList.set_footer(text=f'페이지 {musicListIndex}/{len(musicListTitle)}\n' + CoCoVER)
 
 
         musicListIndex = 1

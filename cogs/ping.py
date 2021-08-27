@@ -2,8 +2,8 @@ import discord
 import asyncio
 from discord.ext import commands
 
-from config import CoCo_Color
-from config import CoCo_VER
+from config import CoCoColor
+from config import CoCoVER
 
 class Ping(commands.Cog):
     def __init__(self, bot):
@@ -13,8 +13,8 @@ class Ping(commands.Cog):
     async def ping(self, ctx):
         latency = self.bot.latency
         
-        embed = discord.Embed(title='Ping!', description=':ping_pong: Pong! ' + '**' + str(round(latency * 1000)) + ' ms' + '**', color=CoCo_Color)
-        embed.set_footer(text=CoCo_VER)
+        embed = discord.Embed(title='Ping!', description=':ping_pong: Pong! ' + '**' + str(round(latency * 1000)) + ' ms' + '**', color=CoCoColor)
+        embed.set_footer(text=CoCoVER)
         
         await ctx.send(embed=embed)
 

@@ -5,8 +5,8 @@ from discord.utils import get
 
 from logTranslation import translateLog
 
-from config import CoCo_Color
-from config import CoCo_VER
+from config import CoCoColor
+from config import CoCoVER
 
 class Admin(commands.Cog):
     def __init__(self, bot):
@@ -15,20 +15,20 @@ class Admin(commands.Cog):
     @commands.command(name='kick', aliases=['강퇴', '추방'])
     @commands.has_permissions(administrator=True)
     async def kick(self, ctx, kickedUser : discord.Member, *, reason=None):
-        await ctx.send(embed=discord.Embed(title='강퇴', description=kickedUser.mention + '님을 추방합니다', color=CoCo_Color))
+        await ctx.send(embed=discord.Embed(title='강퇴', description=kickedUser.mention + '님을 추방합니다', color=CoCoColor))
         await kickedUser.kick(reason=reason)
 
     @commands.command(name='ban', aliases=['차단'])
     @commands.has_permissions(administrator=True)
     async def ban(self, ctx, bannedUser : discord.Member, *, reason=None):
-        await ctx.send(embed=discord.Embed(title='강퇴', description=bannedUser.mention + '님을 추방합니다', color=CoCo_Color))
+        await ctx.send(embed=discord.Embed(title='강퇴', description=bannedUser.mention + '님을 추방합니다', color=CoCoColor))
         await bannedUser.ban(reason=reason)
         
     @commands.command(name='mute', aliases=['뮤트', 'ㅁㅌ', 'mt'])
     @commands.has_permissions(administrator=True)
     async def mute(self, ctx, mutedUser : discord.Member, muteMode : int = None):
         if muteMode == None:
-            muteEmbed = discord.Embed(title='뮤트', description='명령어 뒤에 모드 번호를 적어주세요', color=CoCo_Color)
+            muteEmbed = discord.Embed(title='뮤트', description='명령어 뒤에 모드 번호를 적어주세요', color=CoCoColor)
             muteEmbed.add_field(name='`1.` 현재 채널 뮤트', value='이 채널에서만 뮤트시킵니다', inline=False)
             muteEmbed.add_field(name='`2.` 서버 전체 뮤트', value='서버 전체에서 뮤트시킵니다', inline=False)
 
@@ -53,10 +53,10 @@ class Admin(commands.Cog):
                 await ctx.channel.set_permissions(mutedUser, overwrite=sinner)
                 await ctx.send(embed=discord.Embed(title='현재 채널 뮤트', 
                                                     description='뮤트 대상 : ' + mutedUser.mention + '\n뮤트 채널 : ' + ctx.channel.mention + '\n`뮤트했습니다`', 
-                                                    color=CoCo_Color))
+                                                    color=CoCoColor))
 
             elif muteMode == 2:
-                page = await ctx.send(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n뮤트하시겠습니까?', color=CoCo_Color))
+                page = await ctx.send(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n뮤트하시겠습니까?', color=CoCoColor))
 
                 await page.add_reaction('✔️')
                 await page.add_reaction('❌')
@@ -67,7 +67,7 @@ class Admin(commands.Cog):
                 try:
                     reaction, user = await self.bot.wait_for('reaction_add', timeout = 30.0, check = muteCheck)
                 except asyncio.TimeoutError:
-                    await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n`취소되었습니다`', color=CoCo_Color))
+                    await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n`취소되었습니다`', color=CoCoColor))
                     await page.clear_reactions()
                 else:
                     if reaction.emoji == '✔️':
@@ -76,16 +76,16 @@ class Admin(commands.Cog):
                                 await sinnerChannel.set_permissions(mutedUser, overwrite=sinner)
 
                         await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n`뮤트했습니다`', color=CoCo_Color))
+                        await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n`뮤트했습니다`', color=CoCoColor))
                     elif reaction.emoji == '❌':
                         await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n`취소되었습니다`', color=CoCo_Color))
+                        await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + mutedUser.mention + '\n`취소되었습니다`', color=CoCoColor))
 
     @commands.command(name='unmute', aliases=['언뮤트', 'ㅇㅁㅌ', 'umt'])
     @commands.has_permissions(administrator=True)
     async def unmute(self, ctx, unmutedUser : discord.Member, muteMode : int = None):
         if muteMode == None:
-            muteEmbed = discord.Embed(title='뮤트', description= '명령어 뒤에 모드 번호를 적어주세요', color=CoCo_Color)
+            muteEmbed = discord.Embed(title='뮤트', description= '명령어 뒤에 모드 번호를 적어주세요', color=CoCoColor)
             muteEmbed.add_field(name='`1.` 현재 채널 언뮤트', value='이 채널에서만 언뮤트시킵니다', inline=False)
             muteEmbed.add_field(name='`2.` 서버 전체 언뮤트', value='서버 전체에서 언뮤트시킵니다', inline=False)
 
@@ -96,10 +96,10 @@ class Admin(commands.Cog):
                 await ctx.channel.set_permissions(unmutedUser, overwrite=None)
                 await ctx.send(embed=discord.Embed(title='현재 채널 언뮤트', 
                                                     description='언뮤트 대상 : ' + unmutedUser.mention + '\n언뮤트 채널 : ' + ctx.channel.mention + '\n`언뮤트했습니다`', 
-                                                    color=CoCo_Color))
+                                                    color=CoCoColor))
 
             elif muteMode == 2:
-                page = await ctx.send(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n언뮤트하시겠습니까?', color=CoCo_Color))
+                page = await ctx.send(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n언뮤트하시겠습니까?', color=CoCoColor))
 
                 await page.add_reaction('✔️')
                 await page.add_reaction('❌')
@@ -118,10 +118,10 @@ class Admin(commands.Cog):
                                 await sinnerChannel.set_permissions(unmutedUser, overwrite=None)
 
                         await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n`언뮤트했습니다`', color=CoCo_Color))
+                        await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n`언뮤트했습니다`', color=CoCoColor))
                     elif reaction.emoji == '❌':
                         await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n`취소되었습니다`', color=CoCo_Color))
+                        await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n`취소되었습니다`', color=CoCoColor))
 
     @commands.command(name='청소', aliases=['clean', 'clear', 'purge'])
     @commands.has_permissions(administrator=True)
@@ -167,9 +167,9 @@ class Admin(commands.Cog):
         
         def editPage(moderator, embedPage):              # 임베드 정의 함수 (사용자 및 페이지 정의)
             if moderator == None:
-                return discord.Embed(title='감사로그', description='\n\n' + logList[embedPage], color=CoCo_Color)
+                return discord.Embed(title='감사로그', description='\n\n' + logList[embedPage], color=CoCoColor)
             else:
-                return discord.Embed(title=moderator.name + '님의 감사로그', description='\n\n' + logList[embedPage], color=CoCo_Color)
+                return discord.Embed(title=moderator.name + '님의 감사로그', description='\n\n' + logList[embedPage], color=CoCoColor)
         
         if amount == None:
             amount = 10
@@ -193,10 +193,10 @@ class Admin(commands.Cog):
         embed = editPage(moderator, embedPage)
         
         if len(logList) == 1:
-            embed.set_footer(text=CoCo_VER)
+            embed.set_footer(text=CoCoVER)
             await ctx.send(embed=embed)
         else:
-            embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCo_VER)
+            embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCoVER)
             page = await ctx.send(embed=embed)
             
             reaction = None                              # 이모지 반응
@@ -230,7 +230,7 @@ class Admin(commands.Cog):
                     await page.remove_reaction(reaction, user)
                     
                     embed = editPage(moderator, embedPage)
-                    embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCo_VER)
+                    embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCoVER)
                     await page.edit(embed = embed)
         
         @commands.command(name='고코위', aliases=['관리자'])

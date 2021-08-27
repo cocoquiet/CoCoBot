@@ -2,8 +2,8 @@ import discord
 import asyncio
 from discord.ext import commands
 
-from config import CoCo_Color
-from config import CoCo_VER
+from config import CoCoColor
+from config import CoCoVER
 
 import requests
 from bs4 import BeautifulSoup
@@ -28,12 +28,12 @@ class Crawling(commands.Cog):
         find_dust = dd[0].find('span', {'class':'num'}).text
         find_ultra_dust = dd[1].find('span', {'class':'num'}).text
 
-        embed=discord.Embed(title='날씨', description='현재의 날씨 정보를 알려드립니다.', color=CoCo_Color)
+        embed=discord.Embed(title='날씨', description='현재의 날씨 정보를 알려드립니다.', color=CoCoColor)
         embed.add_field(name='검색 위치', value=find_address, inline=False)
         embed.add_field(name='현재 온도', value=find_currenttemp + '℃', inline=False)
         embed.add_field(name='현재 미세먼지', value=find_dust, inline=False)
         embed.add_field(name='현재 초미세먼지', value=find_ultra_dust, inline=False)
-        embed.set_footer(text=CoCo_VER)
+        embed.set_footer(text=CoCoVER)
 
         await ctx.send(embed=embed)
 
