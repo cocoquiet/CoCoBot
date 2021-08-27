@@ -211,7 +211,7 @@ class Omok(commands.Cog):
         global boardMessage
 
         if (is_playing == True) and (message.channel == boardMessage.channel):
-            if (not message.content.startswith(',')) and (message != boardMessage):
+            if message != boardMessage:
                 await boardMessage.delete()
 
                 currentBoard = discord.Embed(title='착수', description=omokTurn.mention + '님의 차례입니다', color=CoCo_Color)
