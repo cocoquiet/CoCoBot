@@ -123,6 +123,16 @@ class Admin(commands.Cog):
                         await page.clear_reactions()
                         await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n`취소되었습니다`', color=CoCoColor))
 
+    @commands.command(name='잠수함', aliases=['submarine', 'ㅈㅅㅎ', '잠수'])
+    @commands.has_permissions(administrator=True)
+    async def submarine(self, ctx, *members: discord.Member):
+        channel = ctx.guild.get_channel(886321655306129430) 
+
+        for member in members:
+            member = ctx.guild.get_member(member.id)
+
+            await member.move_to(channel)
+
     @commands.command(name='청소', aliases=['clean', 'clear', 'purge'])
     @commands.has_permissions(administrator=True)
     async def clear(self, ctx, amount : int = None, name : discord.TextChannel = None):
