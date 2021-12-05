@@ -160,12 +160,6 @@ class Admin(commands.Cog):
         elif name == None:
             await ctx.send('사고 대비를 위해 채널을 멘션해주세요')
 
-    @commands.command(name='고코위', aliases=['관리자'])
-    @commands.has_permissions(administrator=True)
-    async def CCC(self, ctx):
-        admin = get(ctx.guild.roles, name='Admin')
-        await ctx.send(ctx.message.author.mention + '님이 불렀습니다 : ' + str(admin.mention))
-        
     @commands.command(name='로그', aliases=['log', '감사로그'])
     @commands.has_permissions(administrator=True)
     async def log(self, ctx, amount : int = None, moderator : discord.Member = None):
@@ -243,11 +237,11 @@ class Admin(commands.Cog):
                     embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCoVER)
                     await page.edit(embed = embed)
         
-        @commands.command(name='고코위', aliases=['관리자'])
-        @commands.has_permissions(administrator=True)
-        async def CCC(self, ctx):
-            admin = get(ctx.guild.roles, name='Admin')
-            await ctx.send(ctx.message.author.mention + '님이 불렀습니다 : ' + str(admin.mention))
+    @commands.command(name='고코위', aliases=['관리자'])
+    @commands.has_permissions(administrator=True)
+    async def CCC(self, ctx):
+        admin = get(ctx.guild.roles, name='Admin')
+        await ctx.send(ctx.message.author.mention + '님이 불렀습니다 : ' + str(admin.mention))
         
 def setup(bot):
     bot.add_cog(Admin(bot))

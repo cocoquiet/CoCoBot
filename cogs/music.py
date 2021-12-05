@@ -21,9 +21,9 @@ class Music(commands.Cog):
                                     0: '코양이 재생목록입니다.', 
                                     1: ':one: `코양이 노동요`', 
                                     2: ':two: `코양이 재즈`', 
-                                    3: ':three: `코양이 피아노`', 
-                                    4: ':four: `코양이 캐롤`', 
-                                    5: ':five: `코양이 힙합`', 
+                                    3: ':three: `코양이 로파이`', 
+                                    4: ':four: `코양이 피아노`', 
+                                    5: ':five: `코양이 캐롤`', 
                                     6: ':six: `코양이 팝`', 
                                     7: ':seven: `코양이 올드팝`'
                                     }, 
@@ -48,9 +48,9 @@ class Music(commands.Cog):
                                 1: {
                                     1: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP',  # 코양이 노동요
                                     2: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T',  # 코양이 재즈
-                                    3: 'https://youtube.com/playlist?list=PLylf8Ved3tAE4jbtyi8dg5MDF_zv_leLM',      # 코양이 피아노
-                                    4: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta',  # 코양이 캐롤
-                                    5: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAHdLCjFZJJsLAHkjj8yX6J8',  # 코양이 힙합
+                                    3: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFktv4q2g8deFehMLSsUnJK',  # 코양이 로파이
+                                    4: 'https://youtube.com/playlist?list=PLylf8Ved3tAE4jbtyi8dg5MDF_zv_leLM',      # 코양이 피아노
+                                    5: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta',  # 코양이 캐롤
                                     6: 'https://youtube.com/playlist?list=PLylf8Ved3tAF6Xhb_63e9tv3TBfmKB0wE',      # 코양이 팝
                                     7: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAH2O8mPPgtHTX8Wx_bbkjDf'   # 코양이 올드팝
                                     }, 
