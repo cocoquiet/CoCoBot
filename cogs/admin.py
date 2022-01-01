@@ -123,6 +123,18 @@ class Admin(commands.Cog):
                         await page.clear_reactions()
                         await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmutedUser.mention + '\n`취소되었습니다`', color=CoCoColor))
 
+    @commands.command(name='감금', aliases=['restrict', '뒤주', '사도세자', 'sado'])
+    @commands.has_permissions(administrator=True)
+    async def restrict(self, ctx, sinner: discord.Member):
+        memberRole = sinner.roles[1:]
+        for roleIndex in memberRole:
+            role = get(ctx.guild.roles, name=roleIndex.name)
+            
+            await sinner.remove_roles(role)
+        
+        sinnerRole = get(ctx.guild.roles, name='죄인')    
+        await sinner.add_roles(sinnerRole) 
+
     @commands.command(name='잠수함', aliases=['submarine', 'ㅈㅅㅎ', '잠수'])
     @commands.has_permissions(administrator=True)
     async def submarine(self, ctx, *members: discord.Member):
