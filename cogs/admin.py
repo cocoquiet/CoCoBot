@@ -133,7 +133,7 @@ class Admin(commands.Cog):
             await sinner.remove_roles(role)
         
         sinnerRole = get(ctx.guild.roles, name='죄인')    
-        await sinner.add_roles(sinnerRole) 
+        await sinner.add_roles(sinnerRole)
 
     @commands.command(name='잠수함', aliases=['submarine', 'ㅈㅅㅎ', '잠수'])
     @commands.has_permissions(administrator=True)
