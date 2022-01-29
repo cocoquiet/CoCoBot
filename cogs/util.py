@@ -6,14 +6,21 @@ from discord.utils import get
 from config import CoCoPrefix, CoCoColor, CoCoVER
 
 import datetime
+import random
 
 class Util(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='ㅋ케', aliases=['lol', '앜ㅋ'])
-    async def lol(self, ctx):
-        await ctx.send(ctx.message.author.mention + ' : ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ')
+    @commands.command(name='날짜', aliases=['date'])
+    async def date(self, ctx):
+        now = datetime.datetime.now()
+
+        nowYear = now.strftime('%Y')
+        nowMonth = now.strftime('%m')
+        nowDay = now.strftime('%d')
+
+        await ctx.send('오늘은 ' + nowYear + '년 ' + nowMonth + '월 ' + nowDay + '일 입니다!')
 
     @commands.command(name='시간', aliases=['time'])
     async def time(self, ctx):
@@ -31,15 +38,13 @@ class Util(commands.Cog):
 
         await ctx.send('지금은 ' + nowMeridiem + ' ' + nowHour + '시 ' + nowMinute + '분 ' + nowSecond + '초 입니다!')
 
-    @commands.command(name='날짜', aliases=['date'])
-    async def date(self, ctx):
-        now = datetime.datetime.now()
+    @commands.command(name='ㅋ케', aliases=['lol', '앜ㅋ'])
+    async def lol(self, ctx):
+        await ctx.send(ctx.message.author.mention + ' : ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ')
 
-        nowYear = now.strftime('%Y')
-        nowMonth = now.strftime('%m')
-        nowDay = now.strftime('%d')
-
-        await ctx.send('오늘은 ' + nowYear + '년 ' + nowMonth + '월 ' + nowDay + '일 입니다!')
+    @commands.command(name='뽑기', aliases=['random', 'ㅃㄱ', '랜덤', 'ㄹㄷ'])
+    async def random(self, ctx, min : int, max : int):
+        await ctx.send(random.randrange(min, max+1))
 
     @commands.command(name='초대', aliases=['invite'])
     async def invite(self, ctx):
