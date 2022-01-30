@@ -1,3 +1,4 @@
+from dis import disco
 import discord
 import asyncio
 from discord.ext import commands
@@ -135,9 +136,17 @@ class Admin(commands.Cog):
         sinnerRole = get(ctx.guild.roles, name='죄인')    
         await sinner.add_roles(sinnerRole)
 
+    @commands.command(name='이동', aliases=['move', 'ㅇㄷ'])
+    @commands.has_permissions(administrator=True)
+    async def move(self, ctx, channel : discord.VoiceChannel, *members : discord.Member):
+        for member in members:
+            member = ctx.guild.get_member(member.id)
+
+            await member.move_to(channel)
+
     @commands.command(name='잠수함', aliases=['submarine', 'ㅈㅅㅎ', '잠수'])
     @commands.has_permissions(administrator=True)
-    async def submarine(self, ctx, *members: discord.Member):
+    async def submarine(self, ctx, *members : discord.Member):
         channel = ctx.guild.get_channel(886321655306129430) 
 
         for member in members:

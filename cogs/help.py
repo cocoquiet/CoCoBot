@@ -65,6 +65,7 @@ class Help(commands.Cog):
             embed.add_field(name=f'`{CoCoPrefix}mute <뮤트할 유저>`', value='시끄러운 사람들을 조용히 있게 해줄게요.', inline=True)
             embed.add_field(name=f'`{CoCoPrefix}unmute <언뮤트할 유저>`', value='조용해진 사람들을 말할 수 있게 해줄게요.', inline=True)
             embed.add_field(name=f'`{CoCoPrefix}감금 <감금시킬 유저>`', value='중한 죄를 저지른 사람들을 뒤주에 보내줄게요.', inline=True)
+            embed.add_field(name=f'`{CoCoPrefix}이동 <음성 채널> <이동시킬 유저들>`', value='원하는 음성 채널로 사람들을 보내줄게요.', inline=True)
             embed.add_field(name=f'`{CoCoPrefix}잠수함 <잠수시킬 유저>`', value='조용해보이는 사람들을 잠수함에 보내줄게요.', inline=True)
             embed.add_field(name=f'`{CoCoPrefix}청소 <삭제할 개수>`', value='많은 메세지를 한번에 지워줄게요.\n개수를 입력하지 않으면 10개를, -1을 입력하면 다 지워줄게요.', inline=True)
             embed.add_field(name=f'`{CoCoPrefix}초기화`', value='채팅방을 맨 처음의 모습으로 돌려줄게요.', inline=True)
