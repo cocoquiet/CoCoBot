@@ -18,7 +18,7 @@ class CoCo(commands.Cog):
 
     @commands.slash_command(description='예쁘게 인사해줄게요.')
     async def hello(self, ctx):
-        await ctx.respond('안녕하세요 ' + ctx.message.author.mention + ' 님!')
+        await ctx.respond('안녕하세요 ' + ctx.author.mention + ' 님!')
 
     @commands.slash_command(description='음...짖을게요.')
     async def bark(self, ctx):
