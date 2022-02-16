@@ -1,4 +1,4 @@
-discord.py
+py-cord==2.0.0b2
 asyncio
 beautifulsoup4
 requests

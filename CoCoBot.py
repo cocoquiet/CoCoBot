@@ -16,9 +16,7 @@ from pprint import pprint
 
 import os
 
-bot = commands.Bot(command_prefix=CoCoPrefix, intents=discord.Intents.all())
-
-bot.remove_command('help')
+bot = discord.Bot()
 
 if __name__ == '__main__':
     for extension in EXTENSIONS:

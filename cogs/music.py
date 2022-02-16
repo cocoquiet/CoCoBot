@@ -12,7 +12,7 @@ class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='음악목록', aliases=['음목', 'playlist', 'pl', 'ㅔㅣ'])
+    @commands.slash_command(description='기본으로 내장되어있는 플레이리스트를 보여줄게요.')
     async def playlist(self, ctx, seq : int = None):
         global musicList
 
@@ -87,7 +87,7 @@ class Music(commands.Cog):
         musicListIndex = 1
 
         setMusicList(musicListIndex)
-        page = await ctx.send(embed=musicList)
+        page = await ctx.respond(embed=musicList)
 
         reaction = None             # 이모지 반응
 

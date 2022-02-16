@@ -14,7 +14,7 @@ class Crawling(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name='날씨', aliases=['weather'])
+    @commands.slash_command(description='입력하신 지역의 날씨 상태를 알려줄게요.')
     async def weather(self, ctx, *, locate):
         location = str(locate).replace(' ', '+')
 
@@ -35,7 +35,7 @@ class Crawling(commands.Cog):
         embed.add_field(name='현재 초미세먼지', value=find_ultra_dust, inline=False)
         embed.set_footer(text=CoCoVER)
 
-        await ctx.send(embed=embed)
+        await ctx.respond(embed=embed)
 
 def setup(bot):
     bot.add_cog(Crawling(bot))
