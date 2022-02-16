@@ -10,8 +10,9 @@ class Ping(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(description='제 연결 상태를 보여드릴게요.')
+    @commands.slash_command()
     async def ping(self, ctx):
+        """제 연결 상태를 보여드릴게요."""
         latency = self.bot.latency
         
         embed = discord.Embed(title='Ping!', description=':ping_pong: Pong! ' + '**' + str(round(latency * 1000)) + ' ms' + '**', color=CoCoColor)

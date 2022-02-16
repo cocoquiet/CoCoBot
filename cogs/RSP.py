@@ -11,8 +11,9 @@ class RSP(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(description='가위바위보를 해줄게요.')
+    @commands.slash_command()
     async def rsp(self, ctx):
+        """가위바위보를 해줄게요."""
         global bot_rsp
         global player
 
@@ -22,8 +23,9 @@ class RSP(commands.Cog):
         player = ctx.author
         bot_rsp = random.randint(1, 3)
 
-    @commands.slash_command(description='가위를 내요.')
+    @commands.slash_command()
     async def rsp_scissor(self, ctx):
+        """가위를 내요."""
         global bot_rsp
         global player
         
@@ -36,8 +38,9 @@ class RSP(commands.Cog):
                 await ctx.respond('저는 보를 냈습니다. 제가 졌습니다')
         player = None
 
-    @commands.slash_command(description='바위를 내요.')
+    @commands.slash_command()
     async def rsp_rock(self, ctx):
+        """바위를 내요."""
         global bot_rsp
         global player
         
@@ -50,8 +53,9 @@ class RSP(commands.Cog):
                 await ctx.respond('저는 보를 냈습니다. 제가 이겼습니다')
         player = None
 
-    @commands.slash_command(description='보를 내요.')
+    @commands.slash_command()
     async def rsp_paper(self, ctx):
+        """보를 내요."""
         global bot_rsp
         global player
         

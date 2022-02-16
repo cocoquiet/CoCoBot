@@ -14,21 +14,24 @@ class Admin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(description='문제가 있는 사람들을 추방시켜줄게요.')
+    @commands.slash_command()
     @commands.has_permissions(administrator=True)
     async def kick(self, ctx, kicked_user : discord.Member, *, reason=None):
+        """문제가 있는 사람들을 추방시켜줄게요."""
         await ctx.respond(embed=discord.Embed(title='강퇴', description=kicked_user.mention + '님을 추방합니다', color=CoCoColor))
         await kicked_user.kick(reason=reason)
 
-    @commands.slash_command(description='마음에 들지 않은 사람들을 차단시켜 줄게요.')
+    @commands.slash_command()
     @commands.has_permissions(administrator=True)
     async def ban(self, ctx, banned_user : discord.Member, *, reason=None):
+        """마음에 들지 않은 사람들을 차단시켜 줄게요."""
         await ctx.respond(embed=discord.Embed(title='강퇴', description=banned_user.mention + '님을 추방합니다', color=CoCoColor))
         await banned_user.ban(reason=reason)
         
-    @commands.slash_command(description='시끄러운 사람들을 조용히 있게 해줄게요.')
+    @commands.slash_command()
     @commands.has_permissions(administrator=True)
     async def mute(self, ctx, muted_user : discord.Member, mute_mode : int = None):
+        """시끄러운 사람들을 조용히 있게 해줄게요."""
         if mute_mode == None:
             muteEmbed = discord.Embed(title='뮤트', description='명령어 뒤에 모드 번호를 적어주세요', color=CoCoColor)
             muteEmbed.add_field(name='`1.` 현재 채널 뮤트', value='이 채널에서만 뮤트시킵니다', inline=False)
@@ -83,9 +86,10 @@ class Admin(commands.Cog):
                         await page.clear_reactions()
                         await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description='뮤트 대상 : ' + muted_user.mention + '\n`취소되었습니다`', color=CoCoColor))
 
-    @commands.slash_command(description='조용해진 사람들을 말할 수 있게 해줄게요.')
+    @commands.slash_command()
     @commands.has_permissions(administrator=True)
     async def unmute(self, ctx, unmuted_user : discord.Member, mute_mode : int = None):
+        """조용해진 사람들을 말할 수 있게 해줄게요."""
         if mute_mode == None:
             muteEmbed = discord.Embed(title='뮤트', description= '명령어 뒤에 모드 번호를 적어주세요', color=CoCoColor)
             muteEmbed.add_field(name='`1.` 현재 채널 언뮤트', value='이 채널에서만 언뮤트시킵니다', inline=False)
@@ -125,9 +129,10 @@ class Admin(commands.Cog):
                         await page.clear_reactions()
                         await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmuted_user.mention + '\n`취소되었습니다`', color=CoCoColor))
 
-    @commands.slash_command(description='중한 죄를 저지른 사람들을 뒤주에 보내줄게요.')
+    @commands.slash_command()
     @commands.has_permissions(administrator=True)
     async def restrict(self, ctx, sinner: discord.Member):
+        """중한 죄를 저지른 사람들을 뒤주에 보내줄게요."""
         memberRole = sinner.roles[1:]
         for roleIndex in memberRole:
             role = get(ctx.guild.roles, name=roleIndex.name)
@@ -137,17 +142,19 @@ class Admin(commands.Cog):
         sinnerRole = get(ctx.guild.roles, name='죄인')    
         await sinner.add_roles(sinnerRole)
 
-    @commands.slash_command(description='원하는 음성 채널로 사람들을 보내줄게요.')
+    @commands.slash_command()
     @commands.has_permissions(administrator=True)
     async def move(self, ctx, channel : discord.VoiceChannel, *members : discord.Member):
+        """원하는 음성 채널로 사람들을 보내줄게요."""
         for member in members:
             member = ctx.guild.get_member(member.id)
 
             await member.move_to(channel)
 
-    @commands.slash_command(description='조용해보이는 사람들을 잠수함에 보내줄게요.')
+    @commands.slash_command()
     @commands.has_permissions(administrator=True)
     async def submarine(self, ctx, *members : discord.Member):
+        """조용해보이는 사람들을 잠수함에 보내줄게요."""
         channel = ctx.guild.get_channel(886321655306129430) 
 
         for member in members:
@@ -155,9 +162,10 @@ class Admin(commands.Cog):
 
             await member.move_to(channel)
 
-    @commands.slash_command(description='많은 메세지를 한번에 지워줄게요.\n개수를 입력하지 않으면 10개를, -1을 입력하면 다 지워줄게요.')
+    @commands.slash_command()
     @commands.has_permissions(administrator=True)
     async def clear(self, ctx, amount : int = None, name : discord.TextChannel = None):
+        """많은 메세지를 한번에 지워줄게요.\n개수를 입력하지 않으면 10개를, -1을 입력하면 다 지워줄게요."""
         if amount == None:
             await ctx.channel.purge(limit=11)
         elif amount == -1:
@@ -171,9 +179,10 @@ class Admin(commands.Cog):
         else:
             await ctx.channel.purge(limit=amount + 1)
 
-    @commands.slash_command(description='채팅방을 맨 처음의 모습으로 돌려줄게요.')
+    @commands.slash_command()
     @commands.has_permissions(administrator=True)
     async def reset(self, ctx, name : discord.TextChannel = None):
+        """채팅방을 맨 처음의 모습으로 돌려줄게요."""
         if name == ctx.channel:
             position = ctx.channel.position
             newChannel = await ctx.channel.clone()
@@ -182,9 +191,10 @@ class Admin(commands.Cog):
         elif name == None:
             await ctx.respond('사고 대비를 위해 채널을 멘션해주세요')
 
-    @commands.slash_command(description='이 서버의 감사 로그를 보여줄게요.')
+    @commands.slash_command()
     @commands.has_permissions(administrator=True)
     async def log(self, ctx, amount : int = None, moderator : discord.Member = None):
+        """이 서버의 감사 로그를 보여줄게요."""
         log = ''                                         # 로그 (10개 단위)  
         logList = []                                     # log 10개씩 하나로 담은 리스트
         logIndex = 1                                     # log 개수 (10개씩 끊어서 logList에 담기)
@@ -259,9 +269,10 @@ class Admin(commands.Cog):
                     embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCoVER)
                     await page.edit(embed = embed)
         
-    @commands.slash_command(description='모든 어드민들을 불러줄게요.')
+    @commands.slash_command()
     @commands.has_permissions(administrator=True)
     async def ccc(self, ctx):
+        """모든 어드민들을 불러줄게요."""
         admin = get(ctx.guild.roles, name='Admin')
         await ctx.respond(ctx.author.mention + '님이 불렀습니다 : ' + str(admin.mention))
         

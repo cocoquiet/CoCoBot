@@ -12,8 +12,9 @@ class Util(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(description='오늘의 날짜를 알려줄게요.')
+    @commands.slash_command()
     async def date(self, ctx):
+        """오늘의 날짜를 알려줄게요."""
         now = datetime.datetime.now()
 
         nowYear = now.strftime('%Y')
@@ -22,8 +23,9 @@ class Util(commands.Cog):
 
         await ctx.respond('오늘은 ' + nowYear + '년 ' + nowMonth + '월 ' + nowDay + '일 입니다!')
 
-    @commands.slash_command(description='현재 시간을 알려줄게요.')
+    @commands.slash_command()
     async def time(self, ctx):
+        """현재 시간을 알려줄게요."""
         now = datetime.datetime.now()
 
         Meridiem = now.strftime('%p')
@@ -38,16 +40,19 @@ class Util(commands.Cog):
 
         await ctx.respond('지금은 ' + nowMeridiem + ' ' + nowHour + '시 ' + nowMinute + '분 ' + nowSecond + '초 입니다!')
 
-    @commands.slash_command(description='웃기 힘드실때 대신 웃어줄게요.')
+    @commands.slash_command()
     async def lol(self, ctx):
+        """웃기 힘드실때 대신 웃어줄게요."""
         await ctx.respond(ctx.author.mention + ' : ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ')
 
-    @commands.slash_command(description='원하는 범위 내의 숫자를 뽑아줄게요.')
+    @commands.slash_command()
     async def random(self, ctx, min : int, max : int):
+        """원하는 범위 내의 숫자를 뽑아줄게요."""
         await ctx.respond(random.randrange(min, max+1))
 
-    @commands.slash_command(description='저와 제 친구들을 다른 서버로 초대할 수 있는 링크를 줄게요.')
+    @commands.slash_command()
     async def invite(self, ctx):
+        """저와 제 친구들을 다른 서버로 초대할 수 있는 링크를 줄게요."""
         embed = discord.Embed(title='디스코드봇 초대 링크', description='디코봇들의 초대 링크입니다.', color=CoCoColor)
         embed.add_field(name='코코봇 / 재롱부리는 강아지', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=0&scope=bot)', inline=False)
         embed.add_field(name='어떤 과학의 음악봇 / 음악봇', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=714140461840728144&permissions=0&scope=bot)', inline=False)
@@ -57,8 +62,9 @@ class Util(commands.Cog):
         
         await ctx.respond(embed=embed)
 
-    @commands.slash_command(description='특정한 방에서 활동할 수 있게 해줄게요.')
-    async def request(self, ctx, role : str = None):
+    @commands.slash_command()
+    async def request(self, tx, role : str = None):
+        """특정한 방에서 활동할 수 있게 해줄게요."""
         if role == None:
             if ctx.channel.id == 737283234156511242:
                 embed = discord.Embed(color=CoCoColor)
@@ -109,8 +115,9 @@ class Util(commands.Cog):
         else:
             await ctx.respond('번지수 잘못 찾아왔다ㅡㅡ')
 
-    @commands.slash_command(description='특정한 방에서 퇴장할 수 있게 해줄게요.')
+    @commands.slash_command()
     async def dismiss(self, ctx, role : str = None):
+        """특정한 방에서 퇴장할 수 있게 해줄게요."""
         if role == None:
             if ctx.channel.id == 737283234156511242:
                 embed = discord.Embed(color=CoCoColor)

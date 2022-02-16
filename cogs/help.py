@@ -8,8 +8,9 @@ class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command(name='help', aliases=['도움말', '도움'])
+    @commands.slash_command()
     async def help(self, ctx, *, args : str = None):
+        """명령어들의 종류를 크게 구분해서 보여줄게요."""
         if args == None:
             embed = discord.Embed(title='도움말', description='안녕하세요! 아래의 명령어들을 이용해 도움말을 보세요!', color=CoCoColor)
             embed.add_field(name=f'`/help`', value='명령어들의 종류를 크게 구분해서 보여줄게요.', inline=True)
@@ -33,7 +34,6 @@ class Help(commands.Cog):
             embed.add_field(name=f'`/초대`', value='저와 제 친구들을 다른 서버로 초대할 수 있는 링크를 줄게요.', inline=True)
             embed.add_field(name=f'`/신청`', value='특정한 방에서 활동할 수 있게 해줄게요.', inline=True)
             embed.add_field(name=f'`/해제`', value='특정한 방에서 퇴장할 수 있게 해줄게요.', inline=True)
-            embed.add_field(name=f'`/날씨 <지역>`', value='입력하신 지역의 날씨 상태를 알려줄게요.', inline=True)
             embed.add_field(name=f'`/깃허브`', value='관리자들의 깃허브 링크를 보여줄게요.', inline=True)
             embed.add_field(name=f'`/ping`', value='제 연결 상태를 보여드릴게요.', inline=True)
             embed.set_footer(text=CoCoVER)
