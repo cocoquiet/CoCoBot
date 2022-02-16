@@ -259,11 +259,11 @@ class Admin(commands.Cog):
                     embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCoVER)
                     await page.edit(embed = embed)
         
-    # @commands.slash_command(description='모든 어드민들을 불러줄게요.')
-    # @commands.has_permissions(administrator=True)
-    # async def CCC(self, ctx):
-    #     admin = get(ctx.guild.roles, name='Admin')
-    #     await ctx.respond(ctx.message.author.mention + '님이 불렀습니다 : ' + str(admin.mention))
+    @commands.slash_command(description='모든 어드민들을 불러줄게요.')
+    @commands.has_permissions(administrator=True)
+    async def ccc(self, ctx):
+        admin = get(ctx.guild.roles, name='Admin')
+        await ctx.respond(ctx.author.mention + '님이 불렀습니다 : ' + str(admin.mention))
         
 def setup(bot):
     bot.add_cog(Admin(bot))
