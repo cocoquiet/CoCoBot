@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+from discord.commands import slash_command
 
 from config import CoCoColor, CoCoVER
 
@@ -8,7 +9,7 @@ class Help(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command()
+    @slash_command()
     async def help(self, ctx, *, args : str = None):
         """명령어들의 종류를 크게 구분해서 보여줄게요."""
         if args == None:

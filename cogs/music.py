@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+from discord.commands import slash_command
 
 from config import CoCoColor
 from config import CoCoVER
@@ -12,7 +13,7 @@ class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command()
+    @slash_command()
     async def playlist(self, ctx, seq : int = None):
         """기본으로 내장되어있는 플레이리스트를 보여줄게요."""
         global musicList

@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+from discord.commands import slash_command
 
 from config import CoCoColor
 from config import CoCoVER
@@ -9,7 +10,7 @@ class Github(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command()
+    @slash_command()
     async def github(self, ctx):
         """관리자들의 깃허브 링크를 보여줄게요."""
         embed = discord.Embed(title='관리자 깃허브 링크 목록', description='깃허브 링크 모음입니다.', color=CoCoColor)

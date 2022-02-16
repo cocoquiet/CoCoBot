@@ -2,6 +2,7 @@ from pydoc import describe
 import discord
 import asyncio
 from discord.ext import commands
+from discord.commands import slash_command
 
 from config import CoCoColor
 from config import CoCoVER
@@ -10,7 +11,7 @@ class Ping(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.slash_command()
+    @slash_command()
     async def ping(self, ctx):
         """제 연결 상태를 보여드릴게요."""
         latency = self.bot.latency

@@ -1,6 +1,7 @@
 import discord
 import asyncio
 from discord.ext import commands
+from discord.commands import slash_command
 from discord.utils import get
 
 from config import CoCoColor, CoCoVER
