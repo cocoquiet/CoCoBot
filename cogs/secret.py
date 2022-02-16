@@ -9,12 +9,12 @@ class Secret(commands.Cog):
 
     @slash_command(name='설빙')
     async def sul(self, ctx):
-        """"""
+        """설빙"""
         await ctx.respond('설빙님 화이팅!!!!!!!!')
 
     @slash_command(name='러리')
     async def lery(self, ctx):
-        """"""
+        """러리"""
         await ctx.respond('러리님 과제 화이팅하세요!!!!!!!!!!')
 
 def setup(bot):
