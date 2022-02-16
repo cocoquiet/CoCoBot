@@ -1,4 +1,4 @@
-py-cord==2.0.0b2
+py-cord
 asyncio
 beautifulsoup4
 requests
