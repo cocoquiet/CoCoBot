@@ -142,6 +142,8 @@ class Admin(commands.Cog):
         
         sinnerRole = get(ctx.guild.roles, name='죄인')    
         await sinner.add_roles(sinnerRole)
+        
+        await ctx.delete()
 
     @slash_command()
     @commands.has_permissions(administrator=True)
@@ -151,6 +153,8 @@ class Admin(commands.Cog):
             member = ctx.guild.get_member(member.id)
 
             await member.move_to(channel)
+            
+        await ctx.delete()
 
     @slash_command()
     @commands.has_permissions(administrator=True)
@@ -162,6 +166,8 @@ class Admin(commands.Cog):
             member = ctx.guild.get_member(member.id)
 
             await member.move_to(channel)
+            
+        await ctx.delete()
 
     @slash_command()
     @commands.has_permissions(administrator=True)
