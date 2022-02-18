@@ -1,6 +1,6 @@
 import discord
 import asyncio
-from discord.ext import commands
+from discord.ext.commands import Cog, has_permissions
 from discord.commands import slash_command, Option
 from discord.utils import get
 

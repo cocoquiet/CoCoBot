@@ -1,9 +1,9 @@
 import discord
 import asyncio
-from discord.ext import commands
+from discord.ext.commands import Cog
 from discord.commands import slash_command
 
-class Secret(commands.Cog):
+class Secret(Cog):
     def __init__(self, bot):
         self.bot = bot
 

@@ -1,6 +1,6 @@
 import discord
 import asyncio
-from discord.ext import commands
+from discord.ext.commands import Cog
 from discord.commands import slash_command
 from discord.utils import get
 
@@ -198,11 +198,11 @@ def changeCoordinateValue(value):
     else:
         return int(value)
 
-class Omok(commands.Cog):
+class Omok(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.Cog.listener()
+    @Cog.listener()
     async def on_message(self, message):
         global omokChannel
 

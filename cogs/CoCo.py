@@ -1,13 +1,13 @@
 import discord
 import asyncio
-from discord.ext import commands
+from discord.ext.commands import Cog
 from discord.commands import slash_command
 
 import random
 
 CoCoResponse = ['네?', '뭐', '왜', 'ㅇ', 'ㅇㅇ?', '누가 불렀니', '아 왜 불러ㅡㅡ']    # 코코 응답 목록
 
-class CoCo(commands.Cog):
+class CoCo(Cog):
     def __init__(self, bot):
         self.bot = bot
 

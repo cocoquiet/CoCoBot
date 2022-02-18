@@ -1,6 +1,6 @@
 import discord
 import asyncio
-from discord.ext import commands
+from discord.ext.commands import Cog
 from discord.commands import slash_command
 
 import random
@@ -8,7 +8,7 @@ import random
 player = None       # 가위바위보 플레이어
 bot_rsp = None      # 봇의 선택(랜덤, 1:가위  2:바위  3:보)
 
-class RSP(commands.Cog):
+class RSP(Cog):
     def __init__(self, bot):
         self.bot = bot
 

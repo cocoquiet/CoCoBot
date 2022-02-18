@@ -1,6 +1,6 @@
 import discord
 import asyncio
-from discord.ext import commands
+from discord.ext.commands import Cog
 from discord.commands import slash_command
 
 from config import CoCoColor
@@ -9,7 +9,7 @@ from config import CoCoVER
 
 musicList = None                    # 플레이 리스트 임베드
 
-class Music(commands.Cog):
+class Music(Cog):
     def __init__(self, bot):
         self.bot = bot
 

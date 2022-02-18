@@ -1,12 +1,12 @@
 import discord
 import asyncio
-from discord.ext import commands
+from discord.ext.commands import Cog
 from discord.commands import slash_command
 
 from config import CoCoColor
 from config import CoCoVER
 
-class Github(commands.Cog):
+class Github(Cog):
     def __init__(self, bot):
         self.bot = bot
 
