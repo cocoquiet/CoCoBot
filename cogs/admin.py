@@ -192,6 +192,8 @@ class Admin(Cog):
         else:
             await ctx.channel.purge(limit=amount)
 
+        await ctx.delete()
+
     @slash_command()
     @has_permissions(administrator=True)
     async def reset(self, ctx, name: Option(discord.TextChannel, '채널 이름', required=False, default=None)):

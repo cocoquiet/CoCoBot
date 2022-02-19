@@ -10,7 +10,7 @@ class Help(Cog):
         self.bot = bot
 
     @slash_command()
-    async def help(self, ctx, category: Option(str, '명령어 카테고리', required=False, default=None)):
+    async def help(self, ctx, category: Option(str, '명령어 카테고리', choices=['general', 'game', 'music', 'admin'], required=False, default=None)):
         """명령어들의 종류를 크게 구분해서 보여줄게요."""
         if category == None:
             embed = discord.Embed(title='도움말', description='안녕하세요! 아래의 명령어들을 이용해 도움말을 보세요!', color=CoCoColor)
