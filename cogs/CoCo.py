@@ -12,8 +12,9 @@ class CoCo(Cog):
         self.bot = bot
 
     @slash_command()
-    async def hey(self, ctx):
+    async def coco(self, ctx):
         """기분이 좋으면 착하게, 기분이 나쁘면 신경질적으로 인사할게요."""
+        
         global CoCoResponse
 
         await ctx.respond(random.choice(CoCoResponse))
@@ -21,11 +22,13 @@ class CoCo(Cog):
     @slash_command()
     async def hello(self, ctx):
         """예쁘게 인사해줄게요."""
+        
         await ctx.respond('안녕하세요 ' + ctx.author.mention + ' 님!')
 
     @slash_command()
     async def bark(self, ctx):
         """음...짖을게요."""
+        
         CoCoBark = ['크르릉...', '뀨웅?', '왈왈!', '멍멍!']
         
         await ctx.respond(CoCoBark[random.randint(0, 3)])

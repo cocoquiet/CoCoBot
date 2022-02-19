@@ -16,6 +16,7 @@ class Util(Cog):
     @slash_command()
     async def date(self, ctx):
         """오늘의 날짜를 알려줄게요."""
+        
         now = datetime.datetime.now()
 
         nowYear = now.strftime('%Y')
@@ -27,6 +28,7 @@ class Util(Cog):
     @slash_command()
     async def time(self, ctx):
         """현재 시간을 알려줄게요."""
+        
         now = datetime.datetime.now()
 
         Meridiem = now.strftime('%p')
@@ -44,39 +46,43 @@ class Util(Cog):
     @slash_command()
     async def lol(self, ctx):
         """웃기 힘드실때 대신 웃어줄게요."""
+        
         await ctx.respond(ctx.author.mention + ' : ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ')
 
     @slash_command()
-    async def random(self, ctx, min : int, max : int):
+    async def random(self, ctx, min: Option(int, '최솟값', required=True), max: Option(int, '최댓값', required=True)):
         """원하는 범위 내의 숫자를 뽑아줄게요."""
+        
         await ctx.respond(random.randrange(min, max+1))
 
     @slash_command()
     async def invite(self, ctx):
         """저와 제 친구들을 다른 서버로 초대할 수 있는 링크를 줄게요."""
+        
         embed = discord.Embed(title='디스코드봇 초대 링크', description='디코봇들의 초대 링크입니다.', color=CoCoColor)
-        embed.add_field(name='코코봇 / 재롱부리는 강아지', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=0&scope=bot)', inline=False)
-        embed.add_field(name='어떤 과학의 음악봇 / 음악봇', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=714140461840728144&permissions=0&scope=bot)', inline=False)
-        embed.add_field(name='인절미 빙수 / 설빙', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=796053822371397642&permissions=0&scope=bot)', inline=False)
-        embed.add_field(name='루비 / 이모티콘봇', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=796342455762419712&permissions=0&scope=bot)', inline=False)
+        embed.add_field(name='코코봇 / 재롱부리는 강아지', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=758507966965350420&permissions=0&scope=bot%20applications.commands)', inline=False)
+        embed.add_field(name='어떤 과학의 음악봇 / 음악봇', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=714140461840728144&permissions=0&scope=bot%20applications.commands)', inline=False)
+        embed.add_field(name='인절미 빙수 / 설빙', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=796053822371397642&permissions=0&scope=bot%20applications.commands)', inline=False)
+        embed.add_field(name='루비 / 이모티콘봇', value='[초대 링크](https://discord.com/oauth2/authorize?client_id=796342455762419712&permissions=0&scope=bot%20applications.commands)', inline=False)
         embed.set_footer(text=CoCoVER)
         
         await ctx.respond(embed=embed)
 
     @slash_command()
-    async def request(self, tx, role : str = None):
+    async def request(self, ctx, role : str = None):
         """특정한 방에서 활동할 수 있게 해줄게요."""
+        
         if role == None:
             if ctx.channel.id == 737283234156511242:
                 embed = discord.Embed(color=CoCoColor)
-                embed.add_field(name=f'`/신청 친목`', value='친목방에서 활동할 수 있습니다.', inline=False)
-                embed.add_field(name=f'`/신청 십덕`', value='10_duck방에서 활동할 수 있습니다.', inline=False)
-                embed.add_field(name=f'`/신청 게임`', value='게임방에서 활동할 수 있습니다.', inline=False)
+                embed.add_field(name=f'`친목`', value='친목방에서 활동할 수 있습니다.', inline=False)
+                embed.add_field(name=f'`십덕`', value='10_duck방에서 활동할 수 있습니다.', inline=False)
+                embed.add_field(name=f'`게임`', value='게임방에서 활동할 수 있습니다.', inline=False)
 
                 await ctx.respond(embed=embed)
             elif ctx.channel.id == 811584272825712692:
                 embed = discord.Embed(color=CoCoColor)
-                embed.add_field(name=f'`/신청 견적`', value='견적방에서 활동할 수 있습니다.', inline=False)
+                embed.add_field(name=f'`견적`', value='견적방에서 활동할 수 있습니다.', inline=False)
                 # embed.add_field(name=f'`/신청 전쟁`', value='견적-전쟁터 방에서 활동할 수 있습니다.', inline=False)
 
                 await ctx.respond(embed=embed)
@@ -119,17 +125,18 @@ class Util(Cog):
     @slash_command()
     async def dismiss(self, ctx, role : str = None):
         """특정한 방에서 퇴장할 수 있게 해줄게요."""
+        
         if role == None:
             if ctx.channel.id == 737283234156511242:
                 embed = discord.Embed(color=CoCoColor)
-                embed.add_field(name=f'`/해제 친목`', value='친목방에서 퇴장할 수 있습니다.', inline=False)
-                embed.add_field(name=f'`/해제 십덕`', value='10_duck방에서 퇴장할 수 있습니다.', inline=False)
-                embed.add_field(name=f'`/해제 게임`', value='게임방에서 퇴장할 수 있습니다.', inline=False)
+                embed.add_field(name=f'`친목`', value='친목방에서 퇴장할 수 있습니다.', inline=False)
+                embed.add_field(name=f'`십덕`', value='10_duck방에서 퇴장할 수 있습니다.', inline=False)
+                embed.add_field(name=f'`게임`', value='게임방에서 퇴장할 수 있습니다.', inline=False)
 
                 await ctx.respond(embed=embed)
             elif ctx.channel.id == 811584272825712692:
                 embed = discord.Embed(color=CoCoColor)
-                embed.add_field(name=f'`/해제 견적`', value='견적방에서 퇴장할 수 있습니다.', inline=False)
+                embed.add_field(name=f'`견적`', value='견적방에서 퇴장할 수 있습니다.', inline=False)
                 # embed.add_field(name=f'`/해제 전쟁`', value='견적-전쟁터 방에서 퇴장할 수 있습니다.', inline=False)
 
                 await ctx.respond(embed=embed)

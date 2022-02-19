@@ -14,8 +14,9 @@ class Music(Cog):
         self.bot = bot
 
     @slash_command()
-    async def playlist(self, ctx, seq : int = None):
+    async def playlist(self, ctx):
         """기본으로 내장되어있는 플레이리스트를 보여줄게요."""
+        
         global musicList
 
         musicListTitle =    {       # 플레이 리스트 제목
