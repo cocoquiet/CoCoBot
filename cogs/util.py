@@ -69,7 +69,7 @@ class Util(Cog):
         await ctx.respond(embed=embed)
 
     @slash_command()
-    async def request(self, ctx, role : str = None):
+    async def request(self, ctx, role: Option(str, '적용할 역할', choices=['친목', '십덕', '게임', '견적'], required=False, default=None)):
         """특정한 방에서 활동할 수 있게 해줄게요."""
         
         if role == None:
@@ -83,47 +83,34 @@ class Util(Cog):
             elif ctx.channel.id == 811584272825712692:
                 embed = discord.Embed(color=CoCoColor)
                 embed.add_field(name=f'`견적`', value='견적방에서 활동할 수 있습니다.', inline=False)
-                # embed.add_field(name=f'`/신청 전쟁`', value='견적-전쟁터 방에서 활동할 수 있습니다.', inline=False)
 
                 await ctx.respond(embed=embed)
 
         elif (ctx.channel.id == 737283234156511242) and (role == '친목'):
             intimate = get(ctx.guild.roles, name='친목')
             await ctx.author.add_roles(intimate)
-            await ctx.message.add_reaction('✅')
+            await ctx.respond('역할을 적용했습니다.')
 
         elif (ctx.channel.id == 737283234156511242) and (role == '십덕'):
             weeb = get(ctx.guild.roles, name='10덕')
             await ctx.author.add_roles(weeb)
-            await ctx.message.add_reaction('✅')
+            await ctx.respond('역할을 적용했습니다.')
 
         elif (ctx.channel.id == 737283234156511242) and (role == '게임'):
             nerd = get(ctx.guild.roles, name='게임')
             await ctx.author.add_roles(nerd)
-            await ctx.message.add_reaction('✅')
+            await ctx.respond('역할을 적용했습니다.')
             
         elif (ctx.channel.id == 811584272825712692) and (role == '견적'):
             PC = get(ctx.guild.roles, name='견적')
             await ctx.author.add_roles(PC)
-            await ctx.message.add_reaction('✅')
-
-        elif (ctx.channel.id == 811584272825712692) and ((role == '전쟁') or (role == '전쟁터')):
-            battleField = ctx.guild.get_channel(826116146054168656)
-
-            fighter = discord.PermissionOverwrite()
-            fighter.read_messages = True
-            fighter.send_messages = False
-            
-            await battleField.set_permissions(ctx.author, overwrite=fighter)
-            await ctx.message.add_reaction('✅')
-            
-            await battleField.send('전쟁터에 오신 것을 환영합니다.')
+            await ctx.respond('역할을 적용했습니다.')
 
         else:
             await ctx.respond('번지수 잘못 찾아왔다ㅡㅡ')
 
     @slash_command()
-    async def dismiss(self, ctx, role : str = None):
+    async def dismiss(self, ctx, role: Option(str, '제거할 역할', choices=['친목', '십덕', '게임', '견적'], required=False, default=None)):
         """특정한 방에서 퇴장할 수 있게 해줄게요."""
         
         if role == None:
@@ -137,29 +124,28 @@ class Util(Cog):
             elif ctx.channel.id == 811584272825712692:
                 embed = discord.Embed(color=CoCoColor)
                 embed.add_field(name=f'`견적`', value='견적방에서 퇴장할 수 있습니다.', inline=False)
-                # embed.add_field(name=f'`/해제 전쟁`', value='견적-전쟁터 방에서 퇴장할 수 있습니다.', inline=False)
 
                 await ctx.respond(embed=embed)
 
         elif (ctx.channel.id == 737283234156511242) and (role == '친목'):
             intimate = get(ctx.guild.roles, name='친목')
             await ctx.author.remove_roles(intimate)
-            await ctx.message.add_reaction('👍')
+            await ctx.respond('역할을 제거했습니다.')
 
         elif (ctx.channel.id == 737283234156511242) and (role == '십덕'):
             weeb = get(ctx.guild.roles, name='10덕')
             await ctx.author.remove_roles(weeb)
-            await ctx.message.add_reaction('👍')
+            await ctx.respond('역할을 제거했습니다.')
             
         elif (ctx.channel.id == 737283234156511242) and (role == '게임'):
             nerd = get(ctx.guild.roles, name='게임')
             await ctx.author.remove_roles(nerd)
-            await ctx.message.add_reaction('👍')
+            await ctx.respond('역할을 제거했습니다.')
             
         elif (ctx.channel.id == 811584272825712692) and (role == '견적'):
             PC = get(ctx.guild.roles, name='견적')
             await ctx.author.remove_roles(PC)
-            await ctx.message.add_reaction('👍')
+            await ctx.respond('역할을 제거했습니다.')
 
         else:
             await ctx.respond('번지수 잘못 찾아왔다ㅡㅡ')
