@@ -6,7 +6,7 @@ from discord.utils import get
 
 from config import CoCoColor, CoCoVER
 
-import datetime
+from datetime import datetime
 import random
 
 class Util(Cog):
@@ -17,7 +17,7 @@ class Util(Cog):
     async def date(self, ctx):
         """오늘의 날짜를 알려줄게요."""
         
-        now = datetime.datetime.now()
+        now = datetime.now()
 
         nowYear = now.strftime('%Y')
         nowMonth = now.strftime('%m')
@@ -29,7 +29,7 @@ class Util(Cog):
     async def time(self, ctx):
         """현재 시간을 알려줄게요."""
         
-        now = datetime.datetime.now()
+        now = datetime.now()
 
         Meridiem = now.strftime('%p')
         nowHour = now.strftime('%I')

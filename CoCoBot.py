@@ -9,7 +9,7 @@ from config import *
 import youtube_dl
 
 import random
-import datetime
+from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
