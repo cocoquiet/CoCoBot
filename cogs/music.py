@@ -21,15 +21,15 @@ class Music(Cog):
 
         musicListTitle =    {       # 플레이 리스트 제목
                                 1: {
-                                    0: '코양이 재생목록입니다.', 
-                                    1: ':one: `코양이 아히사`', 
-                                    2: ':two: `코양이 재즈`', 
-                                    3: ':three: `코양이 로파이`', 
-                                    4: ':four: `코양이 메이플`', 
-                                    5: ':five: `코양이 피아노`', 
-                                    6: ':six: `코양이 캐롤`', 
-                                    7: ':seven: `코양이 팝`', 
-                                    8: ':eight: `코양이 올드팝`'
+                                    0: '코코조용 재생목록입니다.', 
+                                    1: ':one: `코코조용 아히사`', 
+                                    2: ':two: `코코조용 재즈`', 
+                                    3: ':three: `코코조용 로파이`', 
+                                    4: ':four: `코코조용 메이플`', 
+                                    5: ':five: `코코조용 피아노`', 
+                                    6: ':six: `코코조용 캐롤`', 
+                                    7: ':seven: `코코조용 팝`', 
+                                    8: ':eight: `코코조용 올드팝`'
                                     }, 
 
                                 2: {
@@ -50,14 +50,14 @@ class Music(Cog):
 
         musicListLink =     {                                                                   # 리스트별 링크
                                 1: {
-                                    1: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP',  # 코양이 아히사
-                                    2: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T',  # 코양이 재즈
-                                    3: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFktv4q2g8deFehMLSsUnJK',  # 코양이 로파이
-                                    4: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAEDzjsv-yuPCslGUXW1JFIG',  # 코양이 메이플
-                                    5: 'https://youtube.com/playlist?list=PLylf8Ved3tAE4jbtyi8dg5MDF_zv_leLM',      # 코양이 피아노
-                                    6: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta',  # 코양이 캐롤
-                                    7: 'https://youtube.com/playlist?list=PLylf8Ved3tAF6Xhb_63e9tv3TBfmKB0wE',      # 코양이 팝
-                                    8: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAH2O8mPPgtHTX8Wx_bbkjDf'   # 코양이 올드팝
+                                    1: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP',  # 코코조용 아히사
+                                    2: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T',  # 코코조용 재즈
+                                    3: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFktv4q2g8deFehMLSsUnJK',  # 코코조용 로파이
+                                    4: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAEDzjsv-yuPCslGUXW1JFIG',  # 코코조용 메이플
+                                    5: 'https://youtube.com/playlist?list=PLylf8Ved3tAE4jbtyi8dg5MDF_zv_leLM',      # 코코조용 피아노
+                                    6: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFM2-5BpAhUJzQKjXd0i_Ta',  # 코코조용 캐롤
+                                    7: 'https://youtube.com/playlist?list=PLylf8Ved3tAF6Xhb_63e9tv3TBfmKB0wE',      # 코코조용 팝
+                                    8: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAH2O8mPPgtHTX8Wx_bbkjDf'   # 코코조용 올드팝
                                     }, 
 
                                 2: {
