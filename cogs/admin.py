@@ -28,11 +28,11 @@ class Admin(Cog):
         
         await ctx.respond(embed=discord.Embed(title='강퇴', description=banned_user.mention + '님을 추방합니다', color=CoCoColor))
         await banned_user.ban(reason=reason)
-        
+
     @slash_command()
     @has_permissions(administrator=True)
-    async def mute(self, ctx, muted_user: Option(discord.Member, '뮤트할 유저', required=True), mute_mode: Option(str, '뮤트 모드', choices=['현재 채널 뮤트', '서버 전체 뮤트'], required=False, default=None)):
-        """시끄러운 사람들을 조용히 있게 해줄게요."""
+    async def mute_chat(self, ctx, muted_user: Option(discord.Member, '뮤트할 유저', required=True), mute_mode: Option(str, '뮤트 모드', choices=['현재 채널 뮤트', '서버 전체 뮤트'], required=False, default=None)):
+        """채팅이 시끄러운 사람들을 조용히 있게 해줄게요."""
         
         if mute_mode == None:
             muteEmbed = discord.Embed(title='뮤트', description='명령어 뒤에 뮤트 모드를 적어주세요', color=CoCoColor)
@@ -90,8 +90,8 @@ class Admin(Cog):
 
     @slash_command()
     @has_permissions(administrator=True)
-    async def unmute(self, ctx, unmuted_user: Option(discord.Member, '언뮤트할 유저', required=True), mute_mode: Option(str, '언뮤트 모드', choices=['현재 채널 언뮤트', '서버 전체 언뮤트'], required=False, default=None)):
-        """조용해진 사람들을 말할 수 있게 해줄게요."""
+    async def unmute_chat(self, ctx, unmuted_user: Option(discord.Member, '언뮤트할 유저', required=True), mute_mode: Option(str, '언뮤트 모드', choices=['현재 채널 언뮤트', '서버 전체 언뮤트'], required=False, default=None)):
+        """채팅이 조용해진 사람들을 말할 수 있게 해줄게요."""
         
         if mute_mode == None:
             muteEmbed = discord.Embed(title='뮤트', description= '명령어 뒤에 언뮤트 모드를 적어주세요', color=CoCoColor)
@@ -131,6 +131,28 @@ class Admin(Cog):
                     elif reaction.emoji == '❌':
                         await page.clear_reactions()
                         await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description='언뮤트 대상 : ' + unmuted_user.mention + '\n`취소되었습니다`', color=CoCoColor))
+
+    @slash_command()
+    @has_permissions(administrator=True)
+    async def mute_voice(self, ctx, muted_user: Option(discord.Member, '뮤트할 유저', required=False, default=None)):
+        """소리가 시끄러운 사람들을 조용히 있게 해줄게요."""
+        
+        if muted_user == None:
+            for member in ctx.voice_channel.members:
+                await member.edit(mute=True)
+        else:
+            await muted_user.edit(mute=True)
+
+    @slash_command()
+    @has_permissions(administrator=True)
+    async def unmute_voice(self, ctx, unmuted_user: Option(discord.Member, '언뮤트할 유저', required=False, default=None)):
+        """소리가 조용해진 사람들을 말할 수 있게 해줄게요."""
+        
+        if muted_user == None:
+            for member in ctx.voice_channel.members:
+                await member.edit(mute=False)
+        else:
+            await muted_user.edit(mute=False)
 
     @slash_command()
     @has_permissions(administrator=True)

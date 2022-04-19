@@ -9,7 +9,7 @@ class Secret(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @slash_command(name='설빙')
+    @slash_command(name='설빙', guild_ids = [675171256299028490])
     async def sulbing(self, ctx):
         """설빙"""
         
@@ -17,19 +17,19 @@ class Secret(Cog):
         
         await ctx.respond(f'설님 수능까지 {remainder}일 남았습니다!!!!!')
 
-    @slash_command(name='러리')
+    @slash_command(name='러리', guild_ids = [675171256299028490])
     async def lery(self, ctx):
         """러리"""
         
         await ctx.respond('러리님 과제 화이팅하세요!!!!!!!!!!')
 
-    @slash_command(name='암고')
+    @slash_command(name='암고', guild_ids = [675171256299028490])
     async def amgo(self, ctx):
         """암고"""
         
         await ctx.respond('암고님 공부하세요!!!')
 
-    @slash_command(name='양사')
+    @slash_command(name='양사', guild_ids = [675171256299028490])
     async def yangsa(self, ctx):
         """양사"""
         
