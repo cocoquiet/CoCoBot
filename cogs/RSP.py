@@ -9,7 +9,7 @@ class RSP(Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    @slash_command()
+    @slash_command(name='가위바위보')
     async def rock_scissors_paper(self, ctx, selection: Option(str, '선택', choices=['가위', '바위', '보'], required=True)):
         """가위바위보를 해줄게요."""
         

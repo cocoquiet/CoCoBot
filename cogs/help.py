@@ -43,7 +43,7 @@ class Help(Cog):
 
         elif category == 'game':
             embed = discord.Embed(title='게임 명령어', description='저를 통해 할 수 있는 게임의 명령어들을 알려줄게요!', color=CoCoColor)
-            embed.add_field(name=f'`/rock_scissors_paper <선택>`', value='가위바위보를 해줄게요.', inline=True)
+            embed.add_field(name=f'`/가위바위보 <선택>`', value='가위바위보를 해줄게요.', inline=True)
             embed.add_field(name=f'`/오목 <다른 플레이어>`', value='다른 사람과 오목을 하게 해줄게요.', inline=True)
             embed.set_footer(text=CoCoVER)
 
