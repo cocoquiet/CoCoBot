@@ -44,17 +44,24 @@ class Admin(Cog):
         else:
             sinner = discord.PermissionOverwrite()
             sinner.send_messages = False
-            sinner.manage_channels = False
-            sinner.manage_permissions = False
-            sinner.manage_webhooks = False
-            sinner.create_instant_invite = False
+            sinner.send_messages_in_threads = False
+            sinner.create_public_threads = False
+            sinner.create_private_threads = False
             sinner.embed_links = False
             sinner.attach_files = False
             sinner.add_reactions = False
             sinner.use_external_emojis = False
+            sinner.use_external_stickers = False
             sinner.mention_everyone = False
             sinner.manage_messages = False
+            sinner.manage_threads = False
+            sinner.read_message_history = False
             sinner.send_tts_messages = False
+            sinner.use_application_commands = False
+            sinner.manage_channels = False
+            sinner.manage_permissions = False
+            sinner.manage_webhooks = False
+            sinner.create_instant_invite = False
 
             if mute_mode == '현재 채널 뮤트':
                 await ctx.channel.set_permissions(muted_user, overwrite=sinner)
