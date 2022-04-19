@@ -71,7 +71,7 @@ class Help(Cog):
             embed.add_field(name=f'`/move <이동 채널> <이동시킬 유저들>`', value='원하는 음성 채널로 사람들을 보내줄게요.', inline=True)
             embed.add_field(name=f'`/submarine <잠수시킬 유저들>`', value='조용해보이는 사람들을 잠수함에 보내줄게요.', inline=True)
             embed.add_field(name=f'`/clear`', value='많은 메세지를 한번에 삭제시켜줄게요.\n개수를 입력하지 않으면 10개를, -1을 입력하면 다 삭제할게요.', inline=True)
-            embed.add_field(name=f'`reset`', value='채팅방을 맨 처음의 모습으로 돌려줄게요.', inline=True)
+            embed.add_field(name=f'`/reset`', value='채팅방을 맨 처음의 모습으로 돌려줄게요.', inline=True)
             embed.add_field(name=f'`/log`', value='이 서버의 감사 로그를 보여줄게요.', inline=True)
             embed.add_field(name=f'`/ccc`', value='모든 어드민들을 불러줄게요.', inline=True)
             embed.set_footer(text=CoCoVER)
