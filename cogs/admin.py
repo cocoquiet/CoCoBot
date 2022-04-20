@@ -35,7 +35,7 @@ class Admin(Cog):
         """채팅이 시끄러운 사람들을 조용히 있게 해줄게요."""
         
         if mute_mode == None:
-            muteEmbed = discord.Embed(title='뮤트', description='명령어 뒤에 뮤트 모드를 적어주세요', color=CoCoColor)
+            muteEmbed = discord.Embed(title='채팅 뮤트', description='명령어 뒤에 뮤트 모드를 적어주세요', color=CoCoColor)
             muteEmbed.add_field(name='`1.` 현재 채널 뮤트', value='이 채널에서만 뮤트시킵니다', inline=False)
             muteEmbed.add_field(name='`2.` 서버 전체 뮤트', value='서버 전체에서 뮤트시킵니다', inline=False)
 
@@ -101,11 +101,11 @@ class Admin(Cog):
         """채팅이 조용해진 사람들을 말할 수 있게 해줄게요."""
         
         if mute_mode == None:
-            muteEmbed = discord.Embed(title='뮤트', description= '명령어 뒤에 언뮤트 모드를 적어주세요', color=CoCoColor)
-            muteEmbed.add_field(name='`1.` 현재 채널 언뮤트', value='이 채널에서만 언뮤트시킵니다', inline=False)
-            muteEmbed.add_field(name='`2.` 서버 전체 언뮤트', value='서버 전체에서 언뮤트시킵니다', inline=False)
+            unmuteEmbed = discord.Embed(title='채팅 언뮤트', description= '명령어 뒤에 언뮤트 모드를 적어주세요', color=CoCoColor)
+            unmuteEmbed.add_field(name='`1.` 현재 채널 언뮤트', value='이 채널에서만 언뮤트시킵니다', inline=False)
+            unmuteEmbed.add_field(name='`2.` 서버 전체 언뮤트', value='서버 전체에서 언뮤트시킵니다', inline=False)
 
-            await ctx.respond(embed=muteEmbed)
+            await ctx.respond(embed=unmuteEmbed)
 
         else:
             if mute_mode == '현재 채널 언뮤트':
@@ -144,22 +144,42 @@ class Admin(Cog):
     async def mute_voice(self, ctx, muted_user: Option(discord.Member, '뮤트할 유저', required=False, default=None)):
         """소리가 시끄러운 사람들을 조용히 있게 해줄게요."""
         
+        muteChannel = ctx.author.voice.channel
+        
         if muted_user == None:
-            for member in ctx.voice_channel.members:
+            members = muteChannel.members
+            init_member = members[0]
+            for member in members:
                 await member.edit(mute=True)
+                await ctx.respond(embed=discord.Embed(title='음성 뮤트', 
+                                                    description='뮤트 대상 : ' + init_member.mention + ' 외 ' + len(members)-1 + '명' + '\n뮤트 채널 : ' + muteChannel.mention + '\n`뮤트했습니다`', 
+                                                    color=CoCoColor))
         else:
             await muted_user.edit(mute=True)
+            await ctx.respond(embed=discord.Embed(title='음성 뮤트', 
+                                                description='뮤트 대상 : ' + muted_user.mention + '\n뮤트 채널 : ' + muteChannel.mention + '\n`뮤트했습니다`', 
+                                                color=CoCoColor))
 
     @slash_command()
     @has_permissions(administrator=True)
     async def unmute_voice(self, ctx, unmuted_user: Option(discord.Member, '언뮤트할 유저', required=False, default=None)):
         """소리가 조용해진 사람들을 말할 수 있게 해줄게요."""
         
+        unmuteChannel = ctx.author.voice.channel
+        
         if muted_user == None:
-            for member in ctx.voice_channel.members:
+            members = unmuteChannel.members
+            init_member = members[0]
+            for member in members:
                 await member.edit(mute=False)
+                await ctx.respond(embed=discord.Embed(title='음성 언뮤트', 
+                                                    description='뮤트 대상 : ' + init_member.mention + ' 외 ' + len(members)-1 + '명' + '\n언뮤트 채널 : ' + unmuteChannel.mention + '\n`뮤트했습니다`', 
+                                                    color=CoCoColor))
         else:
             await muted_user.edit(mute=False)
+            await ctx.respond(embed=discord.Embed(title='음성 언뮤트', 
+                                                description='언뮤언 대상 : ' + muted_user.mention + '\n언뮤트 채널 : ' + unmuteChannel.mention + '\n`뮤트했습니다`', 
+                                                color=CoCoColor)
 
     @slash_command()
     @has_permissions(administrator=True)
