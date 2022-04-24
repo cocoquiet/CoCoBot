@@ -69,6 +69,14 @@ class Util(Cog):
         await ctx.respond(embed=embed)
 
     @slash_command()
+    async def coder(self, ctx):
+        """코딩하는 사람이라는 증거를 만들어줄게요."""
+        
+        coder = get(ctx.guild.roles, name='코딩하는 사람')
+        await ctx.author.add_roles(coder)
+        await ctx.respond('코딩하는 사람이 되었습니다.')
+
+    @slash_command()
     async def request(self, ctx, role: Option(str, '적용할 역할', choices=['친목', '십덕', '게임', '견적'], required=False, default=None)):
         """특정한 방에서 활동할 수 있게 해줄게요."""
         
