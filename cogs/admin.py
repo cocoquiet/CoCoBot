@@ -134,7 +134,7 @@ class Admin(Cog):
             await unmuted_user.edit(mute=False)
             await ctx.respond(embed=discord.Embed(title='음성 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n언뮤트 채널 : {unmuteChannel.mention}\n`언뮤트했습니다`', color=CoCoColor))
 
-    @slash_command()
+    @slash_command(guild_ids = [675171256299028490])
     @has_permissions(administrator=True)
     async def restrict(self, ctx, sinner: Option(discord.Member, '감금시킬 유저', required=True)):
         """중한 죄를 저지른 사람들을 뒤주에 보내줄게요."""
@@ -162,7 +162,7 @@ class Admin(Cog):
             
         await ctx.delete()
 
-    @slash_command()
+    @slash_command(guild_ids = [675171256299028490])
     @has_permissions(administrator=True)
     async def submarine(self, ctx, members: Option(str, '잠수시킬 유저들', required=True)):
         """조용해보이는 사람들을 잠수함에 보내줄게요."""
@@ -285,7 +285,7 @@ class Admin(Cog):
                     embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCoVER)
                     await page.edit(embed = embed)
         
-    @slash_command()
+    @slash_command(guild_ids = [675171256299028490])
     @has_permissions(administrator=True)
     async def ccc(self, ctx):
         """모든 어드민들을 불러줄게요."""

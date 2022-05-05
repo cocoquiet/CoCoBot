@@ -220,7 +220,7 @@ class Omok(Cog):
 
                 boardMessage = await omokChannel.send(embed=currentBoard)
 
-    @slash_command(name='오목')
+    @slash_command(name='오목', guild_ids = [675171256299028490])
     async def omok(self, ctx, opponent : discord.Member, mode : int = None):
         global startChannel
 
@@ -251,7 +251,7 @@ class Omok(Cog):
             helpCommand.set_footer(text=CoCoVER)
             await ctx.respond(embed=helpCommand)
 
-    @slash_command(name='모드')
+    @slash_command(name='모드', guild_ids = [675171256299028490])
     async def explainMode(self, ctx):
         modeExplain = discord.Embed(title='모드 설명', color=CoCoColor)
         modeExplain.add_field(name='0. `기본 모드`', value=f'> 기본적인 오목입니다.\n> `/오목` 뒤에 모드 번호를 치지 않으면 자동으로 기본모드가 됩니다.', inline=False)
@@ -262,7 +262,7 @@ class Omok(Cog):
 
         await ctx.respond(embed=modeExplain)
 
-    @slash_command(name='참가')
+    @slash_command(name='참가', guild_ids = [675171256299028490])
     async def admit(self, ctx):
         global Board
 
@@ -329,7 +329,7 @@ class Omok(Cog):
             else: # 오목 시작O 경우
                 await ctx.respond('뭐래 이미 게임 시작했는데ㅡㅡ')
 
-    @slash_command(name='거절')
+    @slash_command(name='거절', guild_ids = [675171256299028490])
     async def refuse(self, ctx):
         global omokPlayer1
         global omokPlayer2
@@ -346,7 +346,7 @@ class Omok(Cog):
             else: # 오목 시작O 경우
                 await ctx.respond('뭐래 이미 게임 시작했는데ㅡㅡ')
     
-    @slash_command(name='돌')
+    @slash_command(name='돌', guild_ids = [675171256299028490])
     async def setStone(self, ctx, col : str, row : str):
         global startChannel
         global omokChannel
@@ -456,7 +456,7 @@ class Omok(Cog):
 
             reset()
 
-    @slash_command(name='기권')
+    @slash_command(name='기권', guild_ids = [675171256299028490])
     async def GG(self, ctx):
         global Board
 
