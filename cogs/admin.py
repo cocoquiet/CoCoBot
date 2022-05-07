@@ -112,7 +112,7 @@ class Admin(Cog):
             init_member = members[0]
             for member in members:
                 await member.edit(mute=True)
-                await ctx.respond(embed=discord.Embed(title='음성 뮤트', description=f'뮤트 대상 : {init_member.mention} 외 {len(members)-1}명\n뮤트 채널 : {muteChannel.mention}\n`뮤트했습니다`', color=CoCoColor))
+            await ctx.respond(embed=discord.Embed(title='음성 뮤트', description=f'뮤트 대상 : {init_member.mention} 외 {len(members)-1}명\n뮤트 채널 : {muteChannel.mention}\n`뮤트했습니다`', color=CoCoColor))
         else:
             await muted_user.edit(mute=True)
             await ctx.respond(embed=discord.Embed(title='음성 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n뮤트 채널 : {muteChannel.mention}\n`뮤트했습니다`', color=CoCoColor))
@@ -129,7 +129,7 @@ class Admin(Cog):
             initMember = members[0]
             for member in members:
                 await member.edit(mute=False)
-                await ctx.respond(embed=discord.Embed(title='음성 언뮤트', description=f'뮤트 대상 : {initMember.mention} 외 {len(members)-1}명\n언뮤트 채널 : {unmuteChannel.mention}\n`언뮤트했습니다`', color=CoCoColor))
+            await ctx.respond(embed=discord.Embed(title='음성 언뮤트', description=f'뮤트 대상 : {initMember.mention} 외 {len(members)-1}명\n언뮤트 채널 : {unmuteChannel.mention}\n`언뮤트했습니다`', color=CoCoColor))
         else:
             await unmuted_user.edit(mute=False)
             await ctx.respond(embed=discord.Embed(title='음성 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n언뮤트 채널 : {unmuteChannel.mention}\n`언뮤트했습니다`', color=CoCoColor))
