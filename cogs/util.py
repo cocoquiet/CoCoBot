@@ -55,7 +55,7 @@ class Util(Cog):
         
         await ctx.respond(random.randrange(min, max+1))
 
-    @slash_command()
+    @slash_command(guild_ids = [675171256299028490])
     async def invite(self, ctx):
         """저와 제 친구들을 다른 서버로 초대할 수 있는 링크를 줄게요."""
         
