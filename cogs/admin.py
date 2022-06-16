@@ -68,30 +68,12 @@ class Admin(Cog):
                 await ctx.respond(embed=discord.Embed(title='현재 채널 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n뮤트 채널 : {ctx.channel.mention}\n`뮤트했습니다`', color=CoCoColor))
 
             elif mute_mode == '서버 전체 뮤트':
-                page = await ctx.respond(embed=discord.Embed(title='서버 전체 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n뮤트하시겠습니까?', color=CoCoColor))
+                for sinnerChannel in ctx.guild.text_channels:
+                    if muted_user in sinnerChannel.members:
+                        await sinnerChannel.set_permissions(muted_user, overwrite=sinner)
 
-                await page.add_reaction('✔️')
-                await page.add_reaction('❌')
-
-                def muteCheck(reaction, user):
-                    return user == ctx.author
-            
-                try:
-                    reaction, user = await self.bot.wait_for('reaction_add', timeout = 30.0, check = muteCheck)
-                except asyncio.TimeoutError:
-                    await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n`취소되었습니다`', color=CoCoColor))
-                    await page.clear_reactions()
-                else:
-                    if reaction.emoji == '✔️':
-                        for sinnerChannel in ctx.guild.text_channels:
-                            if muted_user in sinnerChannel.members:
-                                await sinnerChannel.set_permissions(muted_user, overwrite=sinner)
-
-                        await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n`뮤트했습니다`', color=CoCoColor))
-                    elif reaction.emoji == '❌':
-                        await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n`취소되었습니다`', color=CoCoColor))
+                await page.clear_reactions()
+                await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n`뮤트했습니다`', color=CoCoColor))
 
     @slash_command()
     @has_permissions(administrator=True)
@@ -111,29 +93,12 @@ class Admin(Cog):
                 await ctx.respond(embed=discord.Embed(title='현재 채널 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n언뮤트 채널 : {ctx.channel.mention}\n`언뮤트했습니다`', color=CoCoColor))
 
             elif mute_mode == '서버 전체 언뮤트':
-                page = await ctx.respond(embed=discord.Embed(title='서버 전체 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n언뮤트하시겠습니까?', color=CoCoColor))
+                for sinnerChannel in ctx.guild.text_channels:
+                    if unmuted_user in sinnerChannel.members:
+                        await sinnerChannel.set_permissions(unmuted_user, overwrite=None)
 
-                await page.add_reaction('✔️')
-                await page.add_reaction('❌')
-
-                def unmuteCheck(reaction, user):
-                    return user == ctx.author
-            
-                try:
-                    reaction, user = await self.bot.wait_for('reaction_add', timeout = 30.0, check = unmuteCheck)
-                except asyncio.TimeoutError:
-                    page.clear_reactions()
-                else:
-                    if reaction.emoji == '✔️':
-                        for sinnerChannel in ctx.guild.text_channels:
-                            if unmuted_user in sinnerChannel.members:
-                                await sinnerChannel.set_permissions(unmuted_user, overwrite=None)
-
-                        await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n`언뮤트했습니다`', color=CoCoColor))
-                    elif reaction.emoji == '❌':
-                        await page.clear_reactions()
-                        await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n`취소되었습니다`', color=CoCoColor))
+                await page.clear_reactions()
+                await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n`언뮤트했습니다`', color=CoCoColor))
 
     @slash_command()
     @has_permissions(administrator=True)
@@ -147,7 +112,7 @@ class Admin(Cog):
             init_member = members[0]
             for member in members:
                 await member.edit(mute=True)
-                await ctx.respond(embed=discord.Embed(title='음성 뮤트', description=f'뮤트 대상 : {init_member.mention} 외 {len(members)-1}명\n뮤트 채널 : {muteChannel.mention}\n`뮤트했습니다`', color=CoCoColor))
+            await ctx.respond(embed=discord.Embed(title='음성 뮤트', description=f'뮤트 대상 : {init_member.mention} 외 {len(members)-1}명\n뮤트 채널 : {muteChannel.mention}\n`뮤트했습니다`', color=CoCoColor))
         else:
             await muted_user.edit(mute=True)
             await ctx.respond(embed=discord.Embed(title='음성 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n뮤트 채널 : {muteChannel.mention}\n`뮤트했습니다`', color=CoCoColor))
@@ -164,12 +129,12 @@ class Admin(Cog):
             initMember = members[0]
             for member in members:
                 await member.edit(mute=False)
-                await ctx.respond(embed=discord.Embed(title='음성 언뮤트', description=f'뮤트 대상 : {initMember.mention} 외 {len(members)-1}명\n언뮤트 채널 : {unmuteChannel.mention}\n`언뮤트했습니다`', color=CoCoColor))
+            await ctx.respond(embed=discord.Embed(title='음성 언뮤트', description=f'뮤트 대상 : {initMember.mention} 외 {len(members)-1}명\n언뮤트 채널 : {unmuteChannel.mention}\n`언뮤트했습니다`', color=CoCoColor))
         else:
             await unmuted_user.edit(mute=False)
             await ctx.respond(embed=discord.Embed(title='음성 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n언뮤트 채널 : {unmuteChannel.mention}\n`언뮤트했습니다`', color=CoCoColor))
 
-    @slash_command()
+    @slash_command(guild_ids = [675171256299028490])
     @has_permissions(administrator=True)
     async def restrict(self, ctx, sinner: Option(discord.Member, '감금시킬 유저', required=True)):
         """중한 죄를 저지른 사람들을 뒤주에 보내줄게요."""
@@ -197,7 +162,7 @@ class Admin(Cog):
             
         await ctx.delete()
 
-    @slash_command()
+    @slash_command(guild_ids = [675171256299028490])
     @has_permissions(administrator=True)
     async def submarine(self, ctx, members: Option(str, '잠수시킬 유저들', required=True)):
         """조용해보이는 사람들을 잠수함에 보내줄게요."""
@@ -320,7 +285,7 @@ class Admin(Cog):
                     embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCoVER)
                     await page.edit(embed = embed)
         
-    @slash_command()
+    @slash_command(guild_ids = [675171256299028490])
     @has_permissions(administrator=True)
     async def ccc(self, ctx):
         """모든 어드민들을 불러줄게요."""
