@@ -68,15 +68,23 @@ class Util(Cog):
         
         await ctx.respond(embed=embed)
 
-    @slash_command()
+    @slash_command(guild_ids = [675171256299028490])
     async def coder(self, ctx):
-        """코딩하는 사람이라는 증거를 만들어줄게요."""
+        """코딩하는 사람이라는 표시를 만들어줄게요."""
         
-        coder = get(ctx.guild.roles, name='코딩하는 사람')
+        coder = get(ctx.guild.roles, name='coder')
         await ctx.author.add_roles(coder)
         await ctx.respond('코딩하는 사람이 되었습니다.')
 
-    @slash_command()
+    @slash_command(guild_ids = [675171256299028490])
+    async def decoder(self, ctx):
+        """코딩하는 사람이라는 표시를 빼줄게요."""
+        coder = get(ctx.guild.roles, name='coder')
+        await ctx.author.remove_roles(coder)
+        await ctx.respond('coder 역할을 제거했습니다.')
+        
+
+    @slash_command(guild_ids = [675171256299028490])
     async def request(self, ctx, role: Option(str, '적용할 역할', choices=['친목', '십덕', '게임', '견적'], required=False, default=None)):
         """특정한 방에서 활동할 수 있게 해줄게요."""
         
@@ -117,7 +125,7 @@ class Util(Cog):
         else:
             await ctx.respond('번지수 잘못 찾아왔다ㅡㅡ')
 
-    @slash_command()
+    @slash_command(guild_ids = [675171256299028490])
     async def dismiss(self, ctx, role: Option(str, '제거할 역할', choices=['친목', '십덕', '게임', '견적'], required=False, default=None)):
         """특정한 방에서 퇴장할 수 있게 해줄게요."""
         
