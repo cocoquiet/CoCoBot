@@ -2,6 +2,7 @@ import discord
 import asyncio
 from discord.ext.commands import Cog
 from discord.commands import slash_command
+from discord.ui import Select, View
 
 from config import CoCoColor
 from config import CoCoVER
@@ -20,7 +21,7 @@ class Music(Cog):
         global musicList
 
         musicListTitle =    {       # 플레이 리스트 제목
-                                1: {
+                                '코코조용 리스트': {
                                     0: '코코조용 재생목록입니다.', 
                                     1: ':one: `코코조용 아히사`', 
                                     2: ':two: `코코조용 재즈`', 
@@ -32,7 +33,7 @@ class Music(Cog):
                                     8: ':eight: `코코조용 올드팝`'
                                     }, 
 
-                                2: {
+                                '관리자 리스트': {
                                     0: '관리자들의 재생목록입니다.', 
                                     1: ':one: `루 뮤직 리스트`', 
                                     2: ':two: `루 뮤직 리스트2`', 
@@ -40,7 +41,7 @@ class Music(Cog):
                                     4: ':four: `양사 오늘의 노래`'
                                     }, 
 
-                                3: {
+                                '아티스트 리스트': {
                                     0: '인기 가수들의 재생목록입니다.', 
                                     1: ':one: `아이유 리스트`', 
                                     2: ':two: `브루노 마스 리스트`',
@@ -49,7 +50,7 @@ class Music(Cog):
                             }
 
         musicListLink =     {                                                                   # 리스트별 링크
-                                1: {
+                                '코코조용 리스트': {
                                     1: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFtRQRTgx78KcG2NPdnyzyP',  # 코코조용 아히사
                                     2: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAEGE_f0734AmuQyFWcY0r4T',  # 코코조용 재즈
                                     3: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAFktv4q2g8deFehMLSsUnJK',  # 코코조용 로파이
@@ -60,73 +61,52 @@ class Music(Cog):
                                     8: 'https://www.youtube.com/playlist?list=PLylf8Ved3tAH2O8mPPgtHTX8Wx_bbkjDf'   # 코코조용 올드팝
                                     }, 
 
-                                2: {
+                                '관리자 리스트': {
                                     1: 'https://youtube.com/playlist?list=PLVW_htI5V49iz9Z38iaKOoS8JByghA0cb',      # 루 뮤직 리스트
                                     2: 'https://www.youtube.com/playlist?list=PLVW_htI5V49i9h4rCNvMl4fQh66HN2dyP',  # 루 뮤직 리스트2
                                     3: 'https://youtube.com/playlist?list=PL_Z2oxKB4fpa4zLdjaFX6ln2jX0t6ssmm',      # 고수 개인 소장
                                     4: 'https://www.youtube.com/playlist?list=PLFxP7Xv4aTr09edNKmWntSsvbtgooHDsj'   # 양사 오늘의 노래
                                     }, 
 
-                                3: {
+                                '아티스트 리스트': {
                                     1: 'https://youtube.com/playlist?list=PLylf8Ved3tAExS3iiNrr4FxCqCCpOASyw',      # 아이유 리스트
                                     2: 'https://youtube.com/playlist?list=PLylf8Ved3tAEFnjSzMGokFJlD0d25ZSua',      # 브루노 마스 리스트
                                     3: 'https://youtube.com/playlist?list=PLylf8Ved3tAEb9LVlk5wXlzzIo9orTGYb'       # 방탄소년단 리스트
                                     }
                             }
 
-        musicListIndex = None       # 플레이 리스트 임베드 페이지값
-
-        def setMusicList(index):    # 플레이 리스트 임베드 정의 함수
+        def setMusicList(category):    # 플레이 리스트 임베드 정의 함수
             global musicList
 
-            musicList = discord.Embed(title='음악 재생목록', description=musicListTitle[index][0], color=CoCoColor)
+            musicList = discord.Embed(title='음악 재생목록', description=musicListTitle[category][0], color=CoCoColor)
 
-            for link in range(1, len(musicListTitle[musicListIndex])):
-                musicList.add_field(name=musicListTitle[musicListIndex][link], 
-                                    value=musicListLink[musicListIndex][link], 
+            for link in range(1, len(musicListTitle[category])):
+                musicList.add_field(name=musicListTitle[category][link], 
+                                    value=musicListLink[category][link], 
                                     inline=False)
 
-            musicList.set_footer(text=f'페이지 {musicListIndex}/{len(musicListTitle)}\n' + CoCoVER)
+            musicList.set_footer(text=CoCoVER)
 
-
-        musicListIndex = 1
-
-        setMusicList(musicListIndex)
-        page = await ctx.respond(embed=musicList)
-
-        reaction = None             # 이모지 반응
-
-        await page.add_reaction('⏮')
-        await page.add_reaction('◀')
-        await page.add_reaction('▶')
-        await page.add_reaction('⏭')
-
-        def check(reaction, user):  # wait_for() 체크 함수
-            return user == ctx.author
-
-        while True:
-            try:
-                reaction, user = await self.bot.wait_for('reaction_add', timeout = 300.0, check = check)
-            except asyncio.TimeoutError:
-                await page.clear_reactions()
-                musicListIndex = None
-                break
-            else:
-                if reaction.emoji == '⏮':
-                    musicListIndex = 1
-                elif reaction.emoji == '◀':
-                    if musicListIndex > 1:
-                        musicListIndex -= 1
-                elif reaction.emoji == '▶':
-                    if musicListIndex < len(musicListTitle):
-                        musicListIndex += 1
-                elif reaction.emoji == '⏭':
-                    musicListIndex = len(musicListTitle)
-
-                await page.remove_reaction(reaction, user)
-
-                setMusicList(musicListIndex)
-                await page.edit(embed = musicList)
+        setMusicList('코코조용 리스트')
+        
+        view = View()
+        category = Select(
+            placeholder='카테고리를 선택하세요.', 
+            options=[ 
+            discord.SelectOption(label='코코조용 리스트', description='코코조용 재생목록입니다.'), 
+            discord.SelectOption(label='관리자 리스트', description='관리자들의 재생목록입니다.'), 
+            discord.SelectOption(label='아티스트 리스트', description='인기 가수들의 재생목록입니다.')
+        ])
+        
+        async def category_callback(interaction):
+            setMusicList(category.values[0])
+            await interaction.response.edit_message(embed=musicList, view=view)
+            
+        category.callback = category_callback
+        
+        view.add_item(category)
+        
+        await ctx.respond(embed=musicList, view=view)
 
 def setup(bot):
     bot.add_cog(Music(bot))

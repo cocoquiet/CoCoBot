@@ -2,6 +2,7 @@ import discord
 import asyncio
 from discord.ext.commands import Cog, has_permissions
 from discord.commands import slash_command, Option
+from discord.ui import Select, View
 from discord.utils import get
 
 from config import *
