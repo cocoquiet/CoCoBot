@@ -72,8 +72,7 @@ class Admin(Cog):
                     if muted_user in sinnerChannel.members:
                         await sinnerChannel.set_permissions(muted_user, overwrite=sinner)
 
-                await page.clear_reactions()
-                await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n`뮤트했습니다`', color=CoCoColor))
+                await ctx.respond(embed=discord.Embed(title='서버 전체 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n`뮤트했습니다`', color=CoCoColor))
 
     @slash_command()
     @has_permissions(administrator=True)
@@ -97,8 +96,7 @@ class Admin(Cog):
                     if unmuted_user in sinnerChannel.members:
                         await sinnerChannel.set_permissions(unmuted_user, overwrite=None)
 
-                await page.clear_reactions()
-                await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n`언뮤트했습니다`', color=CoCoColor))
+                await ctx.respond(embed=discord.Embed(title='서버 전체 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n`언뮤트했습니다`', color=CoCoColor))
 
     @slash_command()
     @has_permissions(administrator=True)
