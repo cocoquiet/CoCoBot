@@ -2,12 +2,16 @@ import discord
 import asyncio
 from discord.ext.commands import Cog, has_permissions
 from discord.commands import slash_command, Option
+from discord.ui import Button, View
 from discord.utils import get
 
 from logTranslation import translateLog
 
 from config import CoCoColor
 from config import CoCoVER
+
+logList = None      # log 10개씩 하나로 담은 리스트
+embedPage = None    # 임베드 페이지 (0에서 시작)
 
 class Admin(Cog):
     def __init__(self, bot):
@@ -72,7 +76,8 @@ class Admin(Cog):
                     if muted_user in sinnerChannel.members:
                         await sinnerChannel.set_permissions(muted_user, overwrite=sinner)
 
-                await ctx.respond(embed=discord.Embed(title='서버 전체 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n`뮤트했습니다`', color=CoCoColor))
+                await page.clear_reactions()
+                await page.edit(embed=discord.Embed(title='서버 전체 뮤트', description=f'뮤트 대상 : {muted_user.mention}\n`뮤트했습니다`', color=CoCoColor))
 
     @slash_command()
     @has_permissions(administrator=True)
@@ -96,7 +101,8 @@ class Admin(Cog):
                     if unmuted_user in sinnerChannel.members:
                         await sinnerChannel.set_permissions(unmuted_user, overwrite=None)
 
-                await ctx.respond(embed=discord.Embed(title='서버 전체 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n`언뮤트했습니다`', color=CoCoColor))
+                await page.clear_reactions()
+                await page.edit(embed=discord.Embed(title='서버 전체 언뮤트', description=f'언뮤트 대상 : {unmuted_user.mention}\n`언뮤트했습니다`', color=CoCoColor))
 
     @slash_command()
     @has_permissions(administrator=True)
@@ -211,25 +217,30 @@ class Admin(Cog):
     @has_permissions(administrator=True)
     async def log(self, ctx, amount: Option(int, '로그 갯수', required=False, default=10), moderator: Option(discord.Member, '로그 주체', required=False, default=None)):
         """이 서버의 감사 로그를 보여줄게요."""
+        global logList
+        global embedPage
         
         log = ''                                         # 로그 (10개 단위)  
-        logList = []                                     # log 10개씩 하나로 담은 리스트
         logIndex = 1                                     # log 개수 (10개씩 끊어서 logList에 담기)
-
-        embedPage = 0                                    # 임베드 페이지 (0에서 시작)
+        logList = []
+        embedPage = 0
         
         def editPage(moderator, embedPage):              # 임베드 정의 함수 (사용자 및 페이지 정의)
+            global logList
+            
             if moderator == None:
                 return discord.Embed(title='감사로그', description='\n\n' + logList[embedPage], color=CoCoColor)
             else:
                 return discord.Embed(title=moderator.name + '님의 감사로그', description='\n\n' + logList[embedPage], color=CoCoColor)
         
+        
         async for entry in ctx.guild.audit_logs(user=moderator, limit=amount):
-            translatedAction = translateLog(entry, entry.action)
-            if entry.target == None:
-                log += '`' + str(logIndex) + '.` ' + entry.user.mention + '님이 ' + translatedAction + '\n'
+            try:
+                translatedAction = translateLog(entry, entry.action)
+            except:
+                log += f'`{logIndex}.` {entry.user.mention}님이 **알 수 없는 행동**을 했습니다.\n'
             else:
-                log += '`' + str(logIndex) + '.` ' + entry.user.mention + '님이 ' + translatedAction + '\n'
+                log += f'`{logIndex}.` {entry.user.mention}님이 ' + translatedAction
                 
             if logIndex % 10 == 0:
                 logList.append(log)
@@ -240,48 +251,70 @@ class Admin(Cog):
             else:
                 logList.append(log)
 
-        embed = editPage(moderator, embedPage)
+        logEmbed = editPage(moderator, embedPage)
         
         if len(logList) == 1:
-            embed.set_footer(text=CoCoVER)
-            await ctx.respond(embed=embed)
+            logEmbed.set_footer(text=CoCoVER)
+            await ctx.respond(embed=logEmbed)
         else:
-            embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCoVER)
-            page = await ctx.respond(embed=embed)
+            logEmbed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCoVER)
             
-            reaction = None                              # 이모지 반응
-
-            await page.add_reaction('⏮')
-            await page.add_reaction('◀')
-            await page.add_reaction('▶')
-            await page.add_reaction('⏭')
-
-            def check(reaction, user):
-                return user == ctx.author
-
-            while True:
-                try:
-                    reaction, user = await self.bot.wait_for('reaction_add', timeout = 300.0, check = check)
-                except asyncio.TimeoutError:
-                    await page.clear_reactions()
-                    break
-                else:
-                    if reaction.emoji == '⏮':
-                        embedPage = 0
-                    elif reaction.emoji == '◀':
-                        if embedPage > 0:
-                            embedPage -= 1
-                    elif reaction.emoji == '▶':
-                        if embedPage < len(logList) - 1:
-                            embedPage += 1
-                    elif reaction.emoji == '⏭':
-                        embedPage = len(logList) - 1
-
-                    await page.remove_reaction(reaction, user)
+            
+            view = View()
+            topLeftBtn = Button(label='⏮', style=discord.ButtonStyle.primary)
+            leftBtn = Button(label='◀', style=discord.ButtonStyle.primary)
+            rightBtn = Button(label='▶', style=discord.ButtonStyle.primary)
+            topRightBtn = Button(label='⏭', style=discord.ButtonStyle.primary)
                     
-                    embed = editPage(moderator, embedPage)
-                    embed.set_footer(text=f'페이지 {embedPage + 1}/{len(logList)}\n' + CoCoVER)
-                    await page.edit(embed = embed)
+            async def topLeft(interaction):
+                global logList
+                global embedPage
+                
+                embedPage = 0
+                logEmbed = editPage(moderator, embedPage)
+                logEmbed.set_footer(text=f'페이지 {embedPage+1}/{len(logList)}\n' + CoCoVER)
+                await interaction.response.edit_message(embed=logEmbed)
+
+            async def left(interaction):
+                global logList
+                global embedPage
+                
+                if embedPage > 0:
+                    embedPage -= 1
+                logEmbed = editPage(moderator, embedPage)
+                logEmbed.set_footer(text=f'페이지 {embedPage+1}/{len(logList)}\n' + CoCoVER)
+                await interaction.response.edit_message(embed=logEmbed)
+
+            async def right(interaction):
+                global logList
+                global embedPage
+                
+                if embedPage < len(logList) - 1:
+                    embedPage += 1
+                logEmbed = editPage(moderator, embedPage)
+                logEmbed.set_footer(text=f'페이지 {embedPage+1}/{len(logList)}\n' + CoCoVER)
+                await interaction.response.edit_message(embed=logEmbed)
+
+            async def topRight(interaction):
+                global logList
+                global embedPage
+                
+                embedPage = len(logList) - 1
+                logEmbed = editPage(moderator, embedPage)
+                logEmbed.set_footer(text=f'페이지 {embedPage+1}/{len(logList)}\n' + CoCoVER)
+                await interaction.response.edit_message(embed=logEmbed)
+                
+            topLeftBtn.callback = topLeft
+            leftBtn.callback = left
+            rightBtn.callback = right
+            topRightBtn.callback = topRight
+            
+            view.add_item(topLeftBtn)
+            view.add_item(leftBtn)
+            view.add_item(rightBtn)
+            view.add_item(topRightBtn)
+
+            page = await ctx.respond(embed=logEmbed, view=view)
         
     @slash_command(guild_ids = [675171256299028490])
     @has_permissions(administrator=True)
